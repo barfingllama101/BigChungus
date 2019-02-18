@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -16,6 +16,14 @@ namespace Big_Chungus
         Texture2D background;
         Vector2 vector;
         SpriteFont spriteFont;
+
+        //player movement variables
+        float hspd; //horizontal speed
+        float vspd; //vertical speed
+        float hacc; //horizontal acceleration
+        float grav; //vertical acceleration from gravity
+        float hmax; //maximum horizontal movespeed
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -32,6 +40,11 @@ namespace Big_Chungus
         {
             // TODO: Add your initialization logic here
             vector = new Vector2(0, 0);
+            hspd = 0;
+            vspd = 0;
+            hacc = 1;
+            grav = 1;
+            hmax = 7;
             base.Initialize();
         }
 
@@ -45,7 +58,7 @@ namespace Big_Chungus
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            background = Content.Load<Texture2D>("SmilingPetDog");
+            background = Content.Load<Texture2D>("BigChungus");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
         }
 
@@ -69,32 +82,58 @@ namespace Big_Chungus
                 Exit();
             ProcessInput();
             // TODO: Add your update logic here
-            //vector.X += 2;
+
+            //update player position based on hspeed and vspeed
+            vector.X += hspd;
+            vector.Y += vspd;
+
             base.Update(gameTime);
         }
 
         protected void ProcessInput()
         {
             KeyboardState input = Keyboard.GetState();
-            if (vector.Y<0)
+
+            //gravity
+            if (vector.Y < 231)
             {
-                vector.Y += 1;
+                vspd += grav;
             }
-            if (input.IsKeyDown(Keys.Up)&&(vector.Y==0))
+            else
+            {
+                vspd = 0;
+            }
+            if (vector.Y > 231)
+            {
+                vector.Y = 231;
+            }
+
+            //jump
+            if (input.IsKeyDown(Keys.Up) && (vector.Y == 231))
             {
 
-                vector.Y -= 10;
+                vspd = -16;
                 
             }
-            
-            if (input.IsKeyDown(Keys.Left))
+
+            //left and right movement/deceleration
+            if (input.IsKeyDown(Keys.Left) && hspd > -hmax)
             {
-                vector.X -= 2;
+                hspd -= hacc;
             }
-            if (input.IsKeyDown(Keys.Right))
+            else if (hspd < 0)
             {
-                vector.X += 2;
+                hspd += hacc;
             }
+            if (input.IsKeyDown(Keys.Right) && hspd < hmax)
+            {
+                hspd += hacc;
+            }
+            else if (hspd > 0)
+            {
+                hspd -= hacc;
+            }
+
 
 
         }
@@ -105,7 +144,7 @@ namespace Big_Chungus
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Red);
+            GraphicsDevice.Clear(Color.Green);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
@@ -113,9 +152,9 @@ namespace Big_Chungus
             // Draw
             spriteBatch.Draw(background, vector, Color.White);
 
-            spriteBatch.DrawString(spriteFont, "such text, very picture, much input, wow", new Vector2(background.Width / 2, background.Height / 2), Color.Green);
+            spriteBatch.DrawString(spriteFont, "such text, very picture, much input, wow", new Vector2(background.Width / 2, background.Height / 2), Color.White);
 
-            spriteBatch.DrawString(spriteFont, vector.X + ", " + vector.Y, new Vector2(0, 100), Color.Green);
+            spriteBatch.DrawString(spriteFont, vector.X + ", " + vector.Y, new Vector2(0, 100), Color.White);
 
             // End the sprite batch
             spriteBatch.End();
