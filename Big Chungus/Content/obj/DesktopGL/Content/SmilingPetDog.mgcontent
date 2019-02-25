@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>Z:/IGMProfile/Documents/Game Dev/IGME.106.06 - Game Dev &amp; Algo Prob Solve II - 1162019 - 212 PM/Project/Big Chungus/Big Chungus/Content/SmilingPetDog.jpg</SourceFile>
+  <SourceFile>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/SmilingPetDog.jpg</SourceFile>
   <SourceTime>2019-02-04T15:37:59.515912-05:00</SourceTime>
-  <DestFile>Z:/IGMProfile/Documents/Game Dev/IGME.106.06 - Game Dev &amp; Algo Prob Solve II - 1162019 - 212 PM/Project/Big Chungus/Big Chungus/Content/bin/DesktopGL/Content/SmilingPetDog.xnb</DestFile>
-  <DestTime>2019-02-11T17:14:24.7923604-05:00</DestTime>
+  <DestFile>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/bin/DesktopGL/Content/SmilingPetDog.xnb</DestFile>
+  <DestTime>2019-02-18T18:00:16.2973297-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -20,3 +20,27 @@ Z:\IGMProfile\Documents\Game Dev\IGME.106.06 - Game Dev & Algo Prob Solve II - 1
 Z:\IGMProfile\Documents\Game Dev\IGME.106.06 - Game Dev & Algo Prob Solve II - 1162019 - 212 PM\Project\Big Chungus\Big Chungus\obj\Debug\Big Chungus.pdb
 Z:\IGMProfile\Documents\Game Dev\IGME.106.06 - Game Dev & Algo Prob Solve II - 1162019 - 212 PM\Project\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.jpg
 Z:\IGMProfile\Documents\Game Dev\IGME.106.06 - Game Dev & Algo Prob Solve II - 1162019 - 212 PM\Project\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SpriteFont1.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\libSDL2-2.0.so.0
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\libSDL2-2.0.so.0
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\libopenal.so.1
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\libopenal.so.1
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungus.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.jpg
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SpriteFont1.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Big Chungus.exe
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Big Chungus.pdb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\obj\Debug\Big Chungus.csprojAssemblyReference.cache
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\obj\Debug\Big Chungus.csproj.CoreCompileInputs.cache
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\obj\Debug\Big Chungus.csproj.CopyComplete
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\obj\Debug\Big Chungus.exe
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\obj\Debug\Big Chungus.pdb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\free-cartoon-carrot-clip-art-uygzjR-clipart.xnb

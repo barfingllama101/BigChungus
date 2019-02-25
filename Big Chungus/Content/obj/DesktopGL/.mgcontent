@@ -4,9 +4,13 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>Z:/IGMProfile/Documents/Game Dev/IGME.106.06 - Game Dev &amp; Algo Prob Solve II - 1162019 - 212 PM/Project/Big Chungus/Big Chungus/Content/SmilingPetDog.jpg</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/BigChungus.png</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/Carrot.png</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/SmilingPetDog.jpg</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

@@ -8,21 +8,24 @@ namespace Big_Chungus
     /// This is the main type for your game.
     /// </summary>
     public class Game1 : Game
-    {/*Author:  Maxwell Hazel
+    {/*Author:  Maxwell Hazel and Max Bennett
          Class Purpose:  Runs a Monogame program with an image that can be moved with the arrow keys.  Also displays the location of the image.
          Caveats:  The location coordinates displayed in the program only track the top left corner of the image.*/
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D background;
-        Vector2 vector;
+        Carrot carrot;
+        Texture2D player;
+        Texture2D dog;
         SpriteFont spriteFont;
+        Rectangle playerRect;
+        Platform platform=new Platform(300, 430);
 
         //player movement variables
-        float hspd; //horizontal speed
-        float vspd; //vertical speed
-        float hacc; //horizontal acceleration
-        float grav; //vertical acceleration from gravity
-        float hmax; //maximum horizontal movespeed
+        int hspd; //horizontal speed
+        int vspd; //vertical speed
+        int hacc; //horizontal acceleration
+        int grav; //vertical acceleration from gravity
+        int hmax; //maximum horizontal movespeed
 
         public Game1()
         {
@@ -39,7 +42,7 @@ namespace Big_Chungus
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            vector = new Vector2(0, 0);
+            
             hspd = 0;
             vspd = 0;
             hacc = 1;
@@ -58,8 +61,15 @@ namespace Big_Chungus
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            background = Content.Load<Texture2D>("BigChungus");
+            carrot = new Carrot(200, 100);
+            playerRect = new Rectangle();
+            playerRect.Width = 201;
+            playerRect.Height = 201;
+            
+            carrot.CarrotTexture= Content.Load<Texture2D>("Carrot");
+            player = Content.Load<Texture2D>("BigChungus");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
+            dog= Content.Load<Texture2D>("SmilingPetDog");
         }
 
         /// <summary>
@@ -84,8 +94,8 @@ namespace Big_Chungus
             // TODO: Add your update logic here
 
             //update player position based on hspeed and vspeed
-            vector.X += hspd;
-            vector.Y += vspd;
+            playerRect.X += hspd;
+            playerRect.Y += vspd;
 
             base.Update(gameTime);
         }
@@ -95,7 +105,7 @@ namespace Big_Chungus
             KeyboardState input = Keyboard.GetState();
 
             //gravity
-            if (vector.Y < 231)
+            if (!playerRect.Intersects(platform.PlatformBox))
             {
                 vspd += grav;
             }
@@ -103,13 +113,17 @@ namespace Big_Chungus
             {
                 vspd = 0;
             }
-            if (vector.Y > 231)
+            if (playerRect.Y > 231)
             {
-                vector.Y = 231;
+                playerRect.Y = 231;
+            }
+            if (playerRect.Intersects(platform.PlatformBox))
+            {
+                playerRect.Y = platform.YPos-playerRect.Height;
             }
 
             //jump
-            if (input.IsKeyDown(Keys.Up) && (vector.Y == 231))
+            if (input.IsKeyDown(Keys.Up) && (playerRect.Y == 231))
             {
 
                 vspd = -16;
@@ -133,9 +147,6 @@ namespace Big_Chungus
             {
                 hspd -= hacc;
             }
-
-
-
         }
 
         /// <summary>
@@ -150,11 +161,13 @@ namespace Big_Chungus
             spriteBatch.Begin();
 
             // Draw
-            spriteBatch.Draw(background, vector, Color.White);
+            spriteBatch.Draw(player, playerRect, Color.White);
 
-            spriteBatch.DrawString(spriteFont, "such text, very picture, much input, wow", new Vector2(background.Width / 2, background.Height / 2), Color.White);
+            spriteBatch.DrawString(spriteFont, "such text, very picture, much input, wow", new Vector2(player.Width / 2, player.Height / 2), Color.White);
 
-            spriteBatch.DrawString(spriteFont, vector.X + ", " + vector.Y, new Vector2(0, 100), Color.White);
+            spriteBatch.DrawString(spriteFont, playerRect.X + ", " + playerRect.Y, new Vector2(0, 100), Color.White);
+            spriteBatch.Draw(dog, platform.PlatformBox, Color.White);
+
 
             // End the sprite batch
             spriteBatch.End();
