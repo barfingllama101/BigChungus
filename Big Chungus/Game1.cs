@@ -14,11 +14,12 @@ namespace Big_Chungus
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Player player;
-        Carrot carrot;
+        //Carrot carrot;
         Texture2D playerSprite;
         Texture2D dog;
         SpriteFont spriteFont;
-        Platform platform=new Platform(300, 430);
+        Platform platform;
+        Platform wall;
 
         //player movement variables
         int hspd; //horizontal speed
@@ -61,15 +62,18 @@ namespace Big_Chungus
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            carrot = new Carrot(200, 100);
+            
             
             
 
-            carrot.CarrotTexture = Content.Load<Texture2D>("Carrot");
+            //carrot.CarrotTexture = Content.Load<Texture2D>("Carrot");
             playerSprite = Content.Load<Texture2D>("BigChungus");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
             dog = Content.Load<Texture2D>("SmilingPetDog");
-            player = new Player(playerSprite, 100, 100);
+            //carrot = new Carrot(200, 100);
+            player = new Player(playerSprite, 0, 0);
+            platform = new Platform(dog, 0, 231, 300, 4);
+            wall = new Platform(dog, 231, 0, 40, 300);
         }
 
         /// <summary>
@@ -108,21 +112,29 @@ namespace Big_Chungus
             {
                 vspd += grav;
             }
-            else
+            else if(!input.IsKeyDown(Keys.Up))
             {
-                vspd = 0;
+                vspd += 0;
             }
-            if (player.PlayerBox.Y > 231)
+
+            //collision
+            if (player.PlayerBox.Intersects(platform.PlatformBox) && !input.IsKeyDown(Keys.Up)&&player.YPos<=platform.YPos)
             {
-                player.YPos = 231;
+                player.YPos = platform.YPos-player.Height;
             }
-            if (player.PlayerBox.Intersects(platform.PlatformBox))
+            if (player.PlayerBox.Intersects(wall.PlatformBox) && !input.IsKeyDown(Keys.Left))
             {
-                player.YPos = platform.YPos-player.PlayerBox.Height;
+                player.XPos = wall.XPos - player.Width;
+                hspd = 0;
+            }
+            if (player.PlayerBox.Intersects(wall.PlatformBox) && !input.IsKeyDown(Keys.Right))
+            {
+                player.XPos = wall.XPos + player.Width;
+                hspd = 0;
             }
 
             //jump
-            if (input.IsKeyDown(Keys.Up) && (player.PlayerBox.Y == 231))
+            if (input.IsKeyDown(Keys.Up)&& player.PlayerBox.Intersects(platform.PlatformBox))
             {
 
                 vspd = -16;
@@ -164,8 +176,9 @@ namespace Big_Chungus
 
             spriteBatch.DrawString(spriteFont, "such text, very picture, much input, wow", new Vector2(player.Width / 2, player.Height / 2), Color.White);
 
-            spriteBatch.DrawString(spriteFont, player.PlayerBox.X + ", " + player.PlayerBox.Y, new Vector2(0, 100), Color.White);
+            spriteBatch.DrawString(spriteFont, player.XPos + ", " + player.YPos, new Vector2(0, 100), Color.White);
             spriteBatch.Draw(dog, platform.PlatformBox, Color.White);
+            spriteBatch.Draw(dog, wall.PlatformBox, Color.White);
 
 
             // End the sprite batch
