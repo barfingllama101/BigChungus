@@ -44,3 +44,4 @@ Z:\IGMProfile\Documents\Big Chungus\Big Chungus\obj\Debug\Big Chungus.csproj.Cop
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\obj\Debug\Big Chungus.exe
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\obj\Debug\Big Chungus.pdb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\free-cartoon-carrot-clip-art-uygzjR-clipart.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.xnb

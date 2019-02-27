@@ -13,11 +13,11 @@ namespace Big_Chungus
          Caveats:  The location coordinates displayed in the program only track the top left corner of the image.*/
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Player player;
         Carrot carrot;
-        Texture2D player;
+        Texture2D playerSprite;
         Texture2D dog;
         SpriteFont spriteFont;
-        Rectangle playerRect;
         Platform platform=new Platform(300, 430);
 
         //player movement variables
@@ -62,14 +62,14 @@ namespace Big_Chungus
 
             // TODO: use this.Content to load your game content here
             carrot = new Carrot(200, 100);
-            playerRect = new Rectangle();
-            playerRect.Width = 201;
-            playerRect.Height = 201;
             
-            carrot.CarrotTexture= Content.Load<Texture2D>("Carrot");
-            player = Content.Load<Texture2D>("BigChungus");
+            
+
+            carrot.CarrotTexture = Content.Load<Texture2D>("Carrot");
+            playerSprite = Content.Load<Texture2D>("BigChungus");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
-            dog= Content.Load<Texture2D>("SmilingPetDog");
+            dog = Content.Load<Texture2D>("SmilingPetDog");
+            player = new Player(playerSprite, 100, 100);
         }
 
         /// <summary>
@@ -94,9 +94,8 @@ namespace Big_Chungus
             // TODO: Add your update logic here
 
             //update player position based on hspeed and vspeed
-            playerRect.X += hspd;
-            playerRect.Y += vspd;
-
+            player.XPos += hspd;
+            player.YPos += vspd;
             base.Update(gameTime);
         }
 
@@ -105,7 +104,7 @@ namespace Big_Chungus
             KeyboardState input = Keyboard.GetState();
 
             //gravity
-            if (!playerRect.Intersects(platform.PlatformBox))
+            if (!player.PlayerBox.Intersects(platform.PlatformBox))
             {
                 vspd += grav;
             }
@@ -113,17 +112,17 @@ namespace Big_Chungus
             {
                 vspd = 0;
             }
-            if (playerRect.Y > 231)
+            if (player.PlayerBox.Y > 231)
             {
-                playerRect.Y = 231;
+                player.YPos = 231;
             }
-            if (playerRect.Intersects(platform.PlatformBox))
+            if (player.PlayerBox.Intersects(platform.PlatformBox))
             {
-                playerRect.Y = platform.YPos-playerRect.Height;
+                player.YPos = platform.YPos-player.PlayerBox.Height;
             }
 
             //jump
-            if (input.IsKeyDown(Keys.Up) && (playerRect.Y == 231))
+            if (input.IsKeyDown(Keys.Up) && (player.PlayerBox.Y == 231))
             {
 
                 vspd = -16;
@@ -161,11 +160,11 @@ namespace Big_Chungus
             spriteBatch.Begin();
 
             // Draw
-            spriteBatch.Draw(player, playerRect, Color.White);
+            spriteBatch.Draw(player.PlayerTexture, player.PlayerBox, Color.White);
 
             spriteBatch.DrawString(spriteFont, "such text, very picture, much input, wow", new Vector2(player.Width / 2, player.Height / 2), Color.White);
 
-            spriteBatch.DrawString(spriteFont, playerRect.X + ", " + playerRect.Y, new Vector2(0, 100), Color.White);
+            spriteBatch.DrawString(spriteFont, player.PlayerBox.X + ", " + player.PlayerBox.Y, new Vector2(0, 100), Color.White);
             spriteBatch.Draw(dog, platform.PlatformBox, Color.White);
 
 
