@@ -31,7 +31,6 @@ Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\l
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
-Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungus.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.jpg
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SpriteFont1.xnb
@@ -45,3 +44,5 @@ Z:\IGMProfile\Documents\Big Chungus\Big Chungus\obj\Debug\Big Chungus.exe
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\obj\Debug\Big Chungus.pdb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\free-cartoon-carrot-clip-art-uygzjR-clipart.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.xnb

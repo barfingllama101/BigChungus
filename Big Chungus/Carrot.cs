@@ -11,19 +11,19 @@ namespace Big_Chungus
     class Carrot
     {
         private Texture2D carrotTexture;
-        private int xPos;
-        private int yPos;
         private Rectangle carrotBox;
+        private bool isCollected;
 
         public Texture2D CarrotTexture { get => carrotTexture; set => carrotTexture = value; }
-        public int XPos { get => xPos; set => xPos = value; }
-        public int YPos { get => yPos; set => yPos = value; }
+        public int XPos { get => carrotBox.X; set => carrotBox.X = value; }
+        public int YPos { get => carrotBox.Y; set => carrotBox.Y = value; }
         public Rectangle CarrotBox { get => carrotBox; set => carrotBox = value; }
+        public bool IsCollected { get => isCollected; set => isCollected = value; }
 
-        public Carrot(int x, int y)
+        public Carrot(Texture2D texture, int x, int y, int width, int height)
         {
-            xPos = x;
-            yPos = y;
+            carrotTexture = texture;
+            carrotBox = new Rectangle(x, y, width, height);
         }
 
         public void checkCollision(Rectangle thing)

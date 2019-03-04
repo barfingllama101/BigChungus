@@ -13,7 +13,7 @@ namespace Big_Chungus
         //Fields
         private Texture2D platformTexture;
         private Rectangle platformBox;
-
+        
         //Properties
         public int Width { get => platformBox.Width; set => platformBox.Width = value; }
         public int Height { get => platformBox.Height; set => platformBox.Height = value; }

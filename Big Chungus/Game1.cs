@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Big_Chungus
 {
@@ -13,13 +14,22 @@ namespace Big_Chungus
          Caveats:  The location coordinates displayed in the program only track the top left corner of the image.*/
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Player player;
-        //Carrot carrot;
-        Texture2D playerSprite;
-        Texture2D dog;
         SpriteFont spriteFont;
+
+        //Player things
+        Player player;
+        Texture2D playerSprite;
+
+        //Platform things
+        Texture2D dog;
         Platform platform;
         Platform wall;
+
+        //Carrot things
+        Texture2D CarrotTexture;
+        List<Carrot> carrots = new List<Carrot>();
+        int carrotCount = 0;
+        bool hasWon = false;
 
         //player movement variables
         int hspd; //horizontal speed
@@ -63,17 +73,18 @@ namespace Big_Chungus
 
             // TODO: use this.Content to load your game content here
             
-            
-            
-
-            //carrot.CarrotTexture = Content.Load<Texture2D>("Carrot");
-            playerSprite = Content.Load<Texture2D>("BigChungus");
+            CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
+            playerSprite = Content.Load<Texture2D>("BigChungusCropped");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
             dog = Content.Load<Texture2D>("SmilingPetDog");
-            //carrot = new Carrot(200, 100);
+            for (int i = 0; i < 2; i++)
+            {
+                carrots.Add(new Carrot(CarrotTexture, 150+(50*i), 100, CarrotTexture.Width/2, CarrotTexture.Height/2));
+            }
+            
             player = new Player(playerSprite, 0, 0);
-            platform = new Platform(dog, 0, 231, 300, 4);
-            wall = new Platform(dog, 231, 0, 40, 300);
+            platform = new Platform(dog, 0, 331, 300, 4);
+            wall = new Platform(dog, 331, 100, 40, 300);
         }
 
         /// <summary>
@@ -83,6 +94,7 @@ namespace Big_Chungus
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -105,6 +117,7 @@ namespace Big_Chungus
 
         protected void ProcessInput()
         {
+            
             KeyboardState input = Keyboard.GetState();
 
             //gravity
@@ -132,6 +145,22 @@ namespace Big_Chungus
                 player.XPos = wall.XPos + player.Width;
                 hspd = 0;
             }
+            
+            //Carrot dectection and win tracking(currently doesn't work, triggers on first carrot collection
+            for (int i = 0; i < carrots.Count; i++)
+            {
+                if (player.PlayerBox.Intersects(carrots[i].CarrotBox))
+                {
+                    carrots[i].IsCollected = true;
+                    carrotCount += 1;
+                    if (carrotCount==carrots.Count)
+                    {
+                        hasWon = true;
+                    }
+                }
+            }
+            
+
 
             //jump
             if (input.IsKeyDown(Keys.Up)&& player.PlayerBox.Intersects(platform.PlatformBox))
@@ -172,15 +201,23 @@ namespace Big_Chungus
             spriteBatch.Begin();
 
             // Draw
-            spriteBatch.Draw(player.PlayerTexture, player.PlayerBox, Color.White);
 
-            spriteBatch.DrawString(spriteFont, "such text, very picture, much input, wow", new Vector2(player.Width / 2, player.Height / 2), Color.White);
-
+            if (hasWon==true)
+            {
+                spriteBatch.DrawString(spriteFont, "such text, very picture, much input, wow", new Vector2(player.Width / 2, player.Height / 2), Color.White);
+            }
+            
             spriteBatch.DrawString(spriteFont, player.XPos + ", " + player.YPos, new Vector2(0, 100), Color.White);
             spriteBatch.Draw(dog, platform.PlatformBox, Color.White);
             spriteBatch.Draw(dog, wall.PlatformBox, Color.White);
-
-
+            spriteBatch.Draw(player.PlayerTexture, player.PlayerBox, Color.White);
+            for (int i = 0; i < carrots.Count; i++)
+            {
+                if (carrots[i].IsCollected == false)
+                {
+                    spriteBatch.Draw(carrots[i].CarrotTexture, carrots[i].CarrotBox, Color.White);
+                }
+            }
             // End the sprite batch
             spriteBatch.End();
             base.Draw(gameTime);
