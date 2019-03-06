@@ -24,12 +24,17 @@ namespace Big_Chungus
         Texture2D dog;
         Platform platform;
         Platform wall;
+        List<Platform> platforms;
+        Platform heldPlatform;
 
         //Carrot things
         Texture2D CarrotTexture;
         List<Carrot> carrots = new List<Carrot>();
         int carrotCount = 0;
         bool hasWon = false;
+
+        //mouse state
+        MouseState mouseState;
 
         //player movement variables
         int hspd; //horizontal speed
@@ -53,12 +58,20 @@ namespace Big_Chungus
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+
+            //show the mouse
+            this.IsMouseVisible = true;
+
             hspd = 0;
             vspd = 0;
             hacc = 1;
             grav = 1;
             hmax = 7;
+
+            heldPlatform = null;
+            mouseState = Mouse.GetState();
+
+
             base.Initialize();
         }
 
@@ -85,6 +98,12 @@ namespace Big_Chungus
             player = new Player(playerSprite, 0, 0);
             platform = new Platform(dog, 0, 331, 300, 4);
             wall = new Platform(dog, 331, 100, 40, 300);
+
+            //initialize platform list and add platforms
+            platforms = new List<Platform>();
+            platforms.Add(wall);
+            platforms.Add(platform);
+
         }
 
         /// <summary>
@@ -108,6 +127,30 @@ namespace Big_Chungus
                 Exit();
             ProcessInput();
             // TODO: Add your update logic here
+
+            //let the player move platforms with isMovable set to true
+            MouseState prevMouseState = mouseState;
+            mouseState = Mouse.GetState();
+            foreach(Platform p in platforms)
+            {
+                if (heldPlatform == null)
+                {
+                    //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
+                    if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && p.PlatformBox.Intersects(new Rectangle(mouseState.Position, new Point(1))) && p.IsMoveable == true)
+                    {
+                        heldPlatform = p;
+                    }
+                }                         
+            }
+            if (heldPlatform != null)
+            {
+                //moves the held platform and releases it if the mouse button is released
+                heldPlatform.Drag();
+                if (mouseState.LeftButton != ButtonState.Pressed)
+                {
+                    heldPlatform = null;
+                }
+            }
 
             //update player position based on hspeed and vspeed
             player.XPos += hspd;

@@ -4,15 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/BigChungusCropped.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/Carrot.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/CarrotCropped.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/SmilingPetDog.jpg</File>
+    <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/BigChungusCropped.png</File>
+    <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/Carrot.png</File>
+    <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/CarrotCropped.png</File>
+    <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/SmilingPetDog.jpg</File>
   </SourceFiles>
-  <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-  </DestFiles>
 </SourceFileCollection>
