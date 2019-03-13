@@ -43,6 +43,7 @@ namespace Big_Chungus
         int grav; //vertical acceleration from gravity
         int hmax; //maximum horizontal movespeed
 
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -265,5 +266,7 @@ namespace Big_Chungus
             spriteBatch.End();
             base.Draw(gameTime);
         }
+
+     
     }
 }
