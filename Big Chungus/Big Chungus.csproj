@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Carrot.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameObjects.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Player.cs" />
