@@ -8,11 +8,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Big_Chungus
 {
-    class Carrot
+    class Carrot : GameObject
     {
         private Texture2D carrotTexture;
         private Rectangle carrotBox;
-        private bool isCollected;
+        private bool isCollected = false;
         protected bool visible;
 
 
@@ -24,7 +24,7 @@ namespace Big_Chungus
         public Texture2D CarrotTexture { get => carrotTexture; set => carrotTexture = value; }
         public int XPos { get => carrotBox.X; set => carrotBox.X = value; }
         public int YPos { get => carrotBox.Y; set => carrotBox.Y = value; }
-        public Rectangle CarrotBox { get => carrotBox; set => carrotBox = value; }
+        public Rectangle Box { get => carrotBox; set => carrotBox = value; }
         public bool IsCollected { get => isCollected; set => isCollected = value; }
 
         public Carrot(Texture2D texture, int x, int y, int width, int height)
@@ -39,7 +39,7 @@ namespace Big_Chungus
             bool result = false;
             if (visible == true)
             {
-                if (O.Intersects(CarrotBox))
+                if (O.Intersects(Box))
                 {
                     result = true;
                 }

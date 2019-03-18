@@ -206,7 +206,7 @@ namespace Big_Chungus
                         if (heldPlatform == null)
                         {
                             //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
-                            if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && p.PlatformBox.Intersects(new Rectangle(mouseState.Position, new Point(1))) && p.IsMoveable == true)
+                            if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && p.Box.Intersects(new Rectangle(mouseState.Position, new Point(1))) && p.IsMoveable == true)
                             {
                                 heldPlatform = p;
                             }
@@ -241,7 +241,7 @@ namespace Big_Chungus
                     KeyboardState input = Keyboard.GetState();
 
                     //gravity
-                    if (!player.PlayerBox.Intersects(platform.PlatformBox))
+                    if (!player.PlayerBox.Intersects(platform.Box))
                     {
                         vspd += grav;
                     }
@@ -251,16 +251,16 @@ namespace Big_Chungus
                     }
 
                     //collision
-                    if (player.PlayerBox.Intersects(platform.PlatformBox) && !input.IsKeyDown(Keys.Up) && player.YPos <= platform.YPos)
+                    if (player.PlayerBox.Intersects(platform.Box) && !input.IsKeyDown(Keys.Up) && player.YPos <= platform.YPos)
                     {
                         player.YPos = platform.YPos - player.Height;
                     }
-                    if (player.PlayerBox.Intersects(wall.PlatformBox) && !input.IsKeyDown(Keys.Left))
+                    if (player.PlayerBox.Intersects(wall.Box) && !input.IsKeyDown(Keys.Left))
                     {
                         player.XPos = wall.XPos - player.Width;
                         hspd = 0;
                     }
-                    if (player.PlayerBox.Intersects(wall.PlatformBox) && !input.IsKeyDown(Keys.Right))
+                    if (player.PlayerBox.Intersects(wall.Box) && !input.IsKeyDown(Keys.Right))
                     {
                         player.XPos = wall.XPos + player.Width;
                         hspd = 0;
@@ -278,7 +278,7 @@ namespace Big_Chungus
                     }
 
                     //jump
-                    if (input.IsKeyDown(Keys.Up) && player.PlayerBox.Intersects(platform.PlatformBox))
+                    if (input.IsKeyDown(Keys.Up) && player.PlayerBox.Intersects(platform.Box))
                     {
 
                         vspd = -16;
@@ -368,14 +368,14 @@ namespace Big_Chungus
 
                 case GameState.Building:
 
-                    spriteBatch.Draw(dog, platform.PlatformBox, Color.White);
-                    spriteBatch.Draw(dog, wall.PlatformBox, Color.White);
+                    spriteBatch.Draw(dog, platform.Box, Color.White);
+                    spriteBatch.Draw(dog, wall.Box, Color.White);
                     spriteBatch.Draw(player.PlayerTexture, player.PlayerBox, Color.White);
                     for (int i = 0; i < carrots.Count; i++)
                     {
                         if (carrots[i].Visible == true)
                         {
-                            spriteBatch.Draw(carrots[i].CarrotTexture, carrots[i].CarrotBox, Color.White);
+                            spriteBatch.Draw(carrots[i].CarrotTexture, carrots[i].Box, Color.White);
                         }
                     }
 
@@ -388,11 +388,11 @@ namespace Big_Chungus
                     {
                         if (carrots[i].Visible == true)
                         {
-                            spriteBatch.Draw(carrots[i].CarrotTexture, carrots[i].CarrotBox, Color.White);
+                            spriteBatch.Draw(carrots[i].CarrotTexture, carrots[i].Box, Color.White);
                         }
                     }
-                    spriteBatch.Draw(dog, platform.PlatformBox, Color.White);
-                    spriteBatch.Draw(dog, wall.PlatformBox, Color.White);
+                    spriteBatch.Draw(dog, platform.Box, Color.White);
+                    spriteBatch.Draw(dog, wall.Box, Color.White);
                     break;
 
                 case GameState.Pause:

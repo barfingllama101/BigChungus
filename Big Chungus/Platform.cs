@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Big_Chungus
 {
-    class Platform
+    class Platform : GameObject
     {
         //Fields
         private Texture2D platformTexture;
@@ -22,7 +22,7 @@ namespace Big_Chungus
         public int YPos { get => platformBox.Y; set => platformBox.Y = value; }
         public int XPos { get => platformBox.X; set => platformBox.X = value; }
         public bool IsMoveable { get => isMoveable; set => isMoveable = value; }
-        public Rectangle PlatformBox { get => platformBox; set => platformBox = value; }
+        public Rectangle Box { get => platformBox; set => platformBox = value; }
 
         public Platform(Texture2D texture, int x, int y, int width, int height)
         {
