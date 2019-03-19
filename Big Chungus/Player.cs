@@ -12,7 +12,14 @@ namespace Big_Chungus
     {
         private Texture2D playerTexture;
         private Rectangle playerBox;
+        protected int levelScore;
 
+
+        public int LevelScore
+        {
+            get { return levelScore; }
+            set { levelScore = value; }
+        }
         public Rectangle PlayerBox { get => playerBox; set => playerBox = value; }
         public int Width { get => playerBox.Width; set => playerBox.Width = value; }
         public int Height { get => playerBox.Height; set => playerBox.Height = value; }
@@ -24,6 +31,7 @@ namespace Big_Chungus
         {
             playerTexture = texture;
             playerBox = new Rectangle(x, y, texture.Width, texture.Height);
+            levelScore = 0;
         }
     }
 }
