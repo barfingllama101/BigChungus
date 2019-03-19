@@ -29,6 +29,7 @@ namespace Big_Chungus
 
         public Carrot(Texture2D texture, int x, int y, int width, int height)
         {
+            //new GameObjects(texture, x, y, width, height);
             carrotTexture = texture;
             carrotBox = new Rectangle(x, y, width, height);
             visible = true;

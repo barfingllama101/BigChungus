@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Big_Chungus
 {
-    class Player
+    class Player:GameObject
     {
         private Texture2D playerTexture;
         private Rectangle playerBox;
@@ -20,7 +20,7 @@ namespace Big_Chungus
             get { return levelScore; }
             set { levelScore = value; }
         }
-        public Rectangle PlayerBox { get => playerBox; set => playerBox = value; }
+        public Rectangle Box { get => playerBox; set => playerBox = value; }
         public int Width { get => playerBox.Width; set => playerBox.Width = value; }
         public int Height { get => playerBox.Height; set => playerBox.Height = value; }
         public int XPos { get => playerBox.X; set => playerBox.X = value; }

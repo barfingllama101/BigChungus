@@ -241,7 +241,7 @@ namespace Big_Chungus
                     KeyboardState input = Keyboard.GetState();
 
                     //gravity
-                    if (!player.PlayerBox.Intersects(platform.Box))
+                    if (!player.Box.Intersects(platform.Box))
                     {
                         vspd += grav;
                     }
@@ -251,16 +251,16 @@ namespace Big_Chungus
                     }
 
                     //collision
-                    if (player.PlayerBox.Intersects(platform.Box) && !input.IsKeyDown(Keys.Up) && player.YPos <= platform.YPos)
+                    if (player.Box.Intersects(platform.Box) && !input.IsKeyDown(Keys.Up) && player.YPos <= platform.YPos)
                     {
                         player.YPos = platform.YPos - player.Height;
                     }
-                    if (player.PlayerBox.Intersects(wall.Box) && !input.IsKeyDown(Keys.Left))
+                    if (player.Box.Intersects(wall.Box) && !input.IsKeyDown(Keys.Left))
                     {
                         player.XPos = wall.XPos - player.Width;
                         hspd = 0;
                     }
-                    if (player.PlayerBox.Intersects(wall.Box) && !input.IsKeyDown(Keys.Right))
+                    if (player.Box.Intersects(wall.Box) && !input.IsKeyDown(Keys.Right))
                     {
                         player.XPos = wall.XPos + player.Width;
                         hspd = 0;
@@ -269,7 +269,7 @@ namespace Big_Chungus
                     //Carrot dectection and win tracking
                     for (int i = 0; i < carrots.Count; i++)
                     {
-                        bool r = carrots[i].CheckCollision(player.PlayerBox);
+                        bool r = carrots[i].CheckCollision(player.Box);
                         if (r == true)
                         {
                             carrots[i].Visible = false;
@@ -278,7 +278,7 @@ namespace Big_Chungus
                     }
 
                     //jump
-                    if (input.IsKeyDown(Keys.Up) && player.PlayerBox.Intersects(platform.Box))
+                    if (input.IsKeyDown(Keys.Up) && player.Box.Intersects(platform.Box))
                     {
 
                         vspd = -16;
@@ -370,7 +370,7 @@ namespace Big_Chungus
 
                     spriteBatch.Draw(dog, platform.Box, Color.White);
                     spriteBatch.Draw(dog, wall.Box, Color.White);
-                    spriteBatch.Draw(player.PlayerTexture, player.PlayerBox, Color.White);
+                    spriteBatch.Draw(player.PlayerTexture, player.Box, Color.White);
                     for (int i = 0; i < carrots.Count; i++)
                     {
                         if (carrots[i].Visible == true)
@@ -383,7 +383,7 @@ namespace Big_Chungus
 
                 case GameState.Game:
 
-                    spriteBatch.Draw(player.PlayerTexture, player.PlayerBox, Color.White);
+                    spriteBatch.Draw(player.PlayerTexture, player.Box, Color.White);
                     for (int i = 0; i < carrots.Count; i++)
                     {
                         if (carrots[i].Visible == true)

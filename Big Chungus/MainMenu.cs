@@ -18,7 +18,7 @@ namespace Big_Chungus
             // this is all goign to be changed 
             // so plz ignore it 
 
-            // THher will be a UIELEMENT class instead and those will be put into a list 
+            // Ther will be a UIELEMENT class instead and those will be put into a list 
             // 
 
         //background
@@ -51,7 +51,7 @@ namespace Big_Chungus
             mouseRect.X = Mouse.GetState().X;
             mouseRect.Y = Mouse.GetState().Y;
 
-           if( Intersect(button1Rect, mouseRect))
+           if(Intersect(button1Rect, mouseRect))
             {
 
             }

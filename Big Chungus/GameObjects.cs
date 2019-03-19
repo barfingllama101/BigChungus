@@ -38,8 +38,9 @@ namespace Big_Chungus
         }
 
         //Constructor
-        public GameObjects(int x, int y, int width, int height)
+        public GameObjects(Texture2D texture, int x, int y, int width, int height)
         {
+            obj = texture;
             rec = new Rectangle(x, y, width, height);
         }
     }

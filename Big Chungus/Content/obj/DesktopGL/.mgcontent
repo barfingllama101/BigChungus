@@ -4,9 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/alexs/OneDrive/Desktop/C# semester 2/GDAPS2 project/Big Chungus/Content/BigChungusCropped.png</File>
-    <File>C:/Users/alexs/OneDrive/Desktop/C# semester 2/GDAPS2 project/Big Chungus/Content/Carrot.png</File>
-    <File>C:/Users/alexs/OneDrive/Desktop/C# semester 2/GDAPS2 project/Big Chungus/Content/CarrotCropped.png</File>
-    <File>C:/Users/alexs/OneDrive/Desktop/C# semester 2/GDAPS2 project/Big Chungus/Content/SmilingPetDog.jpg</File>
+    <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/BigChungusCropped.png</File>
+    <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/Carrot.png</File>
+    <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/CarrotCropped.png</File>
+    <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/SmilingPetDog.jpg</File>
   </SourceFiles>
 </SourceFileCollection>
