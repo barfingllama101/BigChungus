@@ -13,7 +13,7 @@ namespace Big_Chungus
         private Texture2D playerTexture;
         private Rectangle playerBox;
         protected int levelScore;
-
+        private bool isStanding = false;
 
         public int LevelScore
         {
@@ -26,12 +26,27 @@ namespace Big_Chungus
         public int XPos { get => playerBox.X; set => playerBox.X = value; }
         public int YPos { get => playerBox.Y; set => playerBox.Y = value; }
         public Texture2D PlayerTexture { get => playerTexture; set => playerTexture = value; }
+        public bool IsStanding { get => isStanding; set => isStanding = value; }
 
         public Player(Texture2D texture, int x, int y)
         {
             playerTexture = texture;
             playerBox = new Rectangle(x, y, texture.Width, texture.Height);
             levelScore = 0;
+        }
+
+        public bool standingCheck(List<Platform> platformList)
+        {
+            for (int i = 0; i < platformList.Count; i++)
+            {
+                if (Box.Intersects(platformList[i].Box))
+                {
+                    isStanding = true;
+                    break;
+                }
+                isStanding = false;
+            }
+            return isStanding;
         }
     }
 }

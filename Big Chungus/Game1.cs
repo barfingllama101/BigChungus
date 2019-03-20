@@ -1,7 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Big_Chungus
 {
@@ -20,18 +22,18 @@ namespace Big_Chungus
         Player player;
         Texture2D playerSprite;
 
+        Level level;
+
         //Platform things
         Texture2D dog;
-        Platform platform;
-        Platform wall;
         List<Platform> platforms;
         Platform heldPlatform;
 
         //Carrot things
         Texture2D CarrotTexture;
         List<Carrot> carrots = new List<Carrot>();
-        int carrotCount = 0;
-        bool hasWon = false;
+        //int carrotCount = 0;
+        //bool hasWon = false;
 
         //mouse state
         MouseState mouseState;
@@ -77,7 +79,7 @@ namespace Big_Chungus
             return r;
         }
 
-        // Checks if enter key was pressed
+        // Checks if escape key was pressed
         public bool EscKeyPress()
         {
             bool r = false;
@@ -96,17 +98,72 @@ namespace Big_Chungus
         //sets next level
         public void NextLevel()
         {
-            player.XPos = 0;
-            player.YPos = 0;
-            player.LevelScore = 0;
-            carrots.Clear();
-            for (int i = 0; i < 2; i++)
+            try
             {
-                carrots.Add(new Carrot(CarrotTexture, 150 + (50 * i), 100, CarrotTexture.Width / 2, CarrotTexture.Height / 2));
+                String line;
+                StreamReader input = new StreamReader("Level1.txt");
+                if (input.ReadLine() != null)
+                {
+                    line = input.ReadLine();
+                    String[] platformValues = line.Split(',');
+                    platforms = new List<Platform>();
+                    for (int i = 0; i < int.Parse(platformValues[0]); i++)
+                    {
+                        platforms.Add(new Platform(dog, int.Parse(platformValues[(5 * i) + 2]), int.Parse(platformValues[(5 * i) + 3]), int.Parse(platformValues[(5 * i) + 4]), int.Parse(platformValues[(5 * i) + 5])));
+                    }
+                }
+                if (input.ReadLine() != null)
+                {
+                    line = input.ReadLine();
+                    String[] carrotValues = line.Split(',');
+                    carrots = new List<Carrot>();
+                    for (int i = 0; i < int.Parse(carrotValues[0]); i++)
+                    {
+                        carrots.Add(new Carrot(CarrotTexture, int.Parse(carrotValues[(2 * i) + 2]), int.Parse(carrotValues[(2 * i) + 3]), CarrotTexture.Width / 2, CarrotTexture.Height / 2));
+                    }
+                }
+                if (input.ReadLine() != null)
+                {
+                    line = input.ReadLine();
+                    String[] playerSpawnCoor = line.Split(',');
+                    player.XPos = int.Parse(playerSpawnCoor[0]);
+                    player.YPos = int.Parse(playerSpawnCoor[1]);
+                }
+                input.Close();
             }
+            catch (System.Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
+            player.LevelScore = 0;
         }
 
-       
+        public void CheckCollision(Rectangle platformBox)
+        {
+            kStateCurrent = Keyboard.GetState();
+            //vertical collision and prevents falling through the floor
+            if (player.Box.Intersects(platformBox) && !kStatePrevious.IsKeyDown(Keys.Up))
+            {
+                vspd += 0;
+                if (player.YPos <= platformBox.Y)
+                {
+                    player.YPos = platformBox.Y - player.Height;
+                }
+            }
+
+            //horizontal collision
+            if (player.Box.Intersects(platformBox) && !kStateCurrent.IsKeyDown(Keys.Left) && !kStatePrevious.IsKeyDown(Keys.Up))
+            {
+                player.XPos = platformBox.X - player.Width;
+                hspd = 0;
+            }
+            else if (player.Box.Intersects(platformBox) && !kStateCurrent.IsKeyDown(Keys.Right) && !kStatePrevious.IsKeyDown(Keys.Up))
+            {
+                player.XPos = platformBox.X + player.Width;
+                hspd = 0;
+            }
+        }
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -147,20 +204,10 @@ namespace Big_Chungus
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
             dog = Content.Load<Texture2D>("SmilingPetDog");
-            /*for (int i = 0; i < 2; i++)
-            {
-                carrots.Add(new Carrot(CarrotTexture, 150+(50*i), 100, CarrotTexture.Width/2, CarrotTexture.Height/2));
-            }*/
             
             player = new Player(playerSprite, 0, 0);
-            platform = new Platform(dog, 0, 331, 300, 4);
-            wall = new Platform(dog, 331, 100, 40, 300);
-
-            //initialize platform list and add platforms
-            platforms = new List<Platform>();
-            platforms.Add(wall);
-            platforms.Add(platform);
-
+            NextLevel();
+            level = new Level(0, 0, platforms, carrots);
         }
 
         /// <summary>
@@ -201,7 +248,7 @@ namespace Big_Chungus
                     //let the player move platforms with isMovable set to true
                     MouseState prevMouseState = mouseState;
                     mouseState = Mouse.GetState();
-                    foreach (Platform p in platforms)
+                    foreach (Platform p in level.Platforms)
                     {
                         if (heldPlatform == null)
                         {
@@ -238,55 +285,50 @@ namespace Big_Chungus
                     player.YPos += vspd;
                     base.Update(gameTime);
 
-                    KeyboardState input = Keyboard.GetState();
+                    kStateCurrent = Keyboard.GetState();
 
                     //gravity
-                    if (!player.Box.Intersects(platform.Box))
+                    if (player.standingCheck(level.Platforms) == false)
                     {
                         vspd += grav;
                     }
-                    else if (!input.IsKeyDown(Keys.Up))
+                    else
                     {
-                        vspd += 0;
-                    }
-
-                    //collision
-                    if (player.Box.Intersects(platform.Box) && !input.IsKeyDown(Keys.Up) && player.YPos <= platform.YPos)
-                    {
-                        player.YPos = platform.YPos - player.Height;
-                    }
-                    if (player.Box.Intersects(wall.Box) && !input.IsKeyDown(Keys.Left))
-                    {
-                        player.XPos = wall.XPos - player.Width;
-                        hspd = 0;
-                    }
-                    if (player.Box.Intersects(wall.Box) && !input.IsKeyDown(Keys.Right))
-                    {
-                        player.XPos = wall.XPos + player.Width;
-                        hspd = 0;
-                    }
-
-                    //Carrot dectection and win tracking
-                    for (int i = 0; i < carrots.Count; i++)
-                    {
-                        bool r = carrots[i].CheckCollision(player.Box);
-                        if (r == true)
-                        {
-                            carrots[i].Visible = false;
-                            player.LevelScore++;                            
-                        }
+                        vspd = 0;
                     }
 
                     //jump
-                    if (input.IsKeyDown(Keys.Up) && player.Box.Intersects(platform.Box))
+                    if (kStateCurrent.IsKeyDown(Keys.Up))
                     {
-
                         vspd = -16;
+                    }
+                    //gravity and collision (Needs to be fixed)
+                    for (int i = 0; i < level.Platforms.Count; i++)
+                    {
+                        if (player.Box.Intersects(level.Platforms[i].Box))
+                        {
+                            if (!kStateCurrent.IsKeyDown(Keys.Up) && player.standingCheck(level.Platforms))
+                            {
+                                vspd += 0;
+                            }
+                            kStatePrevious = kStateCurrent;
+                            CheckCollision(level.Platforms[i].Box);
+                        }
+                    }
 
+                    //Carrot dectection and win tracking
+                    for (int i = 0; i < level.Carrots.Count; i++)
+                    {
+                        bool r = level.Carrots[i].CheckCollision(player.Box);
+                        if (r == true)
+                        {
+                            level.Carrots[i].Visible = false;
+                            player.LevelScore++;
+                        }
                     }
 
                     //left and right movement/deceleration
-                    if (input.IsKeyDown(Keys.Left) && hspd > -hmax)
+                    if (kStateCurrent.IsKeyDown(Keys.Left) && hspd > -hmax)
                     {
                         hspd -= hacc;
                     }
@@ -294,7 +336,7 @@ namespace Big_Chungus
                     {
                         hspd += hacc;
                     }
-                    if (input.IsKeyDown(Keys.Right) && hspd < hmax)
+                    if (kStateCurrent.IsKeyDown(Keys.Right) && hspd < hmax)
                     {
                         hspd += hacc;
                     }
@@ -303,7 +345,7 @@ namespace Big_Chungus
                         hspd -= hacc;
                     }
 
-                    if (player.LevelScore == carrots.Count)
+                    if (player.LevelScore == level.Carrots.Count)
                     {
                         curr = GameState.LevelFinal;
                     }
@@ -368,14 +410,17 @@ namespace Big_Chungus
 
                 case GameState.Building:
 
-                    spriteBatch.Draw(dog, platform.Box, Color.White);
-                    spriteBatch.Draw(dog, wall.Box, Color.White);
-                    spriteBatch.Draw(player.PlayerTexture, player.Box, Color.White);
-                    for (int i = 0; i < carrots.Count; i++)
+                    for (int i = 0; i < level.Platforms.Count; i++)
                     {
-                        if (carrots[i].Visible == true)
+                        spriteBatch.Draw(level.Platforms[i].PlatformTexture, level.Platforms[i].Box, Color.White);
+                    }
+
+                    spriteBatch.Draw(player.PlayerTexture, player.Box, Color.White);
+                    for (int i = 0; i < level.Carrots.Count; i++)
+                    {
+                        if (level.Carrots[i].Visible == true)
                         {
-                            spriteBatch.Draw(carrots[i].CarrotTexture, carrots[i].Box, Color.White);
+                            spriteBatch.Draw(level.Carrots[i].CarrotTexture, level.Carrots[i].Box, Color.White);
                         }
                     }
 
@@ -384,15 +429,17 @@ namespace Big_Chungus
                 case GameState.Game:
 
                     spriteBatch.Draw(player.PlayerTexture, player.Box, Color.White);
-                    for (int i = 0; i < carrots.Count; i++)
+                    for (int i = 0; i < level.Carrots.Count; i++)
                     {
-                        if (carrots[i].Visible == true)
+                        if (level.Carrots[i].Visible == true)
                         {
-                            spriteBatch.Draw(carrots[i].CarrotTexture, carrots[i].Box, Color.White);
+                            spriteBatch.Draw(level.Carrots[i].CarrotTexture, level.Carrots[i].Box, Color.White);
                         }
                     }
-                    spriteBatch.Draw(dog, platform.Box, Color.White);
-                    spriteBatch.Draw(dog, wall.Box, Color.White);
+                    for (int i = 0; i < level.Platforms.Count; i++)
+                    {
+                        spriteBatch.Draw(level.Platforms[i].PlatformTexture, level.Platforms[i].Box, Color.White);
+                    }
                     break;
 
                 case GameState.Pause:
@@ -407,23 +454,7 @@ namespace Big_Chungus
                     spriteBatch.DrawString(spriteFont, "Congrats!", new Vector2(300, 200), Color.White);
                     break;
             }
-
-            /*        if (hasWon==true)
-            {
-                spriteBatch.DrawString(spriteFont, "such text, very picture, much input, wow", new Vector2(player.Width / 2, player.Height / 2), Color.White);
-            }
             
-            spriteBatch.DrawString(spriteFont, player.XPos + ", " + player.YPos, new Vector2(0, 100), Color.White);
-            spriteBatch.Draw(dog, platform.PlatformBox, Color.White);
-            spriteBatch.Draw(dog, wall.PlatformBox, Color.White);
-            spriteBatch.Draw(player.PlayerTexture, player.PlayerBox, Color.White);
-            for (int i = 0; i < carrots.Count; i++)
-            {
-                if (carrots[i].IsCollected == false)
-                {
-                    spriteBatch.Draw(carrots[i].CarrotTexture, carrots[i].CarrotBox, Color.White);
-                }
-            }*/
             // End the sprite batch
             spriteBatch.End();
             base.Draw(gameTime);

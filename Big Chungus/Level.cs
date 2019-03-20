@@ -38,19 +38,7 @@ namespace Big_Chungus
             carrotPositions.Add(new List<int>(100));
             carrotPositions.Add(new List<int>(100));
 
-            /*platforms = newPlatforms;
-            carrots = newCarrots;
-
-            for (int i = 0; i < newPlatforms.Count; i++)
-            {
-                platformPositions[0].Add(platforms[i].XPos);
-                platformPositions[1].Add(platforms[i].YPos);
-            }
-            for (int i = 0; i < newCarrots.Count; i++)
-            {
-                carrotPositions[0].Add(carrots[i].XPos);
-                carrotPositions[1].Add(carrots[i].YPos);
-            }*/
+            
             for (int i = 0; i < newPlatforms.Count; i++)
             {
                 AddObject(newPlatforms[i]);
