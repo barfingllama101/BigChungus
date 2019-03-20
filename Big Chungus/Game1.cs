@@ -95,7 +95,8 @@ namespace Big_Chungus
             return r;
         }
 
-        //sets next level
+        //sets next level by reading a text file containing level data
+
         public void NextLevel()
         {
             try

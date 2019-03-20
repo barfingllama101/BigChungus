@@ -113,9 +113,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
-    <Content Include="Content\BigChungusCropped.png" />
-    <Content Include="Content\Carrot.png" />
-    <Content Include="Content\CarrotCropped.png" />
+    <Content Include="Content\BigChungusCropped.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Carrot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CarrotCropped.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\SmilingPetDog.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

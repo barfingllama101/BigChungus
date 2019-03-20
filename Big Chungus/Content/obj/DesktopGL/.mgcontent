@@ -9,4 +9,10 @@
     <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/CarrotCropped.png</File>
     <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/SmilingPetDog.jpg</File>
   </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
 </SourceFileCollection>

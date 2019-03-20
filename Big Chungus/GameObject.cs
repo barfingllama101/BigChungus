@@ -10,9 +10,15 @@ namespace Big_Chungus
 {
     interface GameObject
     {
+        /*protected int xPos=0;
+        protected int yPos=0;
+        public Rectangle box;*/
         Rectangle Box { get; set; }
         int XPos { get; set; }
         int YPos { get; set; }
+
+        //public int XPos { get => box.X; set => box.X = value; }
+        //public int YPos { get => box.Y; set => box.Y = value; }
 
     }
 }
