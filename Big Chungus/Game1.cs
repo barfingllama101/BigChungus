@@ -14,6 +14,9 @@ namespace Big_Chungus
     {/*Author:  Maxwell Hazel and Max Bennett
          Class Purpose:  Runs a Monogame program with an image that can be moved with the arrow keys.  Also displays the location of the image.
          Caveats:  The location coordinates displayed in the program only track the top left corner of the image.*/
+
+        //Once you add a level file to the Debug Folder, change this string to its filename
+        private string LevelFile = "TestLevel.txt";
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont spriteFont;
@@ -102,7 +105,7 @@ namespace Big_Chungus
             try
             {
                 String line;
-                StreamReader input = new StreamReader("Level1.txt");
+                StreamReader input = new StreamReader(LevelFile);
                 if (input.ReadLine() != null)
                 {
                     line = input.ReadLine();

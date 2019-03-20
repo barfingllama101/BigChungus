@@ -161,3 +161,6 @@ Z:\IGMProfile\Documents\Game Dev\IGME.106.06 - Game Dev & Algo Prob Solve II - 1
 Z:\IGMProfile\Documents\Game Dev\IGME.106.06 - Game Dev & Algo Prob Solve II - 1162019 - 212 PM\Project\BigChungusMaster\BigChungus\Big Chungus\obj\Debug\Big Chungus.csproj.CopyComplete
 Z:\IGMProfile\Documents\Game Dev\IGME.106.06 - Game Dev & Algo Prob Solve II - 1162019 - 212 PM\Project\BigChungusMaster\BigChungus\Big Chungus\obj\Debug\Big Chungus.exe
 Z:\IGMProfile\Documents\Game Dev\IGME.106.06 - Game Dev & Algo Prob Solve II - 1162019 - 212 PM\Project\BigChungusMaster\BigChungus\Big Chungus\obj\Debug\Big Chungus.pdb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png
