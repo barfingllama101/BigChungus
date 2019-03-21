@@ -13,7 +13,7 @@ namespace Big_Chungus
         private Texture2D carrotTexture;
         private Rectangle carrotBox;
         private bool isCollected = false;
-        protected bool visible;
+        protected bool visible = true;
 
 
         public bool Visible

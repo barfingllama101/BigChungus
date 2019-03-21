@@ -168,3 +168,7 @@ C:\Users\alexs\OneDrive\Desktop\C# semester 2\GDAPS2 project\Big Chungus\bin\Des
 C:\Users\alexs\OneDrive\Desktop\C# semester 2\GDAPS2 project\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
 C:\Users\alexs\OneDrive\Desktop\C# semester 2\GDAPS2 project\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
 C:\Users\alexs\OneDrive\Desktop\C# semester 2\GDAPS2 project\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png
+C:\Users\Max\source\repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spike.xnb
+C:\Users\Max\source\repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
+C:\Users\Max\source\repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
+C:\Users\Max\source\repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png

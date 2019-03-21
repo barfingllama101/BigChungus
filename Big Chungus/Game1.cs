@@ -104,6 +104,38 @@ namespace Big_Chungus
             return r;
         }
 
+        // Checks if M key was pressed
+        public bool MKeyPress()
+        {
+            bool r = false;
+            kStateCurrent = Keyboard.GetState();
+            if (kStateCurrent.IsKeyDown(Keys.M) == true && kStatePrevious.IsKeyDown(Keys.M) == false)
+            {
+                r = true;
+            }
+            else
+            {
+                r = false;
+            }
+            return r;
+        }
+
+        // Checks if P key was pressed
+        public bool PKeyPress()
+        {
+            bool r = false;
+            kStateCurrent = Keyboard.GetState();
+            if (kStateCurrent.IsKeyDown(Keys.P) == true && kStatePrevious.IsKeyDown(Keys.P) == false)
+            {
+                r = true;
+            }
+            else
+            {
+                r = false;
+            }
+            return r;
+        }
+
         //sets next level by reading a text file containing level data
 
         public void NextLevel()
@@ -313,7 +345,7 @@ namespace Big_Chungus
                     }
 
                     //jump
-                    if (kStateCurrent.IsKeyDown(Keys.Up))
+                    if (kStateCurrent.IsKeyDown(Keys.Up) && player.standingCheck(level.Platforms))
                     {
                         vspd = -16;
                     }
@@ -368,7 +400,10 @@ namespace Big_Chungus
                             player.LevelScore++;
                         }
                     }
-
+                    if (player.LevelScore == level.Carrots.Count)
+                    {
+                        curr = GameState.LevelFinal;
+                    }
                     //left and right movement/deceleration
                     if (kStateCurrent.IsKeyDown(Keys.Left) && hspd > -hmax)
                     {
@@ -387,12 +422,10 @@ namespace Big_Chungus
                         hspd -= hacc;
                     }
 
-                    if (player.LevelScore == level.Carrots.Count)
-                    {
-                        curr = GameState.LevelFinal;
-                    }
+                    
+                    //Pause
                     kStatePrevious = kStateCurrent;
-                    bool res3 = EscKeyPress();
+                    bool res3 = PKeyPress();
                     if (res3 == true)
                     {
                         curr = GameState.Pause;
@@ -408,7 +441,7 @@ namespace Big_Chungus
                         curr = GameState.Building;
                         NextLevel();
                     }
-                    bool res8 = EscKeyPress();
+                    bool res8 = MKeyPress();
                     if (res8 == true)
                     {
                         curr = GameState.Menu;
@@ -423,7 +456,7 @@ namespace Big_Chungus
                     {
                         curr = GameState.Game;
                     }
-                    bool res2 = EscKeyPress();
+                    bool res2 = MKeyPress();
                     if (res2 == true)
                     {
                         curr = GameState.Menu;
@@ -518,7 +551,7 @@ namespace Big_Chungus
                 case GameState.Pause:
 
                     spriteBatch.DrawString(spriteFont, "Press enter to resume", new Vector2(300, 300), Color.White);
-                    spriteBatch.DrawString(spriteFont, "Press esc to menu", new Vector2(300, 400), Color.White);
+                    spriteBatch.DrawString(spriteFont, "Press M to menu", new Vector2(300, 400), Color.White);
                     break;
 
                 case GameState.LevelFinal:
