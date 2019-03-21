@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/alexs/OneDrive/Desktop/C# semester 2/GDAPS2 project/Big Chungus/Content/CarrotCropped.png</SourceFile>
-  <SourceTime>2019-03-14T18:32:27.4409892-04:00</SourceTime>
-  <DestFile>C:/Users/alexs/OneDrive/Desktop/C# semester 2/GDAPS2 project/Big Chungus/Content/bin/DesktopGL/CarrotCropped.xnb</DestFile>
-  <DestTime>2019-03-20T20:01:56.7349457-04:00</DestTime>
+  <SourceFile>C:/Users/alexs/OneDrive/Desktop/C# semester 2/GDAPS2 project/Big Chungus/Content/spike.png</SourceFile>
+  <SourceTime>2019-03-20T17:39:40.8822748-04:00</SourceTime>
+  <DestFile>C:/Users/alexs/OneDrive/Desktop/C# semester 2/GDAPS2 project/Big Chungus/Content/bin/DesktopGL/spike.xnb</DestFile>
+  <DestTime>2019-03-20T20:03:47.158803-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

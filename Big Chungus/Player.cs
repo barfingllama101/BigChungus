@@ -48,5 +48,20 @@ namespace Big_Chungus
             }
             return isStanding;
         }
+
+        public bool CheckCollision(Rectangle O)
+        {
+            bool result = true;
+            if (O.Intersects(playerBox))
+            {
+                result = false;
+            }
+            else
+            {
+                result = true;
+            }
+
+            return result;
+        }
     }
 }

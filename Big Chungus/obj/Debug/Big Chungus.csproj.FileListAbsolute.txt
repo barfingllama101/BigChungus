@@ -164,3 +164,7 @@ Z:\IGMProfile\Documents\Game Dev\IGME.106.06 - Game Dev & Algo Prob Solve II - 1
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png
+C:\Users\alexs\OneDrive\Desktop\C# semester 2\GDAPS2 project\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spike.xnb
+C:\Users\alexs\OneDrive\Desktop\C# semester 2\GDAPS2 project\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
+C:\Users\alexs\OneDrive\Desktop\C# semester 2\GDAPS2 project\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
+C:\Users\alexs\OneDrive\Desktop\C# semester 2\GDAPS2 project\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png

@@ -24,6 +24,12 @@ namespace Big_Chungus
         //Player things
         Player player;
         Texture2D playerSprite;
+        bool alive;
+
+        //spike things
+        Texture2D spikeTexture;
+        Spikes spikeObject;
+        List<Spikes> spikes = new List<Spikes>();
 
         Level level;
 
@@ -46,7 +52,7 @@ namespace Big_Chungus
         KeyboardState kStatePrevious;
 
         //enum
-        enum GameState { Menu, Building, Game, Pause, LevelFinal};
+        enum GameState { Menu, Building, Game, Pause, LevelFinal, GameOver };
         GameState curr;
 
         //player movement variables
@@ -102,6 +108,7 @@ namespace Big_Chungus
 
         public void NextLevel()
         {
+            alive = true;
             try
             {
                 String line;
@@ -140,6 +147,8 @@ namespace Big_Chungus
                 Console.WriteLine(e.Message);
                 throw;
             }
+            spikeObject = new Spikes(spikeTexture, 200, 250, 40, 40);
+            spikes.Add(spikeObject);
             player.LevelScore = 0;
         }
 
@@ -203,7 +212,8 @@ namespace Big_Chungus
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            
+
+            spikeTexture = Content.Load<Texture2D>("spike");
             CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
@@ -284,6 +294,7 @@ namespace Big_Chungus
 
                 case GameState.Game:
 
+                    alive = true;
                     //update player position based on hspeed and vspeed
                     player.XPos += hspd;
                     player.YPos += vspd;
@@ -318,6 +329,33 @@ namespace Big_Chungus
                             kStatePrevious = kStateCurrent;
                             CheckCollision(level.Platforms[i].Box);
                         }
+                    }
+
+                    //bounds
+                    if (player.XPos < 0)
+                    {
+                        player.XPos = 0;
+                    }
+                    if (player.XPos > GraphicsDevice.Viewport.Width)
+                    {
+                        player.XPos = GraphicsDevice.Viewport.Width;
+                    }
+
+                    //health system
+                    if (player.YPos > GraphicsDevice.Viewport.Height)
+                    {
+                        alive = false;
+                        if (alive == false)
+                        {
+                            curr = GameState.GameOver;
+                        }
+                    }
+
+                    //collision with spikes
+                    alive = player.CheckCollision(spikeObject.Box);
+                    if (alive == false)
+                    {
+                        curr = GameState.GameOver;
                     }
 
                     //Carrot dectection and win tracking
@@ -358,6 +396,22 @@ namespace Big_Chungus
                     if (res3 == true)
                     {
                         curr = GameState.Pause;
+                    }
+                    break;
+
+                case GameState.GameOver:
+
+                    kStatePrevious = kStateCurrent;
+                    bool res7 = EnterKeyPress();
+                    if (res7 == true)
+                    {
+                        curr = GameState.Building;
+                        NextLevel();
+                    }
+                    bool res8 = EscKeyPress();
+                    if (res8 == true)
+                    {
+                        curr = GameState.Menu;
                     }
                     break;
 
@@ -427,6 +481,10 @@ namespace Big_Chungus
                             spriteBatch.Draw(level.Carrots[i].CarrotTexture, level.Carrots[i].Box, Color.White);
                         }
                     }
+                    for (int i = 0; i < spikes.Count; i++)
+                    {
+                        spriteBatch.Draw(spikes[i].SpikeTexture, spikes[i].Box, Color.White);
+                    }
 
                     break;
 
@@ -444,6 +502,17 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(level.Platforms[i].PlatformTexture, level.Platforms[i].Box, Color.White);
                     }
+                    for (int i = 0; i < spikes.Count; i++)
+                    {
+                        spriteBatch.Draw(spikes[i].SpikeTexture, spikes[i].Box, Color.White);
+                    }
+                    break;
+
+                case GameState.GameOver:
+
+                    spriteBatch.DrawString(spriteFont, "GAME OVER", new Vector2(300, 200), Color.White);
+                    spriteBatch.DrawString(spriteFont, "Press enter to restart", new Vector2(300, 300), Color.White);
+                    spriteBatch.DrawString(spriteFont, "Press M to menu", new Vector2(300, 400), Color.White);
                     break;
 
                 case GameState.Pause:

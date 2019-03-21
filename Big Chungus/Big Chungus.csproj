@@ -52,6 +52,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spikes.cs" />
     <Compile Include="UIElement.cs" />
     <Compile Include="UIManager.cs" />
   </ItemGroup>
@@ -125,6 +126,7 @@
     <Content Include="Content\SmilingPetDog.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\spike.png" />
     <Content Include="Content\SpriteFont1.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
