@@ -16,6 +16,7 @@ namespace Big_Chungus
          Caveats:  The location coordinates displayed in the program only track the top left corner of the image.*/
 
         //Once you add a level file to the Debug Folder, change this string to its filename
+        //Make List/Array of Level names
         private string LevelFile = "TestLevel.txt";
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -32,8 +33,8 @@ namespace Big_Chungus
 
         //spike things
         Texture2D spikeTexture;
-        Spikes spikeObject;
-        List<Spikes> spikes = new List<Spikes>();
+        Spike spikeObject;
+        List<Spike> spikes = new List<Spike>();
 
         //spring things
         Texture2D springTexture;
@@ -43,20 +44,18 @@ namespace Big_Chungus
         Level level;
 
         //Platform things
-        Texture2D dog;
-        List<Platform> platforms;
+        Texture2D platform;
+        List<Platform> platforms=new List<Platform>();
         Platform heldPlatform;
 
         //Carrot things
         Texture2D CarrotTexture;
         List<Carrot> carrots = new List<Carrot>();
-        //int carrotCount = 0;
-        //bool hasWon = false;
 
         //mouse state
         MouseState mouseState;
 
-        //kayboard state
+        //keyboard state
         KeyboardState kStateCurrent;
         KeyboardState kStatePrevious;
 
@@ -96,60 +95,12 @@ namespace Big_Chungus
             graphics.ApplyChanges();
         }
 
-        // Checks if enter key was pressed
-        public bool EnterKeyPress()
+        //Checks if a key was pressed
+        public bool KeyPress(Keys key)
         {
             bool r = false;
             kStateCurrent = Keyboard.GetState();
-            if (kStateCurrent.IsKeyDown(Keys.Enter) == true && kStatePrevious.IsKeyDown(Keys.Enter) == false)
-            {
-                r = true;
-            }
-            else
-            {
-                r = false;
-            }
-            return r;
-        }
-
-        // Checks if escape key was pressed
-        public bool EscKeyPress()
-        {
-            bool r = false;
-            kStateCurrent = Keyboard.GetState();
-            if (kStateCurrent.IsKeyDown(Keys.Escape) == true && kStatePrevious.IsKeyDown(Keys.Escape) == false)
-            {
-                r = true;
-            }
-            else
-            {
-                r = false;
-            }
-            return r;
-        }
-
-        // Checks if M key was pressed
-        public bool MKeyPress()
-        {
-            bool r = false;
-            kStateCurrent = Keyboard.GetState();
-            if (kStateCurrent.IsKeyDown(Keys.M) == true && kStatePrevious.IsKeyDown(Keys.M) == false)
-            {
-                r = true;
-            }
-            else
-            {
-                r = false;
-            }
-            return r;
-        }
-
-        // Checks if P key was pressed
-        public bool PKeyPress()
-        {
-            bool r = false;
-            kStateCurrent = Keyboard.GetState();
-            if (kStateCurrent.IsKeyDown(Keys.P) == true && kStatePrevious.IsKeyDown(Keys.P) == false)
+            if (kStateCurrent.IsKeyDown(key) == true && kStatePrevious.IsKeyDown(key) == false)
             {
                 r = true;
             }
@@ -165,6 +116,9 @@ namespace Big_Chungus
         public void NextLevel()
         {
             alive = true;
+            platforms.Clear();
+            carrots.Clear();
+            spikes.Clear();
             try
             {
                 String line;
@@ -176,7 +130,7 @@ namespace Big_Chungus
                     platforms = new List<Platform>();
                     for (int i = 0; i < int.Parse(platformValues[0]); i++)
                     {
-                        platforms.Add(new Platform(dog, int.Parse(platformValues[(5 * i) + 2]), int.Parse(platformValues[(5 * i) + 3]), int.Parse(platformValues[(5 * i) + 4]), int.Parse(platformValues[(5 * i) + 5])));
+                        platforms.Add(new Platform(platform, int.Parse(platformValues[(5 * i) + 2]), int.Parse(platformValues[(5 * i) + 3]), int.Parse(platformValues[(5 * i) + 4]), int.Parse(platformValues[(5 * i) + 5])));
                     }
                 }
                 if (input.ReadLine() != null)
@@ -187,8 +141,20 @@ namespace Big_Chungus
                     for (int i = 0; i < int.Parse(carrotValues[0]); i++)
                     {
                         carrots.Add(new Carrot(CarrotTexture, int.Parse(carrotValues[(2 * i) + 2]), int.Parse(carrotValues[(2 * i) + 3]), CarrotTexture.Width / 2, CarrotTexture.Height / 2));
+                       // carrots[carrots.Count - 1].Visible = true;
                     }
                 }
+                if (input.ReadLine() != null)
+                {
+                    line = input.ReadLine();
+                    String[] spikeValues = line.Split(',');
+                    spikes = new List<Spike>();
+                    for (int i = 0; i < int.Parse(spikeValues[0]); i++)
+                    {
+                        spikes.Add(new Spike(spikeTexture, int.Parse(spikeValues[(2 * i) + 2]), int.Parse(spikeValues[(2 * i) + 3]), spikeTexture.Width, spikeTexture.Height));
+                    }
+                }
+
                 if (input.ReadLine() != null)
                 {
                     line = input.ReadLine();
@@ -196,6 +162,8 @@ namespace Big_Chungus
                     player.XPos = int.Parse(playerSpawnCoor[0]);
                     player.YPos = int.Parse(playerSpawnCoor[1]);
                 }
+                
+              
                 input.Close();
             }
             catch (System.Exception e)
@@ -281,7 +249,7 @@ namespace Big_Chungus
             CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
-            dog = Content.Load<Texture2D>("platform");
+            platform = Content.Load<Texture2D>("platform");
             gameBG = Content.Load<Texture2D>("GAMESCREEN");
             gameBGRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
            
@@ -295,7 +263,7 @@ namespace Big_Chungus
             pauseTextureRect = new Rectangle(GraphicsDevice.Viewport.Width/2-300,GraphicsDevice.Viewport.Height/2-200, pauseTexture.Width, pauseTexture.Height);
             mouseRect = new Rectangle(mouseState.X, mouseState.Y, 10, 10);
 
-            button1Rect = new Rectangle(300, 400, pauseTexture.Width, 100);
+            button1Rect = new Rectangle(300, 400, pauseTexture.Width, 125);
             button2Rect = new Rectangle(300, 600, pauseTexture.Width, 100);
 
 
@@ -305,7 +273,7 @@ namespace Big_Chungus
 
             player = new Player(playerSprite, 0, 0);
             NextLevel();
-            level = new Level(0, 0, platforms, carrots);
+            level = new Level(0, 0, platforms, carrots, spikes);
         }
 
         /// <summary>
@@ -335,7 +303,7 @@ namespace Big_Chungus
             {
                 case GameState.Menu:
                     kStatePrevious = kStateCurrent;
-                    bool res = EnterKeyPress();
+                    bool res = KeyPress(Keys.Enter);
                     if (res == true)
                     {
                         curr = GameState.Building;
@@ -370,7 +338,7 @@ namespace Big_Chungus
                     }
 
                     kStatePrevious = kStateCurrent;
-                    bool res1 = EnterKeyPress();
+                    bool res1 = KeyPress(Keys.Enter);
                     if (res1 == true)
                     {
                         curr = GameState.Game;
@@ -386,17 +354,14 @@ namespace Big_Chungus
                     player.YPos += vspd;
                     base.Update(gameTime);
 
-                   
-
                     kStateCurrent = Keyboard.GetState();
                     //Pause
-                    bool res3 = PKeyPress();
+                    bool res3 = KeyPress(Keys.P);
                     if (res3 == true)
                     {
                         curr = GameState.Pause;
                     }
                     kStatePrevious = kStateCurrent;
-
 
                     //gravity
                     if (player.standingCheck(level.Platforms) == false)
@@ -460,10 +425,13 @@ namespace Big_Chungus
                     }
 
                     //collision with spikes
-                    alive = player.CheckCollision(spikeObject.Box);
-                    if (alive == false)
+                    for (int i = 0; i < level.Spikes.Count; i++)
                     {
-                        curr = GameState.GameOver;
+                        alive = player.CheckCollision(level.Spikes[i].Box);
+                        if (alive == false)
+                        {
+                            curr = GameState.GameOver;
+                        }
                     }
 
                     //Carrot dectection and win tracking
@@ -497,19 +465,18 @@ namespace Big_Chungus
                     {
                         hspd -= hacc;
                     }
-                 
                     break;
 
                 case GameState.GameOver:
 
                     kStatePrevious = kStateCurrent;
-                    bool res7 = EnterKeyPress();
+                    bool res7 = KeyPress(Keys.Enter);
                     if (res7 == true)
                     {
                         curr = GameState.Building;
                         NextLevel();
                     }
-                    bool res8 = MKeyPress();
+                    bool res8 = KeyPress(Keys.M);
                     if (res8 == true)
                     {
                         curr = GameState.Menu;
@@ -520,7 +487,7 @@ namespace Big_Chungus
                     MouseState pMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
-                    bool res4 = EnterKeyPress();
+                    bool res4 = KeyPress(Keys.Enter);
                   /*    if (res4 == true)
                       {
                           curr = GameState.Game;
@@ -554,13 +521,13 @@ namespace Big_Chungus
                 case GameState.LevelFinal:
 
                     kStatePrevious = kStateCurrent;
-                    bool res5 = EnterKeyPress();
+                    bool res5 = KeyPress(Keys.Enter);
                     if (res5 == true)
                     {
                         curr = GameState.Building;
                         NextLevel();
                     }
-                    bool res6 = EscKeyPress();
+                    bool res6 = KeyPress(Keys.M);
                     if (res6 == true)
                     {
                         curr = GameState.Menu;
@@ -586,6 +553,8 @@ namespace Big_Chungus
 
                     spriteBatch.Draw(UITexture, UIRect, Color.White);
                     spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(432, 800), Color.Blue);
+                   // spriteBatch.DrawString(spriteFont, "In Building Mode, click and drag platforms to move them, then press enter to begin the level", new Vector2(200, 100), Color.Blue);
+                 
                     break;
 
                 case GameState.Building:
@@ -598,6 +567,8 @@ namespace Big_Chungus
                     spriteBatch.Draw(player.PlayerTexture, player.Box, Color.White);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
+                        //Kimmy -- I added this line and now carrots work 
+                        level.Carrots[i].Visible = true;
                         if (level.Carrots[i].Visible == true)
                         {
                             spriteBatch.Draw(level.Carrots[i].CarrotTexture, level.Carrots[i].Box, Color.White);
@@ -613,6 +584,8 @@ namespace Big_Chungus
                         spriteBatch.Draw(springs[i].SpringTexture, springs[i].Box, Color.White);
                     }
                     spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,50), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "In Building Mode, click and drag platforms to move them, then press enter to begin the level", new Vector2(250, 110), Color.Blue);
                     break;
 
                 case GameState.Game:
@@ -645,6 +618,8 @@ namespace Big_Chungus
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
 
                     spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}", player.LevelScore), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Walk:  Left and Right ArrowKeys", new Vector2(50, 100), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Jump:  Up ArrowKey", new Vector2(50, 150), Color.DarkBlue);
                     break;
 
                 case GameState.GameOver:
