@@ -239,7 +239,7 @@ namespace Big_Chungus
             pauseTextureRect = new Rectangle(GraphicsDevice.Viewport.Width/2-300,GraphicsDevice.Viewport.Height/2-200, pauseTexture.Width, pauseTexture.Height);
             mouseRect = new Rectangle(mouseState.X, mouseState.Y, 10, 10);
 
-            button1Rect = new Rectangle(300, 400, pauseTexture.Width, 100);
+            button1Rect = new Rectangle(300, 400, pauseTexture.Width, 125);
             button2Rect = new Rectangle(300, 600, pauseTexture.Width, 100);
 
 
