@@ -172,3 +172,37 @@ C:\Users\Max\source\repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Cont
 C:\Users\Max\source\repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
 C:\Users\Max\source\repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
 C:\Users\Max\source\repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\free-cartoon-carrot-clip-art-uygzjR-clipart.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\libSDL2-2.0.so.0
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\libSDL2-2.0.so.0
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\libopenal.so.1
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\libopenal.so.1
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spike.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.jpg
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SpriteFont1.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Big Chungus.exe
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Big Chungus.pdb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\obj\Debug\Big Chungus.csprojResolveAssemblyReference.cache
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\obj\Debug\Big Chungus.csproj.CoreCompileInputs.cache
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\obj\Debug\Big Chungus.exe
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\obj\Debug\Big Chungus.pdb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\chung.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMEOVER.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMESCREEN.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\pausescreen.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platform.xnb
