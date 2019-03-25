@@ -111,7 +111,9 @@ namespace Big_Chungus
 
         public void NextLevel()
         {
+            
             alive = true;
+     
             try
             {
                 String line;
@@ -134,6 +136,7 @@ namespace Big_Chungus
                     for (int i = 0; i < int.Parse(carrotValues[0]); i++)
                     {
                         carrots.Add(new Carrot(CarrotTexture, int.Parse(carrotValues[(2 * i) + 2]), int.Parse(carrotValues[(2 * i) + 3]), CarrotTexture.Width / 2, CarrotTexture.Height / 2));
+                       // carrots[carrots.Count - 1].Visible = true;
                     }
                 }
                 if (input.ReadLine() != null)
@@ -143,6 +146,8 @@ namespace Big_Chungus
                     player.XPos = int.Parse(playerSpawnCoor[0]);
                     player.YPos = int.Parse(playerSpawnCoor[1]);
                 }
+                
+              
                 input.Close();
             }
             catch (System.Exception e)
@@ -528,6 +533,8 @@ namespace Big_Chungus
                     spriteBatch.Draw(player.PlayerTexture, player.Box, Color.White);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
+                        //Kimmy -- I added this line and now carrots work 
+                        level.Carrots[i].Visible = true;
                         if (level.Carrots[i].Visible == true)
                         {
                             spriteBatch.Draw(level.Carrots[i].CarrotTexture, level.Carrots[i].Box, Color.White);
