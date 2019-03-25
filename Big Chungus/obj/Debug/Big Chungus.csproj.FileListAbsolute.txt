@@ -206,3 +206,9 @@ C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMESCREEN.xnb
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\pausescreen.xnb
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platform.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\chung.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMEOVER.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMESCREEN.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\pausescreen.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platform.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spike.xnb

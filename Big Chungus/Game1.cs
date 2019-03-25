@@ -91,60 +91,12 @@ namespace Big_Chungus
             graphics.ApplyChanges();
         }
 
-        // Checks if enter key was pressed
-        public bool EnterKeyPress()
+        //Checks if a key was pressed
+        public bool KeyPress(Keys key)
         {
             bool r = false;
             kStateCurrent = Keyboard.GetState();
-            if (kStateCurrent.IsKeyDown(Keys.Enter) == true && kStatePrevious.IsKeyDown(Keys.Enter) == false)
-            {
-                r = true;
-            }
-            else
-            {
-                r = false;
-            }
-            return r;
-        }
-
-        // Checks if escape key was pressed
-        public bool EscKeyPress()
-        {
-            bool r = false;
-            kStateCurrent = Keyboard.GetState();
-            if (kStateCurrent.IsKeyDown(Keys.Escape) == true && kStatePrevious.IsKeyDown(Keys.Escape) == false)
-            {
-                r = true;
-            }
-            else
-            {
-                r = false;
-            }
-            return r;
-        }
-
-        // Checks if M key was pressed
-        public bool MKeyPress()
-        {
-            bool r = false;
-            kStateCurrent = Keyboard.GetState();
-            if (kStateCurrent.IsKeyDown(Keys.M) == true && kStatePrevious.IsKeyDown(Keys.M) == false)
-            {
-                r = true;
-            }
-            else
-            {
-                r = false;
-            }
-            return r;
-        }
-
-        // Checks if P key was pressed
-        public bool PKeyPress()
-        {
-            bool r = false;
-            kStateCurrent = Keyboard.GetState();
-            if (kStateCurrent.IsKeyDown(Keys.P) == true && kStatePrevious.IsKeyDown(Keys.P) == false)
+            if (kStateCurrent.IsKeyDown(key) == true && kStatePrevious.IsKeyDown(key) == false)
             {
                 r = true;
             }
@@ -322,7 +274,7 @@ namespace Big_Chungus
             {
                 case GameState.Menu:
                     kStatePrevious = kStateCurrent;
-                    bool res = EnterKeyPress();
+                    bool res = KeyPress(Keys.Enter);
                     if (res == true)
                     {
                         curr = GameState.Building;
@@ -357,7 +309,7 @@ namespace Big_Chungus
                     }
 
                     kStatePrevious = kStateCurrent;
-                    bool res1 = EnterKeyPress();
+                    bool res1 = KeyPress(Keys.Enter);
                     if (res1 == true)
                     {
                         curr = GameState.Game;
@@ -377,7 +329,7 @@ namespace Big_Chungus
 
                     kStateCurrent = Keyboard.GetState();
                     //Pause
-                    bool res3 = PKeyPress();
+                    bool res3 = KeyPress(Keys.P);
                     if (res3 == true)
                     {
                         curr = GameState.Pause;
@@ -478,13 +430,13 @@ namespace Big_Chungus
                 case GameState.GameOver:
 
                     kStatePrevious = kStateCurrent;
-                    bool res7 = EnterKeyPress();
+                    bool res7 = KeyPress(Keys.Enter);
                     if (res7 == true)
                     {
                         curr = GameState.Building;
                         NextLevel();
                     }
-                    bool res8 = MKeyPress();
+                    bool res8 = KeyPress(Keys.M);
                     if (res8 == true)
                     {
                         curr = GameState.Menu;
@@ -495,7 +447,7 @@ namespace Big_Chungus
                     MouseState pMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
-                    bool res4 = EnterKeyPress();
+                    bool res4 = KeyPress(Keys.Enter);
                   /*    if (res4 == true)
                       {
                           curr = GameState.Game;
@@ -529,13 +481,13 @@ namespace Big_Chungus
                 case GameState.LevelFinal:
 
                     kStatePrevious = kStateCurrent;
-                    bool res5 = EnterKeyPress();
+                    bool res5 = KeyPress(Keys.Enter);
                     if (res5 == true)
                     {
                         curr = GameState.Building;
                         NextLevel();
                     }
-                    bool res6 = EscKeyPress();
+                    bool res6 = KeyPress(Keys.M);
                     if (res6 == true)
                     {
                         curr = GameState.Menu;
@@ -561,6 +513,9 @@ namespace Big_Chungus
 
                     spriteBatch.Draw(UITexture, UIRect, Color.White);
                     spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(432, 800), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "In Building Mode, click and drag platforms to move them, then press enter to begin the level", new Vector2(200, 100), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Jump:  Up Arrows", new Vector2(50, 250), Color.Blue);
                     break;
 
                 case GameState.Building:
@@ -583,6 +538,7 @@ namespace Big_Chungus
                         spriteBatch.Draw(spikes[i].SpikeTexture, spikes[i].Box, Color.White);
                     }
                     spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "In Building Mode, click and drag platforms to move them, then press enter to begin the level", new Vector2(200, 100), Color.Blue);
                     break;
 
                 case GameState.Game:
@@ -607,6 +563,8 @@ namespace Big_Chungus
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
 
                     spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}", player.LevelScore), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Jump:  Up Arrows", new Vector2(50, 250), Color.Blue);
                     break;
 
                 case GameState.GameOver:
