@@ -35,6 +35,11 @@ namespace Big_Chungus
         Spikes spikeObject;
         List<Spikes> spikes = new List<Spikes>();
 
+        //spring things
+        Texture2D springTexture;
+        Spring springObject;
+        List<Spring> springs = new List<Spring>();
+
         Level level;
 
         //Platform things
@@ -198,8 +203,15 @@ namespace Big_Chungus
                 Console.WriteLine(e.Message);
                 throw;
             }
+            //add a spike
             spikeObject = new Spikes(spikeTexture, 200, 250, 40, 40);
             spikes.Add(spikeObject);
+
+            //add a spring
+            springObject = new Spring(springTexture, 450, 500, 150, 40);
+            //springs.Add(springObject);
+            platforms.Add(springObject);
+
             player.LevelScore = 0;
         }
 
@@ -265,6 +277,7 @@ namespace Big_Chungus
             // TODO: use this.Content to load your game content here
 
             spikeTexture = Content.Load<Texture2D>("spike");
+            springTexture = Content.Load<Texture2D>("spring");
             CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
@@ -400,6 +413,8 @@ namespace Big_Chungus
                     {
                         vspd = -16;
                     }
+                    
+
                     //gravity and collision (Needs to be fixed)
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
@@ -409,10 +424,20 @@ namespace Big_Chungus
                             {
                                 vspd += 0;
                             }
-                            kStatePrevious = kStateCurrent;
+                            if (platforms[i] is Spring)
+                            {
+                                if ((player.YPos + player.Height) > platforms[i].YPos)
+                                {
+                                    vspd = -24;
+                                }
+                                
+                            }
+                                kStatePrevious = kStateCurrent;
                             CheckCollision(level.Platforms[i].Box);
                         }
                     }
+
+                   
 
                     //bounds
                     if (player.XPos < 0)
@@ -582,6 +607,11 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(spikes[i].SpikeTexture, spikes[i].Box, Color.White);
                     }
+                    //draw springs
+                    for (int i = 0; i < springs.Count; i++)
+                    {
+                        spriteBatch.Draw(springs[i].SpringTexture, springs[i].Box, Color.White);
+                    }
                     spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
                     break;
 
@@ -589,6 +619,7 @@ namespace Big_Chungus
                     spriteBatch.Draw(gameBG, gameBGRect, Color.White);
                     spriteBatch.Draw(player.PlayerTexture, player.Box, Color.White);
                     
+                    //draw carrots
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         if (level.Carrots[i].Visible == true)
@@ -596,13 +627,20 @@ namespace Big_Chungus
                             spriteBatch.Draw(level.Carrots[i].CarrotTexture, level.Carrots[i].Box, Color.White);
                         }
                     }
+                    //draw platforms
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
                         spriteBatch.Draw(level.Platforms[i].PlatformTexture, level.Platforms[i].Box, Color.White);
                     }
+                    //draw spikes
                     for (int i = 0; i < spikes.Count; i++)
                     {
                         spriteBatch.Draw(spikes[i].SpikeTexture, spikes[i].Box, Color.White);
+                    }
+                    //draw springs
+                    for (int i = 0; i < springs.Count; i++)
+                    {
+                        spriteBatch.Draw(springs[i].SpringTexture, springs[i].Box, Color.White);
                     }
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
 
