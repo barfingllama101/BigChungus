@@ -16,6 +16,7 @@ namespace Big_Chungus
          Caveats:  The location coordinates displayed in the program only track the top left corner of the image.*/
 
         //Once you add a level file to the Debug Folder, change this string to its filename
+        //Make List/Array of Level names
         private string LevelFile = "TestLevel.txt";
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -32,26 +33,24 @@ namespace Big_Chungus
 
         //spike things
         Texture2D spikeTexture;
-        Spikes spikeObject;
-        List<Spikes> spikes = new List<Spikes>();
+        Spike spikeObject;
+        List<Spike> spikes = new List<Spike>();
 
         Level level;
 
         //Platform things
-        Texture2D dog;
-        List<Platform> platforms;
+        Texture2D platform;
+        List<Platform> platforms=new List<Platform>();
         Platform heldPlatform;
 
         //Carrot things
         Texture2D CarrotTexture;
         List<Carrot> carrots = new List<Carrot>();
-        //int carrotCount = 0;
-        //bool hasWon = false;
 
         //mouse state
         MouseState mouseState;
 
-        //kayboard state
+        //keyboard state
         KeyboardState kStateCurrent;
         KeyboardState kStatePrevious;
 
@@ -111,9 +110,10 @@ namespace Big_Chungus
 
         public void NextLevel()
         {
-            
             alive = true;
-     
+            platforms.Clear();
+            carrots.Clear();
+            spikes.Clear();
             try
             {
                 String line;
@@ -125,7 +125,7 @@ namespace Big_Chungus
                     platforms = new List<Platform>();
                     for (int i = 0; i < int.Parse(platformValues[0]); i++)
                     {
-                        platforms.Add(new Platform(dog, int.Parse(platformValues[(5 * i) + 2]), int.Parse(platformValues[(5 * i) + 3]), int.Parse(platformValues[(5 * i) + 4]), int.Parse(platformValues[(5 * i) + 5])));
+                        platforms.Add(new Platform(platform, int.Parse(platformValues[(5 * i) + 2]), int.Parse(platformValues[(5 * i) + 3]), int.Parse(platformValues[(5 * i) + 4]), int.Parse(platformValues[(5 * i) + 5])));
                     }
                 }
                 if (input.ReadLine() != null)
@@ -142,6 +142,17 @@ namespace Big_Chungus
                 if (input.ReadLine() != null)
                 {
                     line = input.ReadLine();
+                    String[] spikeValues = line.Split(',');
+                    spikes = new List<Spike>();
+                    for (int i = 0; i < int.Parse(spikeValues[0]); i++)
+                    {
+                        spikes.Add(new Spike(spikeTexture, int.Parse(spikeValues[(2 * i) + 2]), int.Parse(spikeValues[(2 * i) + 3]), spikeTexture.Width, spikeTexture.Height));
+                    }
+                }
+
+                if (input.ReadLine() != null)
+                {
+                    line = input.ReadLine();
                     String[] playerSpawnCoor = line.Split(',');
                     player.XPos = int.Parse(playerSpawnCoor[0]);
                     player.YPos = int.Parse(playerSpawnCoor[1]);
@@ -155,8 +166,8 @@ namespace Big_Chungus
                 Console.WriteLine(e.Message);
                 throw;
             }
-            spikeObject = new Spikes(spikeTexture, 200, 250, 40, 40);
-            spikes.Add(spikeObject);
+            //spikeObject = new Spike(spikeTexture, 200, 250, 40, 40);
+            //spikes.Add(spikeObject);
             player.LevelScore = 0;
         }
 
@@ -225,7 +236,7 @@ namespace Big_Chungus
             CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
-            dog = Content.Load<Texture2D>("platform");
+            platform = Content.Load<Texture2D>("platform");
             gameBG = Content.Load<Texture2D>("GAMESCREEN");
             gameBGRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
            
@@ -249,7 +260,7 @@ namespace Big_Chungus
 
             player = new Player(playerSprite, 0, 0);
             NextLevel();
-            level = new Level(0, 0, platforms, carrots);
+            level = new Level(0, 0, platforms, carrots, spikes);
         }
 
         /// <summary>
@@ -330,8 +341,6 @@ namespace Big_Chungus
                     player.YPos += vspd;
                     base.Update(gameTime);
 
-                   
-
                     kStateCurrent = Keyboard.GetState();
                     //Pause
                     bool res3 = KeyPress(Keys.P);
@@ -340,7 +349,6 @@ namespace Big_Chungus
                         curr = GameState.Pause;
                     }
                     kStatePrevious = kStateCurrent;
-
 
                     //gravity
                     if (player.standingCheck(level.Platforms) == false)
@@ -392,10 +400,13 @@ namespace Big_Chungus
                     }
 
                     //collision with spikes
-                    alive = player.CheckCollision(spikeObject.Box);
-                    if (alive == false)
+                    for (int i = 0; i < level.Spikes.Count; i++)
                     {
-                        curr = GameState.GameOver;
+                        alive = player.CheckCollision(level.Spikes[i].Box);
+                        if (alive == false)
+                        {
+                            curr = GameState.GameOver;
+                        }
                     }
 
                     //Carrot dectection and win tracking
@@ -429,7 +440,6 @@ namespace Big_Chungus
                     {
                         hspd -= hacc;
                     }
-                 
                     break;
 
                 case GameState.GameOver:
