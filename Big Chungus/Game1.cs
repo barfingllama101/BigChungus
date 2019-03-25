@@ -21,6 +21,10 @@ namespace Big_Chungus
         SpriteBatch spriteBatch;
         SpriteFont spriteFont;
 
+        //game bg
+        Texture2D gameBG;
+        Rectangle gameBGRect;
+
         //Player things
         Player player;
         Texture2D playerSprite;
@@ -62,6 +66,21 @@ namespace Big_Chungus
         int grav; //vertical acceleration from gravity
         int hmax; //maximum horizontal movespeed
 
+        //main menu
+        private Texture2D UITexture;
+        private Rectangle UIRect;
+
+        //pause
+        private Texture2D pauseTexture;
+        private Rectangle pauseTextureRect;
+        private Rectangle button1Rect;
+        private Rectangle button2Rect;
+        private Rectangle mouseRect;
+
+        //Game Over
+
+        private Texture2D gameOverTexture;
+        private Rectangle gameOverRectangle;
 
         public Game1()
         {
@@ -249,8 +268,28 @@ namespace Big_Chungus
             CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
-            dog = Content.Load<Texture2D>("SmilingPetDog");
+            dog = Content.Load<Texture2D>("platform");
+            gameBG = Content.Load<Texture2D>("GAMESCREEN");
+            gameBGRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+           
+            //main menu
+            UITexture = Content.Load<Texture2D>("chung");
+            UIRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
             
+            //pause menu
+            pauseTexture = Content.Load<Texture2D>("pausescreen");
+            pauseTextureRect = new Rectangle(GraphicsDevice.Viewport.Width/2-300,GraphicsDevice.Viewport.Height/2-200, pauseTexture.Width, pauseTexture.Height);
+            mouseRect = new Rectangle(mouseState.X, mouseState.Y, 10, 10);
+
+            button1Rect = new Rectangle(300, 400, pauseTexture.Width, 100);
+            button2Rect = new Rectangle(300, 600, pauseTexture.Width, 100);
+
+
+            //game Over
+            gameOverTexture = Content.Load<Texture2D>("GAMEOVER");
+            gameOverRectangle = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
             player = new Player(playerSprite, 0, 0);
             NextLevel();
             level = new Level(0, 0, platforms, carrots);
@@ -277,6 +316,8 @@ namespace Big_Chungus
                 Exit();
             // TODO: Add your update logic here
 
+            //button click 
+            mouseRect = new Rectangle(mouseState.X, mouseState.Y, 10, 10);
             switch (curr)
             {
                 case GameState.Menu:
@@ -332,7 +373,17 @@ namespace Big_Chungus
                     player.YPos += vspd;
                     base.Update(gameTime);
 
+                   
+
                     kStateCurrent = Keyboard.GetState();
+                    //Pause
+                    bool res3 = PKeyPress();
+                    if (res3 == true)
+                    {
+                        curr = GameState.Pause;
+                    }
+                    kStatePrevious = kStateCurrent;
+
 
                     //gravity
                     if (player.standingCheck(level.Platforms) == false)
@@ -421,15 +472,7 @@ namespace Big_Chungus
                     {
                         hspd -= hacc;
                     }
-
-                    
-                    //Pause
-                    kStatePrevious = kStateCurrent;
-                    bool res3 = PKeyPress();
-                    if (res3 == true)
-                    {
-                        curr = GameState.Pause;
-                    }
+                 
                     break;
 
                 case GameState.GameOver:
@@ -449,17 +492,37 @@ namespace Big_Chungus
                     break;
 
                 case GameState.Pause:
-
+                    MouseState pMouseState = mouseState;
+                    mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
                     bool res4 = EnterKeyPress();
-                    if (res4 == true)
+                  /*    if (res4 == true)
+                      {
+                          curr = GameState.Game;
+                      }
+                      bool res2 = MKeyPress();
+                      if (res2 == true)
+                      {
+                          curr = GameState.Menu;
+                      }*/
+                   // IsMouseVisible = true;
+                    if (mouseRect.Intersects(button1Rect))
                     {
-                        curr = GameState.Game;
+                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        {
+                            curr = GameState.Game;
+
+                            // do something here
+                        }
                     }
-                    bool res2 = MKeyPress();
-                    if (res2 == true)
+                    if (mouseRect.Intersects(button2Rect))
                     {
-                        curr = GameState.Menu;
+                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        {
+                            curr = GameState.Menu;
+
+                            // do something here
+                        }
                     }
                     break;
 
@@ -486,7 +549,7 @@ namespace Big_Chungus
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Green);
+            GraphicsDevice.Clear(Color.LightCyan);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
@@ -496,7 +559,8 @@ namespace Big_Chungus
             {
                 case GameState.Menu:
 
-                    spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(300, 300), Color.White);
+                    spriteBatch.Draw(UITexture, UIRect, Color.White);
+                    spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(432, 800), Color.Blue);
                     break;
 
                 case GameState.Building:
@@ -518,12 +582,13 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(spikes[i].SpikeTexture, spikes[i].Box, Color.White);
                     }
-
+                    spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
                     break;
 
                 case GameState.Game:
-
+                    spriteBatch.Draw(gameBG, gameBGRect, Color.White);
                     spriteBatch.Draw(player.PlayerTexture, player.Box, Color.White);
+                    
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         if (level.Carrots[i].Visible == true)
@@ -539,25 +604,31 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(spikes[i].SpikeTexture, spikes[i].Box, Color.White);
                     }
+                    spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
+
+                    spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}", player.LevelScore), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
                     break;
 
                 case GameState.GameOver:
-
-                    spriteBatch.DrawString(spriteFont, "GAME OVER", new Vector2(300, 200), Color.White);
-                    spriteBatch.DrawString(spriteFont, "Press enter to restart", new Vector2(300, 300), Color.White);
-                    spriteBatch.DrawString(spriteFont, "Press M to menu", new Vector2(300, 400), Color.White);
+                    spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
+                    spriteBatch.DrawString(spriteFont, "GAME OVER", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 200), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Press enter to restart", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 300), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Press M to menu", new Vector2(GraphicsDevice.Viewport.Width / 2 - 40, 400), Color.DarkBlue);
                     break;
 
                 case GameState.Pause:
 
-                    spriteBatch.DrawString(spriteFont, "Press enter to resume", new Vector2(300, 300), Color.White);
-                    spriteBatch.DrawString(spriteFont, "Press M to menu", new Vector2(300, 400), Color.White);
+                    spriteBatch.DrawString(spriteFont, "Click on an option to continue", new Vector2(320, 250), Color.DarkBlue);
+                    spriteBatch.Draw(pauseTexture, pauseTextureRect, Color.White);
+          
                     break;
 
                 case GameState.LevelFinal:
+                    spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
+                    spriteBatch.DrawString(spriteFont, "Press enter to next level", new Vector2(300, 300), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Congrats!", new Vector2(300, 200), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, String.Format("TOTAL SCORE: {0}", player.LevelScore), new Vector2(300, 400), Color.DarkBlue);
 
-                    spriteBatch.DrawString(spriteFont, "Press enter to next level", new Vector2(300, 300), Color.White);
-                    spriteBatch.DrawString(spriteFont, "Congrats!", new Vector2(300, 200), Color.White);
                     break;
             }
             
