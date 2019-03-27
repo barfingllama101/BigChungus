@@ -247,3 +247,5 @@ Z:\IGMProfile\Documents\GitHub\BigChungus\Big Chungus\obj\Debug\Big Chungus.cspr
 Z:\IGMProfile\Documents\GitHub\BigChungus\Big Chungus\obj\Debug\Big Chungus.csproj.CopyComplete
 Z:\IGMProfile\Documents\GitHub\BigChungus\Big Chungus\obj\Debug\Big Chungus.exe
 Z:\IGMProfile\Documents\GitHub\BigChungus\Big Chungus\obj\Debug\Big Chungus.pdb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.png

@@ -13,6 +13,7 @@ namespace Big_Chungus
         private List<Platform> platforms = new List<Platform>(100);
         private List<Carrot> carrots = new List<Carrot>(100);
         private List<Spike> spikes = new List<Spike>(100);
+        private List<Spring> springs = new List<Spring>(100);
         private List<List<int>> platformPositions = new List<List<int>>();
         private List<List<int>> carrotPositions = new List<List<int>>();
         private List<List<int>> spikePositions = new List<List<int>>();
@@ -27,13 +28,15 @@ namespace Big_Chungus
         public int PlayerSpawnX { get => playerSpawnX; set => playerSpawnX = value; }
         public int PlayerSpawnY { get => playerSpawnY; set => playerSpawnY = value; }
         internal List<Spike> Spikes { get => spikes; set => spikes = value; }
+        internal List<Spring> Springs { get => springs; set => springs = value; }
+        public List<int> InventoryItems { get => inventoryItems; set => inventoryItems = value; }
 
         public Level()
         {
 
         }
 
-        public Level(int playerX, int playerY, List<Platform> newPlatforms, List<Carrot> newCarrots, List<Spike> newSpikes)
+        public Level(int playerX, int playerY, List<Platform> newPlatforms, List<Carrot> newCarrots, List<Spike> newSpikes, List<int> newInv)
         {
             playerSpawnX = playerX;
             playerSpawnY = playerY;
@@ -55,6 +58,10 @@ namespace Big_Chungus
             for (int i = 0; i < newSpikes.Count; i++)
             {
                 AddObject(newSpikes[i]);
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                InventoryItems.Add(newInv[i]);
             }
         }
 

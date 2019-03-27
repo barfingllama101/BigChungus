@@ -42,6 +42,8 @@ namespace Big_Chungus
         List<Spring> springs = new List<Spring>();
 
         Level level;
+        //Use this for inventory
+        List<int> inventoryItems;
 
         //Platform things
         Texture2D platform;
@@ -123,6 +125,7 @@ namespace Big_Chungus
             {
                 String line;
                 StreamReader input = new StreamReader(LevelFile);
+                //Reads platforms
                 if (input.ReadLine() != null)
                 {
                     line = input.ReadLine();
@@ -133,6 +136,7 @@ namespace Big_Chungus
                         platforms.Add(new Platform(platform, int.Parse(platformValues[(5 * i) + 2]), int.Parse(platformValues[(5 * i) + 3]), int.Parse(platformValues[(5 * i) + 4]), int.Parse(platformValues[(5 * i) + 5])));
                     }
                 }
+                //Reads carrots
                 if (input.ReadLine() != null)
                 {
                     line = input.ReadLine();
@@ -144,6 +148,7 @@ namespace Big_Chungus
                        // carrots[carrots.Count - 1].Visible = true;
                     }
                 }
+                //Reads spikes
                 if (input.ReadLine() != null)
                 {
                     line = input.ReadLine();
@@ -154,7 +159,29 @@ namespace Big_Chungus
                         spikes.Add(new Spike(spikeTexture, int.Parse(spikeValues[(2 * i) + 2]), int.Parse(spikeValues[(2 * i) + 3]), spikeTexture.Width, spikeTexture.Height));
                     }
                 }
-
+                //Reads springs
+                if (input.ReadLine() != null)
+                {
+                    line = input.ReadLine();
+                    String[] springValues = line.Split(',');
+                    //springs = new List<Spring>();
+                    for (int i = 0; i < int.Parse(springValues[0]); i++)
+                    {
+                        platforms.Add(new Spring(springTexture, int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
+                    }
+                }
+                //Reads inventory
+                if (input.ReadLine() != null)
+                {
+                    line = input.ReadLine();
+                    String[] inventoryValues = line.Split(',');
+                    inventoryItems = new List<int>();
+                    for (int i = 0; i < 6; i++)
+                    {
+                        inventoryItems.Add(int.Parse(inventoryValues[i]));
+                    }
+                }
+                //Sets player spawn
                 if (input.ReadLine() != null)
                 {
                     line = input.ReadLine();
@@ -162,8 +189,6 @@ namespace Big_Chungus
                     player.XPos = int.Parse(playerSpawnCoor[0]);
                     player.YPos = int.Parse(playerSpawnCoor[1]);
                 }
-                
-              
                 input.Close();
             }
             catch (System.Exception e)
@@ -172,7 +197,7 @@ namespace Big_Chungus
                 throw;
             }
             //add a spike
-            spikeObject = new Spikes(spikeTexture, 200, 250, 40, 40);
+            spikeObject = new Spike(spikeTexture, 200, 250, 40, 40);
             spikes.Add(spikeObject);
 
             //add a spring
@@ -273,7 +298,7 @@ namespace Big_Chungus
 
             player = new Player(playerSprite, 0, 0);
             NextLevel();
-            level = new Level(0, 0, platforms, carrots, spikes);
+            level = new Level(0, 0, platforms, carrots, spikes, inventoryItems);
         }
 
         /// <summary>
@@ -327,6 +352,17 @@ namespace Big_Chungus
                             }
                         }
                     }
+                    foreach (Spring s in level.Springs)
+                    {
+                        if (heldPlatform == null)
+                        {
+                            //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
+                            if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && s.Box.Intersects(new Rectangle(mouseState.Position, new Point(1))) && s.IsMoveable == true)
+                            {
+                                heldPlatform = s;
+                            }
+                        }
+                    }
                     if (heldPlatform != null)
                     {
                         //moves the held platform and releases it if the mouse button is released
@@ -337,6 +373,8 @@ namespace Big_Chungus
                         }
                     }
 
+                    
+                    
                     kStatePrevious = kStateCurrent;
                     bool res1 = KeyPress(Keys.Enter);
                     if (res1 == true)

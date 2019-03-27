@@ -9,18 +9,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Big_Chungus
 {
-    class Spring : Platform
+    class Spring : Platform, GameObject
     {
 
         private Texture2D springTexture;
         private Rectangle springBox;
 
         public Texture2D SpringTexture { get => springTexture; set => springTexture = value; }
-        public int XPos { get => springBox.X; set => springBox.X = value; }
-        public int YPos { get => springBox.Y; set => springBox.Y = value; }
-        public Rectangle Box { get => springBox; set => springBox = value; }
-        public int Width { get => Box.Width; set => springBox.Width = value; }
-        public int Height { get => Box.Height; set => springBox.Height = value; }
+        public new int XPos { get => springBox.X; set => springBox.X = value; }
+        public new int YPos { get => springBox.Y; set => springBox.Y = value; }
+        public new Rectangle Box { get => springBox; set => springBox = value; }
+        public new int Width { get => Box.Width; set => springBox.Width = value; }
+        public new int Height { get => Box.Height; set => springBox.Height = value; }
 
         public Spring(Texture2D texture, int x, int y, int width, int height)
             : base(texture, x, y, width, height)
