@@ -6,18 +6,7 @@ using System.Threading.Tasks;
 
 namespace Big_Chungus
 {
-
-    // this class will control which UI we see 
-    class UIManager
+    class Inventory
     {
-
-
-    }
-
-    public enum UIState
-    {
-        mainMenu,
-        game,
-        pauseMenu
     }
 }
