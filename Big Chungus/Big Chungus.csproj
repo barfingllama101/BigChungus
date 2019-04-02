@@ -46,6 +46,8 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjects.cs" />
+    <Compile Include="Inventory.cs" />
+    <Compile Include="ItemBar.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Platform.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Spikes.cs" />
+    <Compile Include="Spring.cs" />
     <Compile Include="UIElement.cs" />
     <Compile Include="UIManager.cs" />
   </ItemGroup>
@@ -127,6 +130,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\spike.png" />
+    <Content Include="Content\spring.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\SpriteFont1.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
