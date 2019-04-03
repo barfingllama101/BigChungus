@@ -15,7 +15,16 @@ namespace Big_Chungus
         private Texture2D platformTexture;
         private Rectangle platformBox;
         private bool isMoveable = true;
-        
+
+        #region Inventory
+        bool inInventory;
+        public bool InInventory
+        {
+            get { return inInventory; }
+            set { inInventory = value; }
+        }
+        #endregion
+
         //Properties
         public int Width { get => platformBox.Width; set => platformBox.Width = value; }
         public int Height { get => platformBox.Height; set => platformBox.Height = value; }

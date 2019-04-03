@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace Big_Chungus
@@ -81,6 +82,14 @@ namespace Big_Chungus
 
         private Texture2D gameOverTexture;
         private Rectangle gameOverRectangle;
+
+        //inventory 
+        Slot[,] slot;
+        int rows = 3;
+        int columns = 3;
+        Texture2D sTexture;
+        List<Platform> pForms = new List<Platform>();
+
 
         public Game1()
         {
@@ -182,7 +191,9 @@ namespace Big_Chungus
                     for (int i = 0; i < int.Parse(carrotValues[0]); i++)
                     {
                         carrots.Add(new Carrot(CarrotTexture, int.Parse(carrotValues[(2 * i) + 2]), int.Parse(carrotValues[(2 * i) + 3]), CarrotTexture.Width / 2, CarrotTexture.Height / 2));
+                    
                     }
+
                 }
                 if (input.ReadLine() != null)
                 {
@@ -193,11 +204,13 @@ namespace Big_Chungus
                 }
                 input.Close();
             }
+        
             catch (System.Exception e)
             {
                 Console.WriteLine(e.Message);
                 throw;
             }
+          
             spikeObject = new Spikes(spikeTexture, 200, 250, 40, 40);
             spikes.Add(spikeObject);
             player.LevelScore = 0;
@@ -271,7 +284,7 @@ namespace Big_Chungus
             dog = Content.Load<Texture2D>("platform");
             gameBG = Content.Load<Texture2D>("GAMESCREEN");
             gameBGRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-           
+            sTexture = Content.Load<Texture2D>("SmilingPetDog");
             //main menu
             UITexture = Content.Load<Texture2D>("chung");
             UIRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
@@ -290,10 +303,30 @@ namespace Big_Chungus
             gameOverTexture = Content.Load<Texture2D>("GAMEOVER");
             gameOverRectangle = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
+
+            //inventory 
+           // rows = 3;
+            //columns = 3;
+            slot = new Slot[rows, columns];
+
+
+            for (int i = 0; i < rows; i++)
+            {
+
+                for (int j = 0; j < columns; j++)
+                {
+                    slot[i, j] = new Slot(sTexture, i * 100 + 600, j * 100 +600, Color.Wheat);
+                   // platforms.Add(new Platform(slot[i, j].XPos, slot[i, j].YPos, itemTexture, Color.AliceBlue));
+                   // Debug.WriteLine("stexture" + sTexture);
+                }
+            }
+
+
             player = new Player(playerSprite, 0, 0);
             NextLevel();
             level = new Level(0, 0, platforms, carrots);
         }
+
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -450,6 +483,7 @@ namespace Big_Chungus
                             level.Carrots[i].Visible = false;
                             player.LevelScore++;
                         }
+                      
                     }
                     if (player.LevelScore == level.Carrots.Count)
                     {
@@ -583,6 +617,31 @@ namespace Big_Chungus
                         spriteBatch.Draw(spikes[i].SpikeTexture, spikes[i].Box, Color.White);
                     }
                     spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
+
+
+                    int jk = 0;
+                    for (int i = 0; i < rows; i++)
+                    {
+                    
+                        for (int j = 0; j < columns; j++)
+                        {
+                            slot[i, j].Draw(spriteBatch);
+
+                            //can't d this but worked in testing
+                        //    level.Platforms[i].Box = slot[i, j].bRect;
+
+                           // level.Platforms[i].Box
+                            jk++;
+                        }
+
+                    }
+                    for(int i = 0; i < level.Platforms.Count; i++)
+                    {
+                        spriteBatch.Draw(level.Platforms[i].PlatformTexture, level.Platforms[i].Box, Color.AliceBlue);
+                    }
+                  
+
+
                     break;
 
                 case GameState.Game:
