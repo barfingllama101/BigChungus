@@ -30,12 +30,12 @@ namespace Big_Chungus
         }
 
         //set spring center to cursor position when dragging
-        public void Drag()
+        /*public void Drag()
         {
             MouseState mouseState = Mouse.GetState();
             XPos = mouseState.X - Width / 2;
             YPos = mouseState.Y - Height / 2;
-        }
+        }*/
 
     }
 }
