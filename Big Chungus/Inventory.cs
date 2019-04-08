@@ -8,9 +8,5 @@ namespace Big_Chungus
 {
     class Inventory
     {
-        public int size;
-
-        
-
     }
 }

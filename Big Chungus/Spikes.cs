@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Big_Chungus
 {
-    class Spike : GameObject
+    class Spikes : GameObject
     {
 
         private Texture2D spikeTexture;
@@ -19,7 +19,7 @@ namespace Big_Chungus
         public int YPos { get => spikeBox.Y; set => spikeBox.Y = value; }
         public Rectangle Box { get => spikeBox; set => spikeBox = value; }
 
-        public Spike(Texture2D texture, int x, int y, int width, int height)
+        public Spikes(Texture2D texture, int x, int y, int width, int height)
         {
             spikeTexture = texture;
             spikeBox = new Rectangle(x, y, width, height);
