@@ -11,7 +11,6 @@ namespace Big_Chungus
 {
     class Spring : Platform, GameObject
     {
-
         private Texture2D springTexture;
         private Rectangle springBox;
 

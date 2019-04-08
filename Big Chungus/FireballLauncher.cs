@@ -9,21 +9,28 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Big_Chungus
 {
-    class FireballLauncher : GameObject
+    class SpikeballLauncher : GameObject
     {
         private Texture2D texture;
         private Rectangle box;
+        private Spike spikeball;
 
         public Rectangle Box { get => box; set => box = value; }
         public int XPos { get => box.X; set => box.X = value; }
         public int YPos { get => box.Y; set => box.Y = value; }
 
-        public FireballLauncher(Texture2D newTexture, int newX, int newY, int width, int height)
+        public SpikeballLauncher(Texture2D newTexture, int newX, int newY, int width, int height)
         {
             texture = newTexture;
             XPos = newX;
             YPos = newY;
             box = new Rectangle(XPos, YPos, width, height);
+        }
+
+        public void Launch(Texture2D spikeballTexture, int speed)
+        {
+            spikeball = new Spike(spikeballTexture, XPos+speed, YPos, 40, 40);
+
         }
     }
 }
