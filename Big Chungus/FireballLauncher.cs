@@ -18,6 +18,12 @@ namespace Big_Chungus
         public int XPos { get => box.X; set => box.X = value; }
         public int YPos { get => box.Y; set => box.Y = value; }
 
-        public 
+        public FireballLauncher(Texture2D newTexture, int newX, int newY, int width, int height)
+        {
+            texture = newTexture;
+            XPos = newX;
+            YPos = newY;
+            box = new Rectangle(XPos, YPos, width, height);
+        }
     }
 }
