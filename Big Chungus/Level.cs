@@ -24,7 +24,6 @@ namespace Big_Chungus
         private int playerSpawnX;
         private int playerSpawnY;
 
-
         public int PlayerSpawnX { get => playerSpawnX; set => playerSpawnX = value; }
         public int PlayerSpawnY { get => playerSpawnY; set => playerSpawnY = value; }
         internal List<Platform> Platforms { get => platforms; set => platforms = value; }
@@ -62,10 +61,6 @@ namespace Big_Chungus
             for (int i = 0; i < newPlatforms.Count; i++)
             {
                 AddObject(newPlatforms[i]);
-            }
-            for (int i = 0; i < newCarrots.Count; i++)
-            {
-                AddObject(newCarrots[i]);
             }
             for (int i = 0; i < newCarrots.Count; i++)
             {
@@ -122,5 +117,38 @@ namespace Big_Chungus
                 launcherPositions[1].Add(newObject.YPos);
             }
         }
+
+        /*public void Reset(List<Platform> newPlatforms, List<Carrot> newCarrots, List<Spike> newSpikes, List<Spring> newSprings, List<SpikeballLauncher> newLaunchers, List<int> newInv)
+        {
+            for (int i = 0; i < newPlatforms.Count; i++)
+            {
+                newPlatforms[i].XPos = platformPositions[i][0];
+                newPlatforms[i].YPos = platformPositions[i][1];
+            }
+            for (int i = 0; i < newCarrots.Count; i++)
+            {
+                newCarrots[i].XPos = carrotPositions[i][0];
+                newCarrots[i].YPos = carrotPositions[i][1];
+            }
+            for (int i = 0; i < newSpikes.Count; i++)
+            {
+                newSpikes[i].XPos = spikePositions[i][0];
+                newSpikes[i].YPos = spikePositions[i][1];
+            }
+            for (int i = 0; i < newSprings.Count; i++)
+            {
+                newSprings[i].XPos = springPositions[i][0];
+                newSprings[i].YPos = springPositions[i][1];
+            }
+            for (int i = 0; i < newLaunchers.Count; i++)
+            {
+                newLaunchers[i].XPos = launcherPositions[i][0];
+                newLaunchers[i].YPos = launcherPositions[i][1];
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                inventoryItems[i] = newInv[i];
+            }
+        }*/
     }
 }

@@ -20,6 +20,7 @@ namespace Big_Chungus
         //Once you add a level file to the Debug Folder, change this string to its filename
         private List<string> levels = new List<string>();
         private string LevelFile = "Level1.txt";
+        private int levelCount = 0;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         SpriteFont spriteFont;
@@ -41,7 +42,6 @@ namespace Big_Chungus
         //Spikeball Launcher things
         Texture2D launcherTexture;
         List<SpikeballLauncher> launchers;
-        SpikeballLauncher launcher;
 
         Level level;
 
@@ -66,9 +66,7 @@ namespace Big_Chungus
         //kayboard state
         KeyboardState kStateCurrent;
         KeyboardState kStatePrevious;
-
-        //Use this for inventory
-        List<int> inventoryItems;
+        
 
         //enum
         enum GameState { Menu, Building, Game, Pause, LevelFinal, GameOver };
@@ -97,11 +95,12 @@ namespace Big_Chungus
         private Texture2D gameOverTexture;
         private Rectangle gameOverRectangle;
 
-        //inventory 
-        Slot[,] slot;
-        int rows = 3;
-        int columns = 3;
+        //inventory
+        Slot[] slot;
+        int slots = 6;
+        //int columns = 1;
         Texture2D sTexture;
+        List<int> inventoryItems = new List<int>();
         List<Platform> pForms = new List<Platform>();
 
 
@@ -133,6 +132,7 @@ namespace Big_Chungus
         //sets next level by reading a text file containing level data
         public void NextLevel()
         {
+            LevelFile = levels[levelCount];
             alive = true;
             try
             {
@@ -204,6 +204,7 @@ namespace Big_Chungus
                         inventoryItems.Add(int.Parse(inventoryValues[i]));
                     }
                 }
+                //Sets spawn
                 if (input.ReadLine() != null)
                 {
                     line = input.ReadLine();
@@ -211,12 +212,13 @@ namespace Big_Chungus
                     player.XPos = int.Parse(playerSpawnCoor[0]);
                     player.YPos = int.Parse(playerSpawnCoor[1]);
                 }
+                level = new Level(0, 0, platforms, carrots, spikes, springs, launchers, inventoryItems);
                 input.Close();
             }
         
             catch (System.Exception e)
             {
-                Console.WriteLine(e.Message);
+                Debug.WriteLine(e.Message);
                 throw;
             }
           
@@ -280,6 +282,8 @@ namespace Big_Chungus
         /// </summary>
         protected override void LoadContent()
         {
+            levels.Add("Level1.txt");
+            levels.Add("TestLevel.txt");
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -316,22 +320,17 @@ namespace Big_Chungus
             //inventory 
            // rows = 3;
             //columns = 3;
-            slot = new Slot[rows, columns];
-
-
-            for (int i = 0; i < rows; i++)
-            {
-
-                for (int j = 0; j < columns; j++)
-                {
-                    slot[i, j] = new Slot(sTexture, i * 100 + 600, j * 100 +600, Color.Wheat);
-                   // platforms.Add(new Platform(slot[i, j].XPos, slot[i, j].YPos, itemTexture, Color.AliceBlue));
-                   // Debug.WriteLine("stexture" + sTexture);
-                }
-            }
+            slot = new Slot[slots];
             player = new Player(playerSprite, 0, 0);
             NextLevel();
-            level = new Level(0, 0, platforms, carrots, spikes, springs, launchers, inventoryItems);
+            
+            for (int i = 0; i < slots; i++)
+            {
+                slot[i] = new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, level.InventoryItems[i]);
+                // platforms.Add(new Platform(slot[i, j].XPos, slot[i, j].YPos, itemTexture, Color.AliceBlue));
+                // Debug.WriteLine("stexture" + sTexture);
+            }
+            
         }
 
         /// <summary>
@@ -400,7 +399,7 @@ namespace Big_Chungus
                     if (res1 == true)
                     {
                         curr = GameState.Game;
-                       
+
                     }
                     break;
 
@@ -471,13 +470,13 @@ namespace Big_Chungus
                     }
 
                     //spike launching
-                    foreach (SpikeballLauncher item in launchers)
+                    foreach (SpikeballLauncher item in level.Launchers)
                     {
                         item.Launch(2);
                     }
 
                     //collision with spikes
-                    foreach (Spike spikeObject in spikes)
+                    foreach (Spike spikeObject in level.Spikes)
                     {
                         alive = player.CheckCollision(spikeObject.Box);
                         if (alive == false)
@@ -578,6 +577,7 @@ namespace Big_Chungus
                     if (res5 == true)
                     {
                         curr = GameState.Building;
+                        levelCount += 1;
                         NextLevel();
                     }
                     bool res6 = KeyPress(Keys.Escape);
@@ -627,32 +627,35 @@ namespace Big_Chungus
                             spriteBatch.Draw(level.Carrots[i].Texture, level.Carrots[i].Box, Color.White);
                         }
                     }
-                    for (int i = 0; i < spikes.Count; i++)
+                    for (int i = 0; i < level.Spikes.Count; i++)
                     {
-                        spriteBatch.Draw(spikes[i].Texture, spikes[i].Box, Color.White);
+                        spriteBatch.Draw(level.Spikes[i].Texture, level.Spikes[i].Box, Color.White);
                     }
-                    for (int i = 0; i < launchers.Count; i++)
+                    for (int i = 0; i < level.Springs.Count; i++)
                     {
-                        spriteBatch.Draw(launchers[i].Texture, launchers[i].Box, Color.White);
+                        spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
+                    }
+                    for (int i = 0; i < level.Launchers.Count; i++)
+                    {
+                        spriteBatch.Draw(level.Launchers[i].Texture, level.Launchers[i].Box, Color.White);
                     }
                     spriteBatch.DrawString(spriteFont, "In Building Mode, click and drag platforms to move them, then press enter to begin the level", new Vector2(200, 50), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
 
 
-                    int jk = 0;
-                    for (int i = 0; i < rows; i++)
+                    for (int i = 0; i < slots; i++)
                     {
-                    
-                        for (int j = 0; j < columns; j++)
+                        slot[i].Draw(spriteBatch);
+                        /*for (int j = 0; j < columns; j++)
                         {
-                            slot[i, j].Draw(spriteBatch);
+                            
 
                             //can't d this but worked in testing
                         //    level.Platforms[i].Box = slot[i, j].bRect;
 
                            // level.Platforms[i].Box
-                            jk++;
-                        }
+                            
+                        }*/
 
                     }
                     for(int i = 0; i < level.Platforms.Count; i++)
@@ -679,18 +682,18 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
                     }
-                    for (int i = 0; i < spikes.Count; i++)
+                    for (int i = 0; i < level.Spikes.Count; i++)
                     {
-                        spriteBatch.Draw(spikes[i].Texture, spikes[i].Box, Color.White);
+                        spriteBatch.Draw(level.Spikes[i].Texture, level.Spikes[i].Box, Color.White);
                     }
-                    for (int i = 0; i < launchers.Count; i++)
+                    for (int i = 0; i < level.Launchers.Count; i++)
                     {
-                        spriteBatch.Draw(launchers[i].Texture, launchers[i].Box, Color.White);
+                        spriteBatch.Draw(level.Launchers[i].Texture, level.Launchers[i].Box, Color.White);
                     }
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow", new Vector2(50, 250), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}", player.LevelScore), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}/{1}", player.LevelScore, level.Carrots.Count), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
                     break;
 
                 case GameState.GameOver:
