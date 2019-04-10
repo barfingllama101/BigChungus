@@ -226,28 +226,34 @@ namespace Big_Chungus
         }
 
         //SPRING COLLISION REQUIRED
-        public void CheckCollision(Rectangle platformBox)
+        internal void CheckCollision(Platform platform)
         {
             kStateCurrent = Keyboard.GetState();
             //vertical collision and prevents falling through the floor
-            if (player.Box.Intersects(platformBox) && !kStatePrevious.IsKeyDown(Keys.Up))
+            if (player.Box.Intersects(platform.Box) && !kStatePrevious.IsKeyDown(Keys.Up))
             {
                 vspd += 0;
-                if (player.YPos <= platformBox.Y)
+                
+                if (platform is Spring && player.YPos + player.Height - 1 <= platform.YPos)
                 {
-                    player.YPos = platformBox.Y - player.Height;
+                    vspd = -24;
+                }
+                if (player.YPos <= platform.Box.Y)
+                {
+                    player.YPos = platform.Box.Y - player.Height;
                 }
             }
+            
 
             //horizontal collision
-            if (player.Box.Intersects(platformBox) && !kStateCurrent.IsKeyDown(Keys.Left) && !kStatePrevious.IsKeyDown(Keys.Up))
+            if (player.Box.Intersects(platform.Box) && !kStateCurrent.IsKeyDown(Keys.Left) && !kStatePrevious.IsKeyDown(Keys.Up))
             {
-                player.XPos = platformBox.X - player.Width;
+                player.XPos = platform.Box.X - player.Width;
                 hspd = 0;
             }
-            else if (player.Box.Intersects(platformBox) && !kStateCurrent.IsKeyDown(Keys.Right) && !kStatePrevious.IsKeyDown(Keys.Up))
+            else if (player.Box.Intersects(platform.Box) && !kStateCurrent.IsKeyDown(Keys.Right) && !kStatePrevious.IsKeyDown(Keys.Up))
             {
-                player.XPos = platformBox.X + player.Width;
+                player.XPos = platform.Box.X + player.Width;
                 hspd = 0;
             }
         }
@@ -420,6 +426,7 @@ namespace Big_Chungus
                     }
                     kStatePrevious = kStateCurrent;
 
+
                     //gravity
                     if (player.standingCheck(level.Platforms) == false)
                     {
@@ -427,9 +434,9 @@ namespace Big_Chungus
                     }
                     else
                     {
+                        
                         vspd = 0;
                     }
-
                     //jump
                     if (kStateCurrent.IsKeyDown(Keys.Up) && player.standingCheck(level.Platforms))
                     {
@@ -444,10 +451,14 @@ namespace Big_Chungus
                             {
                                 vspd += 0;
                             }
-                            kStatePrevious = kStateCurrent;
-                            CheckCollision(level.Platforms[i].Box);
+                                kStatePrevious = kStateCurrent;
+                                CheckCollision(level.Platforms[i]);
+                            
+                            
                         }
                     }
+
+                    
 
                     //bounds
                     if (player.XPos < 0)

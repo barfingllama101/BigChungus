@@ -213,3 +213,39 @@ Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Conte
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platform.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spike.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\free-cartoon-carrot-clip-art-uygzjR-clipart.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\libSDL2-2.0.so.0
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\libSDL2-2.0.so.0
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\libopenal.so.1
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\libopenal.so.1
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\chung.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMEOVER.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMESCREEN.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\pausescreen.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platform.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spike.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.jpg
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SpriteFont1.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Big Chungus.exe
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Big Chungus.pdb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\obj\Debug\Big Chungus.csprojAssemblyReference.cache
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\obj\Debug\Big Chungus.csproj.CoreCompileInputs.cache
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\obj\Debug\Big Chungus.csproj.CopyComplete
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\obj\Debug\Big Chungus.exe
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\obj\Debug\Big Chungus.pdb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.xnb
