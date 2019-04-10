@@ -32,7 +32,7 @@ namespace Big_Chungus
         public int XPos { get => platformBox.X; set => platformBox.X = value; }
         public bool IsMoveable { get => isMoveable; set => isMoveable = value; }
         public Rectangle Box { get => platformBox; set => platformBox = value; }
-        public Texture2D PlatformTexture { get => platformTexture; set => platformTexture = value; }
+        public Texture2D Texture { get => platformTexture; set => platformTexture = value; }
 
         public Platform(Texture2D texture, int x, int y, int width, int height)
         {

@@ -14,27 +14,37 @@ namespace Big_Chungus
         private List<Carrot> carrots = new List<Carrot>(100);
         private List<Spike> spikes = new List<Spike>(100);
         private List<Spring> springs = new List<Spring>(100);
+        private List<SpikeballLauncher> launchers = new List<SpikeballLauncher>(100);
         private List<List<int>> platformPositions = new List<List<int>>();
         private List<List<int>> carrotPositions = new List<List<int>>();
         private List<List<int>> spikePositions = new List<List<int>>();
         private List<List<int>> springPositions = new List<List<int>>();
-        private List<int> InventoryItems = new List<int>();
+        private List<List<int>> launcherPositions = new List<List<int>>();
+        private List<int> inventoryItems = new List<int>();
         private int playerSpawnX;
         private int playerSpawnY;
 
-        public List<List<int>> CarrotPositions { get => carrotPositions; set => carrotPositions = value; }
-        public List<List<int>> PlatformPositions { get => platformPositions; set => platformPositions = value; }
-        internal List<Carrot> Carrots { get => carrots; set => carrots = value; }
-        internal List<Platform> Platforms { get => platforms; set => platforms = value; }
+
         public int PlayerSpawnX { get => playerSpawnX; set => playerSpawnX = value; }
         public int PlayerSpawnY { get => playerSpawnY; set => playerSpawnY = value; }
+        internal List<Platform> Platforms { get => platforms; set => platforms = value; }
+        internal List<Carrot> Carrots { get => carrots; set => carrots = value; }
+        internal List<Spike> Spikes { get => spikes; set => spikes = value; }
+        internal List<Spring> Springs { get => springs; set => springs = value; }
+        internal List<SpikeballLauncher> Launchers { get => launchers; set => launchers = value; }
+        public List<List<int>> PlatformPositions { get => platformPositions; set => platformPositions = value; }
+        public List<List<int>> CarrotPositions { get => carrotPositions; set => carrotPositions = value; }
+        public List<List<int>> SpikePositions { get => spikePositions; set => spikePositions = value; }
+        public List<List<int>> SpringPositions { get => springPositions; set => springPositions = value; }
+        public List<List<int>> LauncherPositions { get => launcherPositions; set => launcherPositions = value; }
+        public List<int> InventoryItems { get => inventoryItems; set => inventoryItems = value; }
 
         public Level()
         {
 
         }
 
-        public Level(int playerX, int playerY, List<Platform> newPlatforms, List<Carrot> newCarrots, List<Spike> newSpikes, List<Spring> newSprings, List<int> newInv)
+        public Level(int playerX, int playerY, List<Platform> newPlatforms, List<Carrot> newCarrots, List<Spike> newSpikes, List<Spring> newSprings,List<SpikeballLauncher> newLaunchers,List<int> newInv)
         {
             playerSpawnX = playerX;
             playerSpawnY = playerY;
@@ -46,6 +56,8 @@ namespace Big_Chungus
             spikePositions.Add(new List<int>(100));
             springPositions.Add(new List<int>(100));
             springPositions.Add(new List<int>(100));
+            launcherPositions.Add(new List<int>(100));
+            launcherPositions.Add(new List<int>(100));
 
             for (int i = 0; i < newPlatforms.Count; i++)
             {
@@ -66,6 +78,10 @@ namespace Big_Chungus
             for (int i = 0; i < newSprings.Count; i++)
             {
                 AddObject(newSprings[i]);
+            }
+            for (int i = 0; i < newLaunchers.Count; i++)
+            {
+                AddObject(newLaunchers[i]);
             }
             for (int i = 0; i < 6; i++)
             {
@@ -98,6 +114,12 @@ namespace Big_Chungus
                 springs.Add((Spring)newObject);
                 springPositions[0].Add(newObject.XPos);
                 springPositions[1].Add(newObject.YPos);
+            }
+            else if (newObject is SpikeballLauncher)
+            {
+                launchers.Add((SpikeballLauncher)newObject);
+                launcherPositions[0].Add(newObject.XPos);
+                launcherPositions[1].Add(newObject.YPos);
             }
         }
     }

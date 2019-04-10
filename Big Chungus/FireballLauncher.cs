@@ -15,22 +15,46 @@ namespace Big_Chungus
         private Rectangle box;
         private Spike spikeball;
 
+        //0=left, 1=right, 2=up, 3=down
+        private int direction;
+
         public Rectangle Box { get => box; set => box = value; }
         public int XPos { get => box.X; set => box.X = value; }
         public int YPos { get => box.Y; set => box.Y = value; }
+        public int Direction { get => direction; set => direction = value; }
+        internal Spike Spikeball { get => spikeball; set => spikeball = value; }
+        public Texture2D Texture { get => texture; set => texture = value; }
 
-        public SpikeballLauncher(Texture2D newTexture, int newX, int newY, int width, int height)
+        public SpikeballLauncher(Texture2D newTexture, int newX, int newY, int width, int height, int facing, List<Spike> levelSpikes, Texture2D spikeballTexture)
         {
             texture = newTexture;
             XPos = newX;
             YPos = newY;
             box = new Rectangle(XPos, YPos, width, height);
+            direction = facing;
+            spikeball = new Spike(spikeballTexture, XPos, YPos, spikeballTexture.Width/2, spikeballTexture.Height/2);
+            levelSpikes.Add(spikeball);
         }
 
-        public void Launch(Texture2D spikeballTexture, int speed)
+        public void Launch(int speed)
         {
-            spikeball = new Spike(spikeballTexture, XPos+speed, YPos, 40, 40);
-
+            switch (direction)
+            {
+                case 0:
+                    spikeball.XPos -= speed;
+                    break;
+                case 1:
+                    spikeball.XPos += speed;
+                    break;
+                case 2:
+                    spikeball.YPos -= speed;
+                    break;
+                case 3:
+                    spikeball.YPos += speed;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

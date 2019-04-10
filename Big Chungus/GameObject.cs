@@ -13,6 +13,7 @@ namespace Big_Chungus
         /*protected int xPos=0;
         protected int yPos=0;
         public Rectangle box;*/
+        Texture2D Texture { get; set; }
         Rectangle Box { get; set; }
         int XPos { get; set; }
         int YPos { get; set; }
