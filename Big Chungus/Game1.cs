@@ -17,6 +17,7 @@ namespace Big_Chungus
          Class Purpose:  Runs a Monogame program with an image that can be moved with the arrow keys.  Also displays the location of the image.
          Caveats:  The location coordinates displayed in the program only track the top left corner of the image.*/
 
+        #region declaring
         //Once you add a level file to the Debug Folder, change this string to its filename
         private List<string> levels = new List<string>();
         private string LevelFile = "Level1.txt";
@@ -109,6 +110,7 @@ namespace Big_Chungus
         List<int> inventoryItems = new List<int>();
         List<Platform> pForms = new List<Platform>();
 
+        #endregion
 
         public Game1()
         {
@@ -118,7 +120,7 @@ namespace Big_Chungus
             graphics.PreferredBackBufferHeight = 1024;
             graphics.ApplyChanges();
         }
-
+        
         //Checks if a specific key was pressed
         public bool KeyPress(Keys key)
         {
@@ -140,6 +142,8 @@ namespace Big_Chungus
         {
             LevelFile = levels[levelCount];
             alive = true;
+
+            #region reading LevelFile
             try
             {
                 String line;
@@ -227,7 +231,7 @@ namespace Big_Chungus
                 Debug.WriteLine(e.Message);
                 throw;
             }
-          
+#endregion
             player.LevelScore = 0;
         }
 
@@ -331,6 +335,7 @@ namespace Big_Chungus
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            #region gameplay images
             // TODO: use this.Content to load your game content here
             launcherTexture = Content.Load<Texture2D>("SmilingPetDog");
             springTexture = Content.Load<Texture2D>("spring");
@@ -342,12 +347,15 @@ namespace Big_Chungus
             gameBG = Content.Load<Texture2D>("GAMESCREEN");
             gameBGRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             sTexture = Content.Load<Texture2D>("SmilingPetDog");
+            #endregion
             //main menu
+
+            #region main Menu 
             UITexture = Content.Load<Texture2D>("chung");
             UIRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            #endregion
 
-
-            //pause menu
+            #region pause menu
             pauseTexture = Content.Load<Texture2D>("pausescreen");
             pauseTextureRect = new Rectangle(GraphicsDevice.Viewport.Width/2-300,GraphicsDevice.Viewport.Height/2-200, pauseTexture.Width, pauseTexture.Height);
             mouseRect = new Rectangle(mouseState.X, mouseState.Y, 10, 10);
@@ -355,19 +363,23 @@ namespace Big_Chungus
             button1Rect = new Rectangle(300, 400, pauseTexture.Width, 125);
             button2Rect = new Rectangle(300, 600, pauseTexture.Width, 100);
 
+            #endregion
 
-            //game Over
+            #region game Over
             gameOverTexture = Content.Load<Texture2D>("GAMEOVER");
             gameOverRectangle = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            #endregion
 
-
-            //inventory 
-           // rows = 3;
+            #region inventory
+            // rows = 3;
             //columns = 3;
             slot = new Slot[slots];
             player = new Player(playerSprite, 0, 0);
+
+            #endregion
             NextLevel();
             
+            // more inventory 
             for (int i = 0; i < slots; i++)
             {
                 slot[i] = new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, level.InventoryItems[i]);
@@ -402,6 +414,7 @@ namespace Big_Chungus
             mouseRect = new Rectangle(mouseState.X, mouseState.Y, 10, 10);
             switch (curr)
             {
+                #region Main Menu
                 case GameState.Menu:
                     kStatePrevious = kStateCurrent;
                     bool res = KeyPress(Keys.Enter);
@@ -411,6 +424,8 @@ namespace Big_Chungus
                         NextLevel();
                     }
                     break;
+                #endregion
+                #region building phase 
 
                 case GameState.Building:
 
@@ -446,7 +461,8 @@ namespace Big_Chungus
 
                     }
                     break;
-
+                #endregion
+                #region Play State 
                 case GameState.Game:
 
                     alive = true;
@@ -555,7 +571,8 @@ namespace Big_Chungus
 
                     
                     break;
-
+                #endregion
+                #region gameOver
                 case GameState.GameOver:
 
                     kStatePrevious = kStateCurrent;
@@ -571,7 +588,9 @@ namespace Big_Chungus
                         curr = GameState.Menu;
                     }
                     break;
+                #endregion
 
+                #region Pause Menu
                 case GameState.Pause:
                     MouseState pMouseState = mouseState;
                     mouseState = Mouse.GetState();
@@ -606,7 +625,8 @@ namespace Big_Chungus
                         }
                     }
                     break;
-
+                #endregion
+                #region final level 
                 case GameState.LevelFinal:
 
                     kStatePrevious = kStateCurrent;
@@ -623,6 +643,8 @@ namespace Big_Chungus
                         curr = GameState.Menu;
                     }
                     break;
+
+                #endregion
             }
         }
         /// <summary>
@@ -639,6 +661,7 @@ namespace Big_Chungus
             // Draw
             switch (curr)
             {
+                #region Main Menu
                 case GameState.Menu:
 
                     spriteBatch.Draw(UITexture, UIRect, Color.White);
@@ -647,7 +670,8 @@ namespace Big_Chungus
                     spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Jump:  Up Arrows", new Vector2(50, 250), Color.Blue);
                     break;
-
+                #endregion
+                #region building Phase
                 case GameState.Building:
 
                     for (int i = 0; i < level.Platforms.Count; i++)
@@ -703,7 +727,8 @@ namespace Big_Chungus
 
 
                     break;
-
+                #endregion
+                #region Play Game 
                 case GameState.Game:
                     spriteBatch.Draw(gameBG, gameBGRect, Color.White);
 
@@ -734,21 +759,26 @@ namespace Big_Chungus
                     spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow          hspd: " + hspd + "   vspd: " + vspd, new Vector2(50, 250), Color.Blue);
                     spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}/{1}", player.LevelScore, level.Carrots.Count), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
                     break;
-
+                #endregion
+                #region game over 
                 case GameState.GameOver:
                     spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
                     spriteBatch.DrawString(spriteFont, "GAME OVER", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 200), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Press enter to restart", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 300), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Press M to menu", new Vector2(GraphicsDevice.Viewport.Width / 2 - 40, 400), Color.DarkBlue);
                     break;
+                #endregion
 
+                #region Pause Screen 
                 case GameState.Pause:
 
                     spriteBatch.DrawString(spriteFont, "Click on an option to continue", new Vector2(320, 250), Color.DarkBlue);
                     spriteBatch.Draw(pauseTexture, pauseTextureRect, Color.White);
           
                     break;
+                #endregion
 
+                #region level final  
                 case GameState.LevelFinal:
                     spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
                     spriteBatch.DrawString(spriteFont, "Press enter to next level", new Vector2(300, 300), Color.DarkBlue);
@@ -756,6 +786,7 @@ namespace Big_Chungus
                     spriteBatch.DrawString(spriteFont, String.Format("TOTAL SCORE: {0}", player.LevelScore), new Vector2(300, 400), Color.DarkBlue);
 
                     break;
+                #endregion
             }
             
             // End the sprite batch

@@ -399,3 +399,4 @@ monodroid*.msi
 /CompiledContent/Windows/IgnoreMe.dll
 *.cachefile
 *.dlls
+.vs/Big Chungus/v15/.suo
