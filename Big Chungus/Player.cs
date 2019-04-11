@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Big_Chungus
 {
-    class Player:GameObject
+    class Player : GameObject
     {
         private Texture2D playerTexture;
         private Rectangle playerBox;
@@ -25,7 +25,7 @@ namespace Big_Chungus
         public int Height { get => playerBox.Height; set => playerBox.Height = value; }
         public int XPos { get => playerBox.X; set => playerBox.X = value; }
         public int YPos { get => playerBox.Y; set => playerBox.Y = value; }
-        public Texture2D PlayerTexture { get => playerTexture; set => playerTexture = value; }
+        public Texture2D Texture { get => playerTexture; set => playerTexture = value; }
         public bool IsStanding { get => isStanding; set => isStanding = value; }
 
         public Player(Texture2D texture, int x, int y)

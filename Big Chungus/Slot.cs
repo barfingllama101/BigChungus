@@ -45,23 +45,26 @@ namespace Big_Chungus
             get { return color; }
             set { color = value; }
         }
-        public Slot(Texture2D texture, int xpos, int ypos, Color c)
+        public Slot(Texture2D texture, int xpos, int ypos, Color c, int items)
         {
             slotTexture = texture;
             this.xPos = xpos;
             this.yPos = ypos;
             baseRect = new Rectangle(xPos, yPos, 100, 100);
             cOlor = c;
+            numItems = items;
         }
         #endregion
         #region interactions
-
+        private int numItems;
         private bool hasObject;
         public bool HasObject
         {
             get { return hasObject; }
             set { hasObject = value; }
         }
+
+        public int NumItems { get => numItems; set => numItems = value; }
         #endregion
         public void Draw(SpriteBatch spriteBatch)
         {

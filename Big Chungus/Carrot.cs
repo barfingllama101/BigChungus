@@ -21,7 +21,7 @@ namespace Big_Chungus
             get { return visible; }
             set { visible = value; }
         }
-        public Texture2D CarrotTexture { get => carrotTexture; set => carrotTexture = value; }
+        public Texture2D Texture { get => carrotTexture; set => carrotTexture = value; }
         public int XPos { get => carrotBox.X; set => carrotBox.X = value; }
         public int YPos { get => carrotBox.Y; set => carrotBox.Y = value; }
         public Rectangle Box { get => carrotBox; set => carrotBox = value; }

@@ -4,10 +4,29 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/BigChungusCropped.png</File>
-    <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/Carrot.png</File>
-    <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/CarrotCropped.png</File>
-    <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/SmilingPetDog.jpg</File>
-    <File>C:/Users/Max/source/repos/BigChungus/Big Chungus/Content/spike.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/BigChungusCropped.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/Carrot.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/CarrotCropped.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/chung.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/GAMEOVER.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/GAMESCREEN.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/pausescreen.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/platform.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/SmilingPetDog.jpg</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/spike.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/spring.png</File>
   </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
 </SourceFileCollection>
