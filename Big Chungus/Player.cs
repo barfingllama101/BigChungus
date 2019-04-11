@@ -37,9 +37,10 @@ namespace Big_Chungus
 
         public bool standingCheck(List<Platform> platformList)
         {
+            //checks if the pixel directly below the player is intersected by a platform
             for (int i = 0; i < platformList.Count; i++)
             {
-                if (Box.Intersects(platformList[i].Box))
+                if (new Rectangle(XPos, YPos + 1, Width, Height).Intersects(platformList[i].Box))
                 {
                     isStanding = true;
                     break;

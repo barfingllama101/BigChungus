@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/CarrotCropped.png</SourceFile>
-  <SourceTime>2019-04-10T16:58:48.2690697-04:00</SourceTime>
-  <DestFile>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/bin/DesktopGL/CarrotCropped.xnb</DestFile>
-  <DestTime>2019-04-10T17:04:21.3845446-04:00</DestTime>
+  <SourceFile>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/CarrotCropped.png</SourceFile>
+  <SourceTime>2019-04-11T12:57:23.4671617-05:00</SourceTime>
+  <DestFile>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/bin/DesktopGL/CarrotCropped.xnb</DestFile>
+  <DestTime>2019-04-11T13:10:59.1639799-05:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-12-08T11:35:54-05:00</ImporterTime>
+  <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-12-08T11:35:54-05:00</ProcessorTime>
+  <ProcessorTime>2017-03-01T10:05:36-05:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

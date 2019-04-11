@@ -79,6 +79,12 @@ namespace Big_Chungus
         int grav; //vertical acceleration from gravity
         int hmax; //maximum horizontal movespeed
 
+        //collision rectangles
+        Rectangle tempHRec1;
+        Rectangle tempHRec2;
+        Rectangle tempVRec1;
+        Rectangle tempVRec2;
+
         //main menu
         private Texture2D UITexture;
         private Rectangle UIRect;
@@ -225,37 +231,69 @@ namespace Big_Chungus
             player.LevelScore = 0;
         }
 
-        //SPRING COLLISION REQUIRED
-        internal void CheckCollision(Platform platform)
+        //Fixed Collision
+        internal void CheckCollision(List<Platform> platformList)
         {
+            //New collision uses 4 rectangles to detect platforms before the main player box intersects them, meaning that collision works in every direction and at all times.
             kStateCurrent = Keyboard.GetState();
-            //vertical collision and prevents falling through the floor
-            if (player.Box.Intersects(platform.Box) && !kStatePrevious.IsKeyDown(Keys.Up))
-            {
-                vspd += 0;
-                
-                if (platform is Spring && player.YPos + player.Height - 1 <= platform.YPos)
-                {
-                    vspd = -24;
-                }
-                if (player.YPos <= platform.Box.Y)
-                {
-                    player.YPos = platform.Box.Y - player.Height;
-                }
-            }
             
 
-            //horizontal collision
-            if (player.Box.Intersects(platform.Box) && !kStateCurrent.IsKeyDown(Keys.Left) && !kStatePrevious.IsKeyDown(Keys.Up))
+            for (int i = 0; i < platformList.Count; i++)
             {
-                player.XPos = platform.Box.X - player.Width;
-                hspd = 0;
+                tempHRec1 = new Rectangle(player.XPos + hspd, player.YPos, player.Width, player.Height);
+                tempHRec2 = new Rectangle(player.XPos + Math.Sign(hspd), player.YPos, player.Width, player.Height);
+
+                //horizontal collision
+                if (tempHRec1.Intersects(platformList[i].Box))
+                {
+                    while (tempHRec2.Intersects(platformList[i].Box) == false)
+                    {
+                        
+                        player.XPos += Math.Sign(hspd);
+                        tempHRec2 = new Rectangle(player.XPos + Math.Sign(hspd), player.YPos, player.Width, player.Height);
+                    }
+                    if (platformList[i] is Spring && vspd > 0 && player.YPos + player.Height < platformList[i].YPos + 1)
+                    {
+
+                    }
+                    else
+                    {
+                        hspd = 0;
+                    }
+                }
             }
-            else if (player.Box.Intersects(platform.Box) && !kStateCurrent.IsKeyDown(Keys.Right) && !kStatePrevious.IsKeyDown(Keys.Up))
+            //update player position based on hspeed
+            player.XPos += hspd;
+            
+
+
+            for (int i = 0; i < platformList.Count; i++)
             {
-                player.XPos = platform.Box.X + player.Width;
-                hspd = 0;
+                tempVRec1 = new Rectangle(player.XPos, player.YPos + vspd, player.Width, player.Height);
+                tempVRec2 = new Rectangle(player.XPos, player.YPos + Math.Sign(vspd), player.Width, player.Height);
+
+                //vertical collision and prevents falling through the floor
+                if (tempVRec1.Intersects(platformList[i].Box))
+                {
+                    while (tempVRec2.Intersects(platformList[i].Box) == false)
+                    {        
+                        player.YPos += Math.Sign(vspd);
+                        tempVRec2 = new Rectangle(player.XPos, player.YPos + Math.Sign(vspd), player.Width, player.Height);
+                    }
+                    if(platformList[i] is Spring && vspd > 0 && player.YPos + player.Height < platformList[i].YPos + 1)
+                    {
+                        vspd = -24;
+                    }
+                    else
+                    {
+                        vspd = 0;
+                    }
+                    
+                }
             }
+            //update player position based on vspeed
+            player.YPos += vspd;
+
         }
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -412,9 +450,7 @@ namespace Big_Chungus
                 case GameState.Game:
 
                     alive = true;
-                    //update player position based on hspeed and vspeed
-                    player.XPos += hspd;
-                    player.YPos += vspd;
+                    
                     base.Update(gameTime);
 
                     kStateCurrent = Keyboard.GetState();
@@ -426,39 +462,45 @@ namespace Big_Chungus
                     }
                     kStatePrevious = kStateCurrent;
 
+                    //left and right movement/deceleration
+                    if (kStateCurrent.IsKeyDown(Keys.Left) && hspd > -hmax)
+                    {
+                        hspd -= hacc;
+                    }
+                    else if (hspd < 0)
+                    {
+                        hspd += hacc;
+                    }
+                    if (kStateCurrent.IsKeyDown(Keys.Right) && hspd < hmax)
+                    {
+                        hspd += hacc;
+                    }
+                    else if (hspd > 0)
+                    {
+                        hspd -= hacc;
+                    }
+
 
                     //gravity
-                    if (player.standingCheck(level.Platforms) == false)
+                    if (vspd < 36)
                     {
                         vspd += grav;
                     }
-                    else
-                    {
-                        
-                        vspd = 0;
-                    }
+                    
+
+
                     //jump
                     if (kStateCurrent.IsKeyDown(Keys.Up) && player.standingCheck(level.Platforms))
                     {
                         vspd = -16;
                     }
-                    //gravity and collision
-                    for (int i = 0; i < level.Platforms.Count; i++)
-                    {
-                        if (player.Box.Intersects(level.Platforms[i].Box))
-                        {
-                            if (!kStateCurrent.IsKeyDown(Keys.Up) && player.standingCheck(level.Platforms))
-                            {
-                                vspd += 0;
-                            }
-                                kStatePrevious = kStateCurrent;
-                                CheckCollision(level.Platforms[i]);
-                            
-                            
-                        }
-                    }
 
-                    
+
+
+                    //gravity and collision
+                    kStatePrevious = kStateCurrent;
+                    CheckCollision(level.Platforms);
+
 
                     //bounds
                     if (player.XPos < 0)
@@ -511,23 +553,7 @@ namespace Big_Chungus
                         curr = GameState.LevelFinal;
                     }
 
-                    //left and right movement/deceleration
-                    if (kStateCurrent.IsKeyDown(Keys.Left) && hspd > -hmax)
-                    {
-                        hspd -= hacc;
-                    }
-                    else if (hspd < 0)
-                    {
-                        hspd += hacc;
-                    }
-                    if (kStateCurrent.IsKeyDown(Keys.Right) && hspd < hmax)
-                    {
-                        hspd += hacc;
-                    }
-                    else if (hspd > 0)
-                    {
-                        hspd -= hacc;
-                    }
+                    
                     break;
 
                 case GameState.GameOver:
@@ -680,8 +706,10 @@ namespace Big_Chungus
 
                 case GameState.Game:
                     spriteBatch.Draw(gameBG, gameBGRect, Color.White);
+
                     spriteBatch.Draw(player.Texture, player.Box, Color.White);
-                    
+
+
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         if (level.Carrots[i].Visible == true)
@@ -703,7 +731,7 @@ namespace Big_Chungus
                     }
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow", new Vector2(50, 250), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow          hspd: " + hspd + "   vspd: " + vspd, new Vector2(50, 250), Color.Blue);
                     spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}/{1}", player.LevelScore, level.Carrots.Count), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
                     break;
 

@@ -249,3 +249,13 @@ D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\obj\Debug\Big Chungus.cs
 D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\obj\Debug\Big Chungus.exe
 D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\obj\Debug\Big Chungus.pdb
 D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\chung.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMEOVER.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMESCREEN.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\pausescreen.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platform.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spike.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png
