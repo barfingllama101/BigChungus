@@ -250,3 +250,7 @@ D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\obj\Debug\Big Chungus.ex
 D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\obj\Debug\Big Chungus.pdb
 D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.xnb
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.gif

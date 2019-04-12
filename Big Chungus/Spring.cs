@@ -9,6 +9,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Big_Chungus
 {
+
+    public enum platformType
+    {
+        platform, 
+        spike
+    }
     class Spring : Platform, GameObject
     {
         private Texture2D springTexture;

@@ -189,7 +189,8 @@ namespace Big_Chungus
                     springs = new List<Spring>();
                     for (int i = 0; i < int.Parse(springValues[0]); i++)
                     {
-                        platforms.Add(new Spring(springTexture, int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
+                        // platforms.Add(new Spring(springTexture, int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
+                         springs.Add(new Spring(springTexture, int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
                     }
                 }
                 //Adds launchers
@@ -337,9 +338,9 @@ namespace Big_Chungus
 
             #region gameplay images
             // TODO: use this.Content to load your game content here
-            launcherTexture = Content.Load<Texture2D>("SmilingPetDog");
+            launcherTexture = Content.Load<Texture2D>("cannon");
             springTexture = Content.Load<Texture2D>("spring");
-            spikeTexture = Content.Load<Texture2D>("spike");
+            spikeTexture = Content.Load<Texture2D>("spikeanim");
             CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
@@ -666,9 +667,7 @@ namespace Big_Chungus
 
                     spriteBatch.Draw(UITexture, UIRect, Color.White);
                     spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(432, 800), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, "In Building Mode, click and drag platforms to move them, then press enter to begin the level", new Vector2(200, 100), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, "Jump:  Up Arrows", new Vector2(50, 250), Color.Blue);
+                  
                     break;
                 #endregion
                 #region building Phase
@@ -677,6 +676,8 @@ namespace Big_Chungus
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
+              
+
                     }
 
                     spriteBatch.Draw(player.Texture, player.Box, Color.White);
@@ -695,6 +696,7 @@ namespace Big_Chungus
                     for (int i = 0; i < level.Springs.Count; i++)
                     {
                         spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
+
                     }
                     for (int i = 0; i < level.Launchers.Count; i++)
                     {
@@ -746,6 +748,10 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
                     }
+                    for(int i = 0; i < level.Springs.Count; i++)
+                    {
+                        spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
+                    }
                     for (int i = 0; i < level.Spikes.Count; i++)
                     {
                         spriteBatch.Draw(level.Spikes[i].Texture, level.Spikes[i].Box, Color.White);
@@ -754,6 +760,8 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(level.Launchers[i].Texture, level.Launchers[i].Box, Color.White);
                     }
+
+           
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow          hspd: " + hspd + "   vspd: " + vspd, new Vector2(50, 250), Color.Blue);
