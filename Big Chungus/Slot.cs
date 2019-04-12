@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,33 @@ namespace Big_Chungus
     {
 
         #region setup
+
+
+
         Rectangle baseRect;
-        
+
+        string slotName;
+        public string SlotName
+        {
+            get { return slotName; }
+            set { SlotName = value; }
+        }
+
+        bool isActivated;
+        public bool IsActivated
+        {
+            get { return isActivated; }
+            set { isActivated = value; }
+        }
+        int itemCount;
+
+        public int ItemCount
+        {
+            get { return itemCount; }
+            set { itemCount = value; }
+        }
+
+
         Texture2D slotTexture;
         public Texture2D Texture
         {
@@ -46,6 +72,7 @@ namespace Big_Chungus
         }
         public Slot(Texture2D texture, int xpos, int ypos, Color c, int items)//, GameObject newObject)
         {
+            slotName = name;
             slotTexture = texture;
             this.xPos = xpos;
             this.yPos = ypos;
@@ -54,6 +81,8 @@ namespace Big_Chungus
             numItems = items;
             //itemClass = newObject;
         }
+
+
         #endregion
         #region interactions
         //private GameObject itemClass;
@@ -71,6 +100,31 @@ namespace Big_Chungus
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(slotTexture, baseRect, color);
+        }
+
+        public void activating(int counting){
+            if (counting > 0)
+            {
+                isActivated = true;
+
+            }
+            else
+            {
+                isActivated = false;
+            }
+}
+        public void getItem() {
+            MouseState mouseState = new MouseState();
+            MouseState prevMouseState = mouseState;
+            mouseState = Mouse.GetState();
+       
+                    //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
+                    if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && hasObject == true)
+                    {
+                        
+                    }
+                
+            
         }
 
         public void SlotIntersecting(Rectangle rect) {

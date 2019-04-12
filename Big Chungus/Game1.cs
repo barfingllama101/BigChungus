@@ -104,7 +104,7 @@ namespace Big_Chungus
         private Rectangle gameOverRectangle;
 
         //inventory
-        Slot[] slot;
+        List<Slot> slot;
         int slots = 6;
         //int columns = 1;
         Texture2D sTexture;
@@ -342,9 +342,9 @@ namespace Big_Chungus
 
             #region gameplay images
             // TODO: use this.Content to load your game content here
-            launcherTexture = Content.Load<Texture2D>("SmilingPetDog");
+            launcherTexture = Content.Load<Texture2D>("cannon");
             springTexture = Content.Load<Texture2D>("spring");
-            spikeTexture = Content.Load<Texture2D>("spike");
+            spikeTexture = Content.Load<Texture2D>("spikeanim");
             CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
@@ -391,6 +391,7 @@ namespace Big_Chungus
             for (int i = 0; i < slots; i++)
             {
                 slot[i] = new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, level.InventoryItems[i]);//, classes[i]);
+                slot.Add( new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, level.InventoryItems[i],"one"));
                 // platforms.Add(new Platform(slot[i, j].XPos, slot[i, j].YPos, itemTexture, Color.AliceBlue));
                 // Debug.WriteLine("stexture" + sTexture);
             }
@@ -400,7 +401,7 @@ namespace Big_Chungus
 
 
         }
-
+        
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -682,9 +683,7 @@ namespace Big_Chungus
 
                     spriteBatch.Draw(UITexture, UIRect, Color.White);
                     spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(432, 800), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, "In Building Mode, click and drag platforms to move them, then press enter to begin the level", new Vector2(200, 100), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, "Jump:  Up Arrows", new Vector2(50, 250), Color.Blue);
+                  
                     break;
                 #endregion
                 #region building Phase
@@ -711,6 +710,7 @@ namespace Big_Chungus
                     for (int i = 0; i < level.Springs.Count; i++)
                     {
                         spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
+
                     }
                     for (int i = 0; i < level.Launchers.Count; i++)
                     {
@@ -762,6 +762,10 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
                     }
+                    for(int i = 0; i < level.Springs.Count; i++)
+                    {
+                        spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
+                    }
                     for (int i = 0; i < level.Spikes.Count; i++)
                     {
                         spriteBatch.Draw(level.Spikes[i].Texture, level.Spikes[i].Box, Color.White);
@@ -770,6 +774,8 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(level.Launchers[i].Texture, level.Launchers[i].Box, Color.White);
                     }
+
+           
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow          hspd: " + hspd + "   vspd: " + vspd, new Vector2(50, 250), Color.Blue);

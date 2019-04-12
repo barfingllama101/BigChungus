@@ -121,6 +121,9 @@
     <Content Include="Content\BigChungusCropped.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\cannon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Carrot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -131,6 +134,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\spike.png" />
+    <Content Include="Content\spikeanim.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\spring.png" />
     <Content Include="Content\SpriteFont1.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
