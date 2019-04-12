@@ -15,6 +15,7 @@ namespace Big_Chungus
         public Rectangle box;*/
         Texture2D Texture { get; set; }
         Rectangle Box { get; set; }
+
         int XPos { get; set; }
         int YPos { get; set; }
 

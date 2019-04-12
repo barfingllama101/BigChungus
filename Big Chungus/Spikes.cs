@@ -24,5 +24,12 @@ namespace Big_Chungus
             spikeBox = new Rectangle(x, y, width, height);
         }
 
+        /*public Spike(Texture2D texture, int width, int height)
+        {
+            spikeTexture = texture;
+            spikeBox = new Rectangle();
+            spikeBox.Width = width;
+            spikeBox.Height = height;
+        }*/
     }
 }

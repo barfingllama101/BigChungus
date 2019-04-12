@@ -35,7 +35,15 @@ namespace Big_Chungus
             spikeball = new Spike(spikeballTexture, XPos, YPos, spikeballTexture.Width/2, spikeballTexture.Height/2);
             levelSpikes.Add(spikeball);
         }
-
+        /*public SpikeballLauncher(Texture2D newTexture, int width, int height, Texture2D spikeballTexture)
+        {
+            texture = newTexture;
+            box = new Rectangle();
+            box.Width = width;
+            box.Height = height;
+            direction = 0;
+            spikeball = new Spike(spikeballTexture, spikeballTexture.Width / 2, spikeballTexture.Height / 2);
+        }*/
         public void Launch(int speed)
         {
             switch (direction)

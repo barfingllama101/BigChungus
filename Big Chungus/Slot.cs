@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace Big_Chungus
 {
-    class Slot
+    class Slot// : GameObject
     {
 
         #region setup
         Rectangle baseRect;
-
+        
         Texture2D slotTexture;
-        public Texture2D SlotTexture
+        public Texture2D Texture
         {
             get { return slotTexture; }
             set { slotTexture = value; }
         }
-        public Rectangle bRect
+        public Rectangle Box
         {
             get { return baseRect; }
             //   set { baseRect = value; }
@@ -31,7 +31,6 @@ namespace Big_Chungus
         {
             get { return baseRect.X; }
             set { baseRect.X = value; }
-
         }
         private int yPos;
         public int YPos
@@ -45,7 +44,7 @@ namespace Big_Chungus
             get { return color; }
             set { color = value; }
         }
-        public Slot(Texture2D texture, int xpos, int ypos, Color c, int items)
+        public Slot(Texture2D texture, int xpos, int ypos, Color c, int items)//, GameObject newObject)
         {
             slotTexture = texture;
             this.xPos = xpos;
@@ -53,9 +52,11 @@ namespace Big_Chungus
             baseRect = new Rectangle(xPos, yPos, 100, 100);
             cOlor = c;
             numItems = items;
+            //itemClass = newObject;
         }
         #endregion
         #region interactions
+        //private GameObject itemClass;
         private int numItems;
         private bool hasObject;
         public bool HasObject
@@ -65,6 +66,7 @@ namespace Big_Chungus
         }
 
         public int NumItems { get => numItems; set => numItems = value; }
+        //internal GameObject ItemClass { get => itemClass; set => itemClass = value; }
         #endregion
         public void Draw(SpriteBatch spriteBatch)
         {

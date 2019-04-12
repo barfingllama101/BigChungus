@@ -28,6 +28,14 @@ namespace Big_Chungus
             springBox = new Rectangle(x, y, width, height);
         }
 
+        /*public Spring(Texture2D texture, int width, int height)
+            : base(texture, width, height)
+        {
+            springTexture = texture;
+            springBox = new Rectangle();
+            springBox.Width = width;
+            springBox.Height = height;
+        }*/
         //set spring center to cursor position when dragging
         /*public void Drag()
         {

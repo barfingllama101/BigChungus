@@ -27,6 +27,7 @@ namespace Big_Chungus
         SpriteFont spriteFont;
         //Texture dictionary for streamlining code
         Dictionary<String, Texture2D> textures = new Dictionary<String, Texture2D>();
+
         //game bg
         Texture2D gameBG;
         Rectangle gameBGRect;
@@ -35,6 +36,7 @@ namespace Big_Chungus
         Player player;
         Texture2D playerSprite;
         bool alive;
+        int[] spawn = new int[2];
 
         //Spike things
         Texture2D spikeTexture;
@@ -49,7 +51,7 @@ namespace Big_Chungus
         //Platform things
         Texture2D platform;
         List<Platform> platforms;
-        Platform heldPlatform;
+        GameObject heldPlatform;
 
         //Carrot things
         Texture2D CarrotTexture;
@@ -67,7 +69,6 @@ namespace Big_Chungus
         //kayboard state
         KeyboardState kStateCurrent;
         KeyboardState kStatePrevious;
-        
 
         //enum
         enum GameState { Menu, Building, Game, Pause, LevelFinal, GameOver };
@@ -109,9 +110,11 @@ namespace Big_Chungus
         Texture2D sTexture;
         List<int> inventoryItems = new List<int>();
         List<Platform> pForms = new List<Platform>();
-
+        
+        //Class list for slots
+        //GameObject[] classes = new GameObject[6];
         #endregion
-
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -140,99 +143,103 @@ namespace Big_Chungus
         //sets next level by reading a text file containing level data
         public void NextLevel()
         {
-            LevelFile = levels[levelCount];
-            alive = true;
+            if (levelCount < levels.Count)
+            {
+                LevelFile = levels[levelCount];
+                alive = true;
 
-            #region reading LevelFile
-            try
-            {
-                String line;
-                StreamReader input = new StreamReader(LevelFile);
-                //Adds platforms
-                if (input.ReadLine() != null)
+                #region reading LevelFile
+                try
                 {
-                    line = input.ReadLine();
-                    String[] platformValues = line.Split(',');
-                    platforms = new List<Platform>();
-                    for (int i = 0; i < int.Parse(platformValues[0]); i++)
+                    String line;
+                    StreamReader input = new StreamReader(LevelFile);
+                    //Adds platforms
+                    if (input.ReadLine() != null)
                     {
-                        platforms.Add(new Platform(platform, int.Parse(platformValues[(5 * i) + 2]), int.Parse(platformValues[(5 * i) + 3]), int.Parse(platformValues[(5 * i) + 4]), int.Parse(platformValues[(5 * i) + 5])));
+                        line = input.ReadLine();
+                        String[] platformValues = line.Split(',');
+                        platforms = new List<Platform>();
+                        for (int i = 0; i < int.Parse(platformValues[0]); i++)
+                        {
+                            platforms.Add(new Platform(platform, int.Parse(platformValues[(5 * i) + 2]), int.Parse(platformValues[(5 * i) + 3]), int.Parse(platformValues[(5 * i) + 4]), int.Parse(platformValues[(5 * i) + 5])));
+                        }
                     }
-                }
-                //Adds carrots
-                if (input.ReadLine() != null)
-                {
-                    line = input.ReadLine();
-                    String[] carrotValues = line.Split(',');
-                    carrots = new List<Carrot>();
-                    for (int i = 0; i < int.Parse(carrotValues[0]); i++)
+                    //Adds carrots
+                    if (input.ReadLine() != null)
                     {
-                        carrots.Add(new Carrot(CarrotTexture, int.Parse(carrotValues[(2 * i) + 2]), int.Parse(carrotValues[(2 * i) + 3]), CarrotTexture.Width / 2, CarrotTexture.Height / 2));
+                        line = input.ReadLine();
+                        String[] carrotValues = line.Split(',');
+                        carrots = new List<Carrot>();
+                        for (int i = 0; i < int.Parse(carrotValues[0]); i++)
+                        {
+                            carrots.Add(new Carrot(CarrotTexture, int.Parse(carrotValues[(2 * i) + 2]), int.Parse(carrotValues[(2 * i) + 3]), CarrotTexture.Width / 2, CarrotTexture.Height / 2));
+                        }
                     }
-                }
-                //Adds spikes
-                if (input.ReadLine() != null)
-                {
-                    line = input.ReadLine();
-                    String[] spikeValues = line.Split(',');
-                    spikes = new List<Spike>();
-                    for (int i = 0; i < int.Parse(spikeValues[0]); i++)
+                    //Adds spikes
+                    if (input.ReadLine() != null)
                     {
-                        spikes.Add(new Spike(spikeTexture, int.Parse(spikeValues[(2 * i) + 2]), int.Parse(spikeValues[(2 * i) + 3]), spikeTexture.Width / 2, spikeTexture.Height / 2));
+                        line = input.ReadLine();
+                        String[] spikeValues = line.Split(',');
+                        spikes = new List<Spike>();
+                        for (int i = 0; i < int.Parse(spikeValues[0]); i++)
+                        {
+                            spikes.Add(new Spike(spikeTexture, int.Parse(spikeValues[(2 * i) + 2]), int.Parse(spikeValues[(2 * i) + 3]), spikeTexture.Width / 2, spikeTexture.Height / 2));
+                        }
                     }
-                }
-                //Adds springs
-                if (input.ReadLine() != null)
-                {
-                    line = input.ReadLine();
-                    String[] springValues = line.Split(',');
-                    springs = new List<Spring>();
-                    for (int i = 0; i < int.Parse(springValues[0]); i++)
+                    //Adds springs
+                    if (input.ReadLine() != null)
                     {
-                        platforms.Add(new Spring(springTexture, int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
+                        line = input.ReadLine();
+                        String[] springValues = line.Split(',');
+                        springs = new List<Spring>();
+                        for (int i = 0; i < int.Parse(springValues[0]); i++)
+                        {
+                            platforms.Add(new Spring(springTexture, int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
+
+                        }
                     }
-                }
-                //Adds launchers
-                if (input.ReadLine() != null)
-                {
-                    line = input.ReadLine();
-                    String[] launcherValues = line.Split(',');
-                    launchers = new List<SpikeballLauncher>();
-                    for (int i = 0; i < int.Parse(launcherValues[0]); i++)
+                    //Adds launchers
+                    if (input.ReadLine() != null)
                     {
-                        launchers.Add(new SpikeballLauncher(launcherTexture, int.Parse(launcherValues[(3 * i) + 2]), int.Parse(launcherValues[(3 * i) + 3]), 80, 80, int.Parse(launcherValues[(3 * i) + 4]), spikes, spikeTexture));
+                        line = input.ReadLine();
+                        String[] launcherValues = line.Split(',');
+                        launchers = new List<SpikeballLauncher>();
+                        for (int i = 0; i < int.Parse(launcherValues[0]); i++)
+                        {
+                            launchers.Add(new SpikeballLauncher(launcherTexture, int.Parse(launcherValues[(3 * i) + 2]), int.Parse(launcherValues[(3 * i) + 3]), 80, 80, int.Parse(launcherValues[(3 * i) + 4]), spikes, spikeTexture));
+                        }
                     }
-                }
-                //Reads inventory
-                if (input.ReadLine() != null)
-                {
-                    line = input.ReadLine();
-                    String[] inventoryValues = line.Split(',');
-                    inventoryItems = new List<int>();
-                    for (int i = 0; i < 6; i++)
+                    //Reads inventory
+                    if (input.ReadLine() != null)
                     {
-                        inventoryItems.Add(int.Parse(inventoryValues[i]));
+                        line = input.ReadLine();
+                        String[] inventoryValues = line.Split(',');
+                        inventoryItems = new List<int>();
+                        for (int i = 0; i < 6; i++)
+                        {
+                            inventoryItems.Add(int.Parse(inventoryValues[i]));
+                        }
                     }
+                    //Sets spawn
+                    if (input.ReadLine() != null)
+                    {
+                        line = input.ReadLine();
+                        String[] playerSpawnCoor = line.Split(',');
+                        spawn[0] = int.Parse(playerSpawnCoor[0]);
+                        spawn[1] = int.Parse(playerSpawnCoor[1]);
+                    }
+                    level = new Level(spawn[0], spawn[1], platforms, carrots, spikes, springs, launchers, inventoryItems);
+                    input.Close();
                 }
-                //Sets spawn
-                if (input.ReadLine() != null)
+
+                catch (System.Exception e)
                 {
-                    line = input.ReadLine();
-                    String[] playerSpawnCoor = line.Split(',');
-                    player.XPos = int.Parse(playerSpawnCoor[0]);
-                    player.YPos = int.Parse(playerSpawnCoor[1]);
+                    Debug.WriteLine(e.Message);
+                    throw;
                 }
-                level = new Level(0, 0, platforms, carrots, spikes, springs, launchers, inventoryItems);
-                input.Close();
+                #endregion
+                player.LevelScore = 0;
             }
-        
-            catch (System.Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
-            }
-#endregion
-            player.LevelScore = 0;
         }
 
         //Fixed Collision
@@ -269,8 +276,6 @@ namespace Big_Chungus
             //update player position based on hspeed
             player.XPos += hspd;
             
-
-
             for (int i = 0; i < platformList.Count; i++)
             {
                 tempVRec1 = new Rectangle(player.XPos, player.YPos + vspd, player.Width, player.Height);
@@ -374,19 +379,26 @@ namespace Big_Chungus
             // rows = 3;
             //columns = 3;
             slot = new Slot[slots];
-            player = new Player(playerSprite, 0, 0);
 
-            #endregion
-            NextLevel();
-            
-            // more inventory 
+            /*classes[0] = new Platform(platform, 200, 40);
+            classes[1] = new Spring(springTexture, 150, 40);
+            classes[2] = new Carrot(CarrotTexture, CarrotTexture.Width / 2, CarrotTexture.Height / 2);
+            classes[3] = new Spike(spikeTexture, 20, 20);
+            classes[4] = new SpikeballLauncher(launcherTexture, 80, 80, spikeTexture);
+            classes[5] = new Player(playerSprite);*/
+            // more inventory
+
             for (int i = 0; i < slots; i++)
             {
-                slot[i] = new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, level.InventoryItems[i]);
+                slot[i] = new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, level.InventoryItems[i]);//, classes[i]);
                 // platforms.Add(new Platform(slot[i, j].XPos, slot[i, j].YPos, itemTexture, Color.AliceBlue));
                 // Debug.WriteLine("stexture" + sTexture);
             }
-            
+            #endregion
+            NextLevel();
+            player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
+
+
         }
 
         /// <summary>
@@ -432,6 +444,10 @@ namespace Big_Chungus
                     //let the player move platforms with isMovable set to true
                     MouseState prevMouseState = mouseState;
                     mouseState = Mouse.GetState();
+                    foreach (Slot button in slot)
+                    {
+
+                    }
                     foreach (Platform p in level.Platforms)
                     {
                         if (heldPlatform == null)
@@ -674,10 +690,10 @@ namespace Big_Chungus
                 #region building Phase
                 case GameState.Building:
 
-                    for (int i = 0; i < level.Platforms.Count; i++)
+                    /*for (int i = 0; i < level.Platforms.Count; i++)
                     {
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
-                    }
+                    }*/
 
                     spriteBatch.Draw(player.Texture, player.Box, Color.White);
                     for (int i = 0; i < level.Carrots.Count; i++)

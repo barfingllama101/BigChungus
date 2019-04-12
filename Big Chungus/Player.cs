@@ -28,6 +28,14 @@ namespace Big_Chungus
         public Texture2D Texture { get => playerTexture; set => playerTexture = value; }
         public bool IsStanding { get => isStanding; set => isStanding = value; }
 
+        public Player(Texture2D texture)
+        {
+            playerTexture = texture;
+            playerBox = new Rectangle();
+            playerBox.Width = texture.Width;
+            playerBox.Height = texture.Height;
+            levelScore = 0;
+        }
         public Player(Texture2D texture, int x, int y)
         {
             playerTexture = texture;

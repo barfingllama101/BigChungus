@@ -39,6 +39,13 @@ namespace Big_Chungus
             platformTexture = texture;
             platformBox = new Rectangle(x, y, width, height);
         }
+        /*public Platform(Texture2D texture, int width, int height)
+        {
+            platformTexture = texture;
+            platformBox = new Rectangle();
+            platformBox.Width = width;
+            platformBox.Height = height;
+        }*/
 
         //set platform center to cursor position when dragging
         public void Drag()

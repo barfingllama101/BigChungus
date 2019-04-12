@@ -35,6 +35,15 @@ namespace Big_Chungus
             visible = true;
         }
 
+        /*public Carrot(Texture2D texture, int width, int height)
+        {
+            carrotTexture = texture;
+            carrotBox = new Rectangle();
+            carrotBox.Width = width;
+            carrotBox.Height = height;
+            visible = true;
+        }*/
+
         public bool CheckCollision(Rectangle O)
         {
             bool result = false;
