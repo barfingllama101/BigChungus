@@ -9,6 +9,6 @@ Springs(first value is number of Springs, second is name of image for Texture; t
 SpikeLaunchers(first value is number of launchers, second is name of Texture; then for each launcher: x,y,direction(0=left, 1=right, 2=up, 3=down)):
 2,launcherTexture,400,100,0,600,200,3
 Inventory(put the number of each item the player will have in each level in this order:  platforms,springs,carrots,spikes,fans,spikeball launchers):
-2,0,0,2,0,0
+2,2,0,0,0,0
 PlayerSpawn(x,y):
 0,0
