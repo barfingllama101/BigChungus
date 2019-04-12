@@ -103,7 +103,7 @@ namespace Big_Chungus
         private Rectangle gameOverRectangle;
 
         //inventory
-        Slot[] slot;
+        List<Slot> slot;
         int slots = 6;
         //int columns = 1;
         Texture2D sTexture;
@@ -374,7 +374,7 @@ namespace Big_Chungus
             #region inventory
             // rows = 3;
             //columns = 3;
-            slot = new Slot[slots];
+            slot = new List<Slot>();
             player = new Player(playerSprite, 0, 0);
 
             #endregion
@@ -383,13 +383,13 @@ namespace Big_Chungus
             // more inventory 
             for (int i = 0; i < slots; i++)
             {
-                slot[i] = new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, level.InventoryItems[i]);
+                slot.Add( new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, level.InventoryItems[i],"one"));
                 // platforms.Add(new Platform(slot[i, j].XPos, slot[i, j].YPos, itemTexture, Color.AliceBlue));
                 // Debug.WriteLine("stexture" + sTexture);
             }
             
         }
-
+        
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.

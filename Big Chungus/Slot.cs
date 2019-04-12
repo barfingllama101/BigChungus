@@ -18,6 +18,13 @@ namespace Big_Chungus
 
         Rectangle baseRect;
 
+        string slotName;
+        public string SlotName
+        {
+            get { return slotName; }
+            set { SlotName = value; }
+        }
+
         bool isActivated;
         public bool IsActivated
         {
@@ -64,8 +71,9 @@ namespace Big_Chungus
             get { return color; }
             set { color = value; }
         }
-        public Slot(Texture2D texture, int xpos, int ypos, Color c, int items)
+        public Slot(Texture2D texture, int xpos, int ypos, Color c, int items, string name)
         {
+            slotName = name;
             slotTexture = texture;
             this.xPos = xpos;
             this.yPos = ypos;
