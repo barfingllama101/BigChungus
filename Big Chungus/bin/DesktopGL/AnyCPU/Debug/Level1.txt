@@ -1,5 +1,5 @@
 Platforms(first value is number of Platforms; then for each platform: texture,x,y,width,height):
-2,platform,0,331,300,40,platform,331,100,40,300
+2,platform,0,531,300,40,platform,331,400,40,300
 Carrots(first value is number of Carrots, second is name of Texture; then for each carrot: x,y):
 2,CarrotTexture,150,100,200,100
 Spikes(first value is number of Spikes, second is name of Texture; then for each spike: x,y):
@@ -7,8 +7,8 @@ Spikes(first value is number of Spikes, second is name of Texture; then for each
 Springs(first value is number of Springs, second is name of image for Texture; then for each Spring: x,y):
 2,spring,450,500,300,300
 SpikeLaunchers(first value is number of launchers, second is name of Texture; then for each launcher: x,y,direction(0=left, 1=right, 2=up, 3=down)):
-2,launcherTexture,400,100,0,600,200,3
+2,launcherTexture,600,0,0,600,200,3
 Inventory(put the number of each item the player will have in each level in this order:  platforms,springs,carrots,spikes,fans,spikeball launchers):
 2,2,0,0,0,0
 PlayerSpawn(x,y):
-10,10
+0,400

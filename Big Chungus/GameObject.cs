@@ -18,9 +18,8 @@ namespace Big_Chungus
 
         int XPos { get; set; }
         int YPos { get; set; }
-
-        //public int XPos { get => box.X; set => box.X = value; }
-        //public int YPos { get => box.Y; set => box.Y = value; }
+        bool IsMoveable { get; set; }
+        void Drag();
 
     }
 }

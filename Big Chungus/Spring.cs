@@ -10,22 +10,22 @@ using Microsoft.Xna.Framework.Input;
 namespace Big_Chungus
 {
 
-    public enum platformType
+    /*public enum platformType
     {
         platform, 
         spike
-    }
+    }*/
     class Spring : Platform, GameObject
     {
         private Texture2D springTexture;
         private Rectangle springBox;
 
         public Texture2D SpringTexture { get => springTexture; set => springTexture = value; }
-        public new int XPos { get => springBox.X; set => springBox.X = value; }
-        public new int YPos { get => springBox.Y; set => springBox.Y = value; }
-        public new Rectangle Box { get => springBox; set => springBox = value; }
-        public new int Width { get => Box.Width; set => springBox.Width = value; }
-        public new int Height { get => Box.Height; set => springBox.Height = value; }
+        //public new int XPos { get => springBox.X; set => springBox.X = value; }
+        //public new int YPos { get => springBox.Y; set => springBox.Y = value; }
+        //public new Rectangle Box { get => springBox; set => springBox = value; }
+        public new int Width { get => springBox.Width; set => springBox.Width = value; }
+        public new int Height { get => springBox.Height; set => springBox.Height = value; }
 
         public Spring(Texture2D texture, int x, int y, int width, int height)
             : base(texture, x, y, width, height)
@@ -34,16 +34,16 @@ namespace Big_Chungus
             springBox = new Rectangle(x, y, width, height);
         }
 
-        /*public Spring(Texture2D texture, int width, int height)
+        public Spring(Texture2D texture, int width, int height)
             : base(texture, width, height)
         {
             springTexture = texture;
             springBox = new Rectangle();
             springBox.Width = width;
             springBox.Height = height;
-        }*/
+        }
         //set spring center to cursor position when dragging
-        /*public void Drag()
+        /*public new void Drag()
         {
             MouseState mouseState = Mouse.GetState();
             XPos = mouseState.X - Width / 2;

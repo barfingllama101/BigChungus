@@ -9,13 +9,10 @@ using System.Threading.Tasks;
 
 namespace Big_Chungus
 {
-    class Slot// : GameObject
+    class Slot
     {
 
         #region setup
-
-
-
         Rectangle baseRect;
 
         string slotName;
@@ -70,7 +67,7 @@ namespace Big_Chungus
             get { return color; }
             set { color = value; }
         }
-        public Slot(Texture2D texture, int xpos, int ypos, Color c, int items)//, GameObject newObject)
+        public Slot(Texture2D texture, int xpos, int ypos, Color c, int newClass, string name, GameObject newObject)
         {
             slotName = name;
             slotTexture = texture;
@@ -78,15 +75,19 @@ namespace Big_Chungus
             this.yPos = ypos;
             baseRect = new Rectangle(xPos, yPos, 100, 100);
             cOlor = c;
-            numItems = items;
-            //itemClass = newObject;
+            numItems = newClass;
+            itemClass = newObject;
+            for (int i = 0; i < numItems; i++)
+            {
+                items.Add(itemClass);
+            }
         }
-
-
         #endregion
         #region interactions
-        //private GameObject itemClass;
+        private GameObject itemClass;
+        //private String label;
         private int numItems;
+        private List<GameObject> items = new List<GameObject>();
         private bool hasObject;
         public bool HasObject
         {
@@ -95,14 +96,17 @@ namespace Big_Chungus
         }
 
         public int NumItems { get => numItems; set => numItems = value; }
-        //internal GameObject ItemClass { get => itemClass; set => itemClass = value; }
+        internal GameObject ItemClass { get => itemClass; set => itemClass = value; }
+        internal List<GameObject> Items { get => items; set => items = value; }
         #endregion
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, SpriteFont spriteFont)
         {
             spriteBatch.Draw(slotTexture, baseRect, color);
+            spriteBatch.DrawString(spriteFont, numItems+"", new Vector2(xPos + 50, yPos + 50), Color.Blue);
         }
 
-        public void activating(int counting){
+        public void activating(int counting)
+        {
             if (counting > 0)
             {
                 isActivated = true;
@@ -112,19 +116,54 @@ namespace Big_Chungus
             {
                 isActivated = false;
             }
-}
-        public void getItem() {
-            MouseState mouseState = new MouseState();
-            MouseState prevMouseState = mouseState;
-            mouseState = Mouse.GetState();
-       
-                    //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
-                    if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && hasObject == true)
-                    {
-                        
-                    }
-                
+        }
+        //Returns the object created by the slot
+        public void getItem(Level level, MouseState mouseState, MouseState prevMouseState, Texture2D spikeballTexture, List<Spike> levelSpikes) {
             
+       
+            //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
+            if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && numItems > 0 && baseRect.Intersects(new Rectangle(mouseState.Position, new Point(1))))
+            {
+                numItems -= 1;
+                GameObject Object=null;
+                if (itemClass is Platform)
+                {
+                    if(itemClass is Spring)
+                    {
+                        Object = new Spring(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height);
+                    }
+                    else
+                    {
+                        Object = new Platform(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height);
+                    }
+                }
+                else if(itemClass is Carrot)
+                {
+                    Object = new Carrot(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height);
+                }
+                else if (itemClass is Spike)
+                {
+                    Object = new Spike(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height);
+                }
+                else if (itemClass is SpikeballLauncher)
+                {
+                    Object = new SpikeballLauncher(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height, levelSpikes, spikeballTexture);
+                }
+                Object.XPos = mouseState.X-100;
+                Object.YPos = mouseState.Y-100;
+                Object.IsMoveable = true;
+                if(Object is SpikeballLauncher)
+                {
+                    SpikeballLauncher newLauncher = (SpikeballLauncher)Object;
+                    level.AddObject(newLauncher);
+                    level.AddObject(newLauncher.Spikeball);
+                }
+                else
+                {
+                    level.AddObject(Object);
+                }
+                
+            }
         }
 
         public void SlotIntersecting(Rectangle rect) {

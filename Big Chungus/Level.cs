@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,9 @@ namespace Big_Chungus
     class Level
     {
         //Fields
+        private Player player = null;
+        private int playerSpawnX;
+        private int playerSpawnY;
         private List<Platform> platforms = new List<Platform>(100);
         private List<Carrot> carrots = new List<Carrot>(100);
         private List<Spike> spikes = new List<Spike>(100);
@@ -21,9 +26,8 @@ namespace Big_Chungus
         private List<List<int>> springPositions = new List<List<int>>();
         private List<List<int>> launcherPositions = new List<List<int>>();
         private List<int> inventoryItems = new List<int>();
-        private int playerSpawnX;
-        private int playerSpawnY;
 
+        internal Player Player { get => player; set => player = value; }
         public int PlayerSpawnX { get => playerSpawnX; set => playerSpawnX = value; }
         public int PlayerSpawnY { get => playerSpawnY; set => playerSpawnY = value; }
         internal List<Platform> Platforms { get => platforms; set => platforms = value; }
@@ -37,6 +41,7 @@ namespace Big_Chungus
         public List<List<int>> SpringPositions { get => springPositions; set => springPositions = value; }
         public List<List<int>> LauncherPositions { get => launcherPositions; set => launcherPositions = value; }
         public List<int> InventoryItems { get => inventoryItems; set => inventoryItems = value; }
+
 
         public Level()
         {
@@ -86,36 +91,93 @@ namespace Big_Chungus
 
         public void AddObject(GameObject newObject)
         {
-            if (newObject is Platform)
+            if (newObject is Platform &&!platforms.Contains(newObject))
             {
                 platforms.Add((Platform)newObject);
                 platformPositions[0].Add(newObject.XPos);
                 platformPositions[1].Add(newObject.YPos);
             }
-            else if (newObject is Carrot)
+            else if (newObject is Carrot && !carrots.Contains(newObject))
             {
                 carrots.Add((Carrot)newObject);
                 carrotPositions[0].Add(newObject.XPos);
                 carrotPositions[1].Add(newObject.YPos);
             }
-            else if (newObject is Spike)
+            else if (newObject is Spike && !spikes.Contains(newObject))
             {
                 spikes.Add((Spike)newObject);
                 spikePositions[0].Add(newObject.XPos);
                 spikePositions[1].Add(newObject.YPos);
             }
-            else if (newObject is Spring)
+            else if (newObject is Spring && !platforms.Contains(newObject))
             {
-                springs.Add((Spring)newObject);
+                //springs.Add((Spring)newObject);
+                platforms.Add((Spring)newObject);
                 springPositions[0].Add(newObject.XPos);
                 springPositions[1].Add(newObject.YPos);
             }
-            else if (newObject is SpikeballLauncher)
+            else if (newObject is SpikeballLauncher && !launchers.Contains(newObject))
             {
                 launchers.Add((SpikeballLauncher)newObject);
                 launcherPositions[0].Add(newObject.XPos);
                 launcherPositions[1].Add(newObject.YPos);
+            }else if (newObject is Player && player != newObject)
+            {
+                player = (Player)newObject;
             }
+        }
+
+        public GameObject HoldObject(MouseState mouseState, MouseState prevMouseState, GameObject heldObject)
+        {
+            if (heldObject == null)
+            {
+                foreach (GameObject p in platforms)
+                {
+                    //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
+                    if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && p.Box.Intersects(new Rectangle(mouseState.Position, new Point(1))) && p.IsMoveable == true)
+                    {
+                        return p;
+                    }
+                }
+                foreach (GameObject p in carrots)
+                {
+                    //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
+                    if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && p.Box.Intersects(new Rectangle(mouseState.Position, new Point(1))) && p.IsMoveable == true)
+                    {
+                        return p;
+                    }
+                }
+                foreach (GameObject p in spikes)
+                {
+                    //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
+                    if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && p.Box.Intersects(new Rectangle(mouseState.Position, new Point(1))) && p.IsMoveable == true)
+                    {
+                        return p;
+                    }
+                }
+                foreach (GameObject p in springs)
+                {
+                    //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
+                    if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && p.Box.Intersects(new Rectangle(mouseState.Position, new Point(1))) && p.IsMoveable == true)
+                    {
+                        return p;
+                    }
+                }
+                foreach (GameObject p in launchers)
+                {
+                    //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
+                    if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && p.Box.Intersects(new Rectangle(mouseState.Position, new Point(1))) && p.IsMoveable == true)
+                    {
+                        return p;
+                    }
+                }
+                return null;
+            }
+            else
+            {
+                return heldObject;
+            }
+            
         }
 
         /*public void Reset(List<Platform> newPlatforms, List<Carrot> newCarrots, List<Spike> newSpikes, List<Spring> newSprings, List<SpikeballLauncher> newLaunchers, List<int> newInv)

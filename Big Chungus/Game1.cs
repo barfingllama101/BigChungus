@@ -51,7 +51,7 @@ namespace Big_Chungus
         //Platform things
         Texture2D platform;
         List<Platform> platforms;
-        GameObject heldPlatform;
+        
 
         //Carrot things
         Texture2D CarrotTexture;
@@ -64,8 +64,8 @@ namespace Big_Chungus
         List<Spring> springs;
 
         //mouse state
-        MouseState mouseState;
-
+        MouseState mouseState = new MouseState();
+        MouseState prevMouseState;
         //kayboard state
         KeyboardState kStateCurrent;
         KeyboardState kStatePrevious;
@@ -110,9 +110,9 @@ namespace Big_Chungus
         Texture2D sTexture;
         List<int> inventoryItems = new List<int>();
         List<Platform> pForms = new List<Platform>();
-        
+        GameObject heldObject;
         //Class list for slots
-        //GameObject[] classes = new GameObject[6];
+        GameObject[] classes = new GameObject[6];
         #endregion
         
         public Game1()
@@ -194,8 +194,8 @@ namespace Big_Chungus
                         springs = new List<Spring>();
                         for (int i = 0; i < int.Parse(springValues[0]); i++)
                         {
+                           //springs.Add(new Spring(springTexture, int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
                             platforms.Add(new Spring(springTexture, int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
-
                         }
                     }
                     //Adds launchers
@@ -220,6 +220,7 @@ namespace Big_Chungus
                             inventoryItems.Add(int.Parse(inventoryValues[i]));
                         }
                     }
+                    
                     //Sets spawn
                     if (input.ReadLine() != null)
                     {
@@ -229,6 +230,20 @@ namespace Big_Chungus
                         spawn[1] = int.Parse(playerSpawnCoor[1]);
                     }
                     level = new Level(spawn[0], spawn[1], platforms, carrots, spikes, springs, launchers, inventoryItems);
+
+                    slot = new List<Slot>();
+                    classes[0] = new Platform(platform, 200, 40);
+                    classes[1] = new Spring(springTexture, 150, 40);
+                    classes[2] = new Carrot(CarrotTexture, CarrotTexture.Width / 2, CarrotTexture.Height / 2);
+                    classes[3] = new Spike(spikeTexture, spikeTexture.Width / 2, spikeTexture.Height / 2);
+                    classes[4] = new SpikeballLauncher(launcherTexture, 80, 80, level.Spikes, spikeTexture);
+                    classes[5] = new Player(playerSprite);
+                    //Makes Slots
+                    for (int i = 0; i < slots; i++)
+                    {
+                        slot.Add(new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, inventoryItems[i], "one", classes[i]));
+                    }
+                    player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
                     input.Close();
                 }
 
@@ -238,7 +253,7 @@ namespace Big_Chungus
                     throw;
                 }
                 #endregion
-                player.LevelScore = 0;
+                
             }
         }
 
@@ -302,7 +317,6 @@ namespace Big_Chungus
             }
             //update player position based on vspeed
             player.YPos += vspd;
-
         }
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -323,7 +337,7 @@ namespace Big_Chungus
             grav = 1;
             hmax = 7;
 
-            heldPlatform = null;
+            heldObject = null;
             mouseState = Mouse.GetState();
 
             base.Initialize();
@@ -378,26 +392,12 @@ namespace Big_Chungus
             #region inventory
             // rows = 3;
             //columns = 3;
-            slot = new Slot[slots];
-
-            /*classes[0] = new Platform(platform, 200, 40);
-            classes[1] = new Spring(springTexture, 150, 40);
-            classes[2] = new Carrot(CarrotTexture, CarrotTexture.Width / 2, CarrotTexture.Height / 2);
-            classes[3] = new Spike(spikeTexture, 20, 20);
-            classes[4] = new SpikeballLauncher(launcherTexture, 80, 80, spikeTexture);
-            classes[5] = new Player(playerSprite);*/
-            // more inventory
-
-            for (int i = 0; i < slots; i++)
-            {
-                slot[i] = new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, level.InventoryItems[i]);//, classes[i]);
-                slot.Add( new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, level.InventoryItems[i],"one"));
-                // platforms.Add(new Platform(slot[i, j].XPos, slot[i, j].YPos, itemTexture, Color.AliceBlue));
-                // Debug.WriteLine("stexture" + sTexture);
-            }
+            
             #endregion
             NextLevel();
-            player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
+            
+            //player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
+            player.LevelScore = 0;
 
 
         }
@@ -441,32 +441,29 @@ namespace Big_Chungus
                 #region building phase 
 
                 case GameState.Building:
-
-                    //let the player move platforms with isMovable set to true
-                    MouseState prevMouseState = mouseState;
+                    
+                    prevMouseState = mouseState;
                     mouseState = Mouse.GetState();
+                    //let the player move platforms with isMovable set to true
+
                     foreach (Slot button in slot)
                     {
+                        button.getItem(level, mouseState, prevMouseState, spikeTexture, level.Spikes);
+                    }
 
-                    }
-                    foreach (Platform p in level.Platforms)
+                    if (heldObject == null)
                     {
-                        if (heldPlatform == null)
-                        {
-                            //checks if the mouse button is clicked on the platform, and if the platform's isMovable is true, then sets the heldplatform
-                            if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released && p.Box.Intersects(new Rectangle(mouseState.Position, new Point(1))) && p.IsMoveable == true)
-                            {
-                                heldPlatform = p;
-                            }
-                        }
+                        heldObject = level.HoldObject(mouseState, prevMouseState, heldObject);
                     }
-                    if (heldPlatform != null)
+                    
+                    if (heldObject != null)
                     {
                         //moves the held platform and releases it if the mouse button is released
-                        heldPlatform.Drag();
+                        heldObject.Drag();
                         if (mouseState.LeftButton != ButtonState.Pressed)
                         {
-                            heldPlatform = null;
+                            level.AddObject(heldObject);
+                            heldObject = null;
                         }
                     }
 
@@ -650,9 +647,9 @@ namespace Big_Chungus
                     bool res5 = KeyPress(Keys.Enter);
                     if (res5 == true)
                     {
-                        curr = GameState.Building;
                         levelCount += 1;
                         NextLevel();
+                        curr = GameState.Building;
                     }
                     bool res6 = KeyPress(Keys.Escape);
                     if (res6 == true)
@@ -660,8 +657,9 @@ namespace Big_Chungus
                         curr = GameState.Menu;
                     }
                     break;
-
                 #endregion
+                default:
+                    break;
             }
         }
         /// <summary>
@@ -688,11 +686,14 @@ namespace Big_Chungus
                 #endregion
                 #region building Phase
                 case GameState.Building:
-
-                    /*for (int i = 0; i < level.Platforms.Count; i++)
+                    for (int i = 0; i < slots; i++)
                     {
-                        spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
-                    }*/
+                        slot[i].Draw(spriteBatch, spriteFont);
+                    }
+                    for (int i = 0; i < level.Platforms.Count; i++)
+                    {
+                        spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.AliceBlue);
+                    }
 
                     spriteBatch.Draw(player.Texture, player.Box, Color.White);
                     for (int i = 0; i < level.Carrots.Count; i++)
@@ -710,7 +711,6 @@ namespace Big_Chungus
                     for (int i = 0; i < level.Springs.Count; i++)
                     {
                         spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
-
                     }
                     for (int i = 0; i < level.Launchers.Count; i++)
                     {
@@ -718,29 +718,6 @@ namespace Big_Chungus
                     }
                     spriteBatch.DrawString(spriteFont, "In Building Mode, click and drag platforms to move them, then press enter to begin the level", new Vector2(200, 50), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
-
-
-                    for (int i = 0; i < slots; i++)
-                    {
-                        slot[i].Draw(spriteBatch);
-                        /*for (int j = 0; j < columns; j++)
-                        {
-                            
-
-                            //can't d this but worked in testing
-                        //    level.Platforms[i].Box = slot[i, j].bRect;
-
-                           // level.Platforms[i].Box
-                            
-                        }*/
-
-                    }
-                    for(int i = 0; i < level.Platforms.Count; i++)
-                    {
-                        spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.AliceBlue);
-                    }
-                  
-
 
                     break;
                 #endregion

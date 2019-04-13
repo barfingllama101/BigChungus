@@ -254,3 +254,7 @@ C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.gif
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.gif

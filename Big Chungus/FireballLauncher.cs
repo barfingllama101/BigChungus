@@ -14,7 +14,7 @@ namespace Big_Chungus
         private Texture2D texture;
         private Rectangle box;
         private Spike spikeball;
-
+        private bool isMoveable = false;
         //0=left, 1=right, 2=up, 3=down
         private int direction;
 
@@ -24,6 +24,7 @@ namespace Big_Chungus
         public int Direction { get => direction; set => direction = value; }
         internal Spike Spikeball { get => spikeball; set => spikeball = value; }
         public Texture2D Texture { get => texture; set => texture = value; }
+        public bool IsMoveable { get => isMoveable; set => isMoveable = value; }
 
         public SpikeballLauncher(Texture2D newTexture, int newX, int newY, int width, int height, int facing, List<Spike> levelSpikes, Texture2D spikeballTexture)
         {
@@ -35,7 +36,7 @@ namespace Big_Chungus
             spikeball = new Spike(spikeballTexture, XPos, YPos, spikeballTexture.Width/2, spikeballTexture.Height/2);
             levelSpikes.Add(spikeball);
         }
-        /*public SpikeballLauncher(Texture2D newTexture, int width, int height, Texture2D spikeballTexture)
+        public SpikeballLauncher(Texture2D newTexture, int width, int height, List<Spike> levelSpikes, Texture2D spikeballTexture)
         {
             texture = newTexture;
             box = new Rectangle();
@@ -43,7 +44,7 @@ namespace Big_Chungus
             box.Height = height;
             direction = 0;
             spikeball = new Spike(spikeballTexture, spikeballTexture.Width / 2, spikeballTexture.Height / 2);
-        }*/
+        }
         public void Launch(int speed)
         {
             switch (direction)
@@ -63,6 +64,15 @@ namespace Big_Chungus
                 default:
                     break;
             }
+        }
+        //set launcher center to cursor position when dragging
+        public void Drag()
+        {
+            MouseState mouseState = Mouse.GetState();
+            XPos = mouseState.X - box.Width / 2;
+            YPos = mouseState.Y - box.Height / 2;
+            spikeball.XPos= mouseState.X - box.Width / 2;
+            spikeball.YPos = mouseState.Y - box.Height / 2;
         }
     }
 }

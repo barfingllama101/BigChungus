@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace Big_Chungus
         private Rectangle playerBox;
         protected int levelScore;
         private bool isStanding = false;
+        private bool isMoveable = true;
 
         public int LevelScore
         {
@@ -27,6 +29,7 @@ namespace Big_Chungus
         public int YPos { get => playerBox.Y; set => playerBox.Y = value; }
         public Texture2D Texture { get => playerTexture; set => playerTexture = value; }
         public bool IsStanding { get => isStanding; set => isStanding = value; }
+        public bool IsMoveable { get => isMoveable; set => isMoveable = value; }
 
         public Player(Texture2D texture)
         {
@@ -39,7 +42,7 @@ namespace Big_Chungus
         public Player(Texture2D texture, int x, int y)
         {
             playerTexture = texture;
-            playerBox = new Rectangle(x, y, texture.Width, texture.Height);
+            playerBox = new Rectangle(x, y, texture.Width*2/3, texture.Height*2/3);
             levelScore = 0;
         }
 
@@ -71,6 +74,13 @@ namespace Big_Chungus
             }
 
             return result;
+        }
+        //set player center to cursor position when dragging
+        public void Drag()
+        {
+            MouseState mouseState = Mouse.GetState();
+            XPos = mouseState.X - playerBox.Width / 2;
+            YPos = mouseState.Y - playerBox.Height / 2;
         }
     }
 }

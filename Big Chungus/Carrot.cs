@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Big_Chungus
 {
@@ -14,7 +15,7 @@ namespace Big_Chungus
         private Rectangle carrotBox;
         private bool isCollected = false;
         protected bool visible = true;
-
+        private bool isMoveable = false;
 
         public bool Visible
         {
@@ -26,6 +27,7 @@ namespace Big_Chungus
         public int YPos { get => carrotBox.Y; set => carrotBox.Y = value; }
         public Rectangle Box { get => carrotBox; set => carrotBox = value; }
         public bool IsCollected { get => isCollected; set => isCollected = value; }
+        public bool IsMoveable { get => isMoveable; set => isMoveable = value; }
 
         public Carrot(Texture2D texture, int x, int y, int width, int height)
         {
@@ -35,14 +37,14 @@ namespace Big_Chungus
             visible = true;
         }
 
-        /*public Carrot(Texture2D texture, int width, int height)
+        public Carrot(Texture2D texture, int width, int height)
         {
             carrotTexture = texture;
             carrotBox = new Rectangle();
             carrotBox.Width = width;
             carrotBox.Height = height;
             visible = true;
-        }*/
+        }
 
         public bool CheckCollision(Rectangle O)
         {
@@ -63,6 +65,13 @@ namespace Big_Chungus
                 result = false;
             }
             return result;
+        }
+        //set carrot center to cursor position when dragging
+        public void Drag()
+        {
+            MouseState mouseState = Mouse.GetState();
+            XPos = mouseState.X - carrotBox.Width / 2;
+            YPos = mouseState.Y - carrotBox.Height / 2;
         }
     }
 }
