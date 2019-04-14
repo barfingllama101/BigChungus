@@ -17,6 +17,13 @@ namespace Big_Chungus
         private bool isMoveable = false;
 
         #region Inventory
+
+        private bool isVisible = false;
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set { isVisible = value; }
+        }
         /*bool inInventory;
         public bool InInventory
         {
@@ -36,6 +43,7 @@ namespace Big_Chungus
 
         public Platform(Texture2D texture, int width, int height)
         {
+            isVisible = true;
             platformTexture = texture;
             platformBox = new Rectangle();
             platformBox.Width = width;
