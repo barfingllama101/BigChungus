@@ -25,6 +25,7 @@ namespace Big_Chungus
         internal Spike Spikeball { get => spikeball; set => spikeball = value; }
         public Texture2D Texture { get => texture; set => texture = value; }
         public bool IsMoveable { get => isMoveable; set => isMoveable = value; }
+        public bool IsVisible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public SpikeballLauncher(Texture2D newTexture, int newX, int newY, int width, int height, int facing, List<Spike> levelSpikes, Texture2D spikeballTexture)
         {

@@ -19,6 +19,15 @@ namespace Big_Chungus
         int XPos { get; set; }
         int YPos { get; set; }
         bool IsMoveable { get; set; }
+
+        //inventory stuff
+    
+         bool IsVisible
+        {
+            get;
+            set;
+        }
+
         void Drag();
 
     }

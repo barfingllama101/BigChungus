@@ -238,11 +238,18 @@ namespace Big_Chungus
                     classes[3] = new Spike(spikeTexture, spikeTexture.Width / 2, spikeTexture.Height / 2);
                     classes[4] = new SpikeballLauncher(launcherTexture, 80, 80, level.Spikes, spikeTexture);
                     classes[5] = new Player(playerSprite);
+
                     //Makes Slots
                     for (int i = 0; i < slots; i++)
                     {
-                        slot.Add(new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, inventoryItems[i], "one", classes[i]));
+                        slot.Add(new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, inventoryItems[i], classes[i]));
                     }
+                    slot[0].SlotName = "Platform";
+                    slot[0].SlotDescription = "Place this object anywhere on the screen for Chungus to travel.";
+                    slot[1].SlotName = "Spring";
+                    slot[1].SlotDescription = "place this on the screen for Chungus to jump high!";
+
+
                     player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
                     input.Close();
                 }
@@ -316,6 +323,8 @@ namespace Big_Chungus
                 }
             }
             //update player position based on vspeed
+            
+
             player.YPos += vspd;
         }
         /// <summary>
@@ -365,7 +374,7 @@ namespace Big_Chungus
             platform = Content.Load<Texture2D>("platform");
             gameBG = Content.Load<Texture2D>("GAMESCREEN");
             gameBGRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-            sTexture = Content.Load<Texture2D>("SmilingPetDog");
+            sTexture = Content.Load<Texture2D>("slot");
             #endregion
             //main menu
 
@@ -473,6 +482,13 @@ namespace Big_Chungus
                     {
                         curr = GameState.Game;
 
+                    }
+                    for(int i = 0; i < slot.Count; i++)
+                    {
+                        if (slot[i].SlotIntersecting(mouseRect))
+                        {
+                            Debug.WriteLine("yes");
+                        }
                     }
                     break;
                 #endregion
@@ -690,9 +706,16 @@ namespace Big_Chungus
                     {
                         slot[i].Draw(spriteBatch, spriteFont);
                     }
+                    
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
-                        spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.AliceBlue);
+                        if (level.Platforms[i].IsVisible)
+                        {
+                            spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.AliceBlue);
+
+                        }
+                      
+
                     }
 
                     spriteBatch.Draw(player.Texture, player.Box, Color.White);
@@ -706,16 +729,25 @@ namespace Big_Chungus
                     }
                     for (int i = 0; i < level.Spikes.Count; i++)
                     {
+                       
+                        
                         spriteBatch.Draw(level.Spikes[i].Texture, level.Spikes[i].Box, Color.White);
                     }
                     for (int i = 0; i < level.Springs.Count; i++)
                     {
-                        spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
+                        if (level.Springs[i].IsVisible)
+                        {
+
+
+                            spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
+                        }
                     }
                     for (int i = 0; i < level.Launchers.Count; i++)
                     {
                         spriteBatch.Draw(level.Launchers[i].Texture, level.Launchers[i].Box, Color.White);
                     }
+
+
                     spriteBatch.DrawString(spriteFont, "In Building Mode, click and drag platforms to move them, then press enter to begin the level", new Vector2(200, 50), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
 
@@ -727,7 +759,7 @@ namespace Big_Chungus
 
                     spriteBatch.Draw(player.Texture, player.Box, Color.White);
 
-
+                   
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         if (level.Carrots[i].Visible == true)
@@ -737,11 +769,17 @@ namespace Big_Chungus
                     }
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
-                        spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
+                        if (level.Platforms[i].IsVisible == true)
+                        {
+                            spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
+                        }
                     }
                     for(int i = 0; i < level.Springs.Count; i++)
                     {
-                        spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
+                        if (level.Springs[i].IsVisible)
+                        {
+                            spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
+                        }
                     }
                     for (int i = 0; i < level.Spikes.Count; i++)
                     {

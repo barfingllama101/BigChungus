@@ -28,6 +28,7 @@ namespace Big_Chungus
         public Rectangle Box { get => carrotBox; set => carrotBox = value; }
         public bool IsCollected { get => isCollected; set => isCollected = value; }
         public bool IsMoveable { get => isMoveable; set => isMoveable = value; }
+        public bool IsVisible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Carrot(Texture2D texture, int x, int y, int width, int height)
         {

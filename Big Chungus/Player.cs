@@ -30,6 +30,7 @@ namespace Big_Chungus
         public Texture2D Texture { get => playerTexture; set => playerTexture = value; }
         public bool IsStanding { get => isStanding; set => isStanding = value; }
         public bool IsMoveable { get => isMoveable; set => isMoveable = value; }
+        public bool IsVisible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Player(Texture2D texture)
         {

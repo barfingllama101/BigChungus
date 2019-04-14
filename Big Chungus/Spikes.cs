@@ -20,6 +20,7 @@ namespace Big_Chungus
         public int YPos { get => spikeBox.Y; set => spikeBox.Y = value; }
         public Rectangle Box { get => spikeBox; set => spikeBox = value; }
         public bool IsMoveable { get => isMoveable; set => isMoveable = value; }
+        public bool IsVisible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Spike(Texture2D texture, int x, int y, int width, int height)
         {

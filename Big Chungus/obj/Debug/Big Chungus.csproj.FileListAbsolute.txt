@@ -298,3 +298,4 @@ Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\obj\Debug\
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\obj\Debug\Big Chungus.csproj.CopyComplete
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\obj\Debug\Big Chungus.exe
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\obj\Debug\Big Chungus.pdb
+C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\slot.xnb

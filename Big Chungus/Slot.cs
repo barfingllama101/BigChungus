@@ -15,13 +15,23 @@ namespace Big_Chungus
         #region setup
         Rectangle baseRect;
 
-        string slotName;
+
+        // name of object that slot holds
+        string slotName = "";
         public string SlotName
         {
             get { return slotName; }
-            set { SlotName = value; }
+            set { slotName = value; }
         }
 
+        //description of object
+
+        string slotDescription = "";
+        public string SlotDescription
+        {
+            get { return slotDescription; }
+            set { slotDescription = value; }
+        }
         bool isActivated;
         public bool IsActivated
         {
@@ -67,9 +77,10 @@ namespace Big_Chungus
             get { return color; }
             set { color = value; }
         }
-        public Slot(Texture2D texture, int xpos, int ypos, Color c, int newClass, string name, GameObject newObject)
+        public Slot(Texture2D texture, int xpos, int ypos, Color c, int newClass, GameObject newObject)
         {
-            slotName = name;
+          //  slotName = name;
+           
             slotTexture = texture;
             this.xPos = xpos;
             this.yPos = ypos;
@@ -103,6 +114,13 @@ namespace Big_Chungus
         {
             spriteBatch.Draw(slotTexture, baseRect, color);
             spriteBatch.DrawString(spriteFont, numItems+"", new Vector2(xPos + 50, yPos + 50), Color.Blue);
+            spriteBatch.DrawString(spriteFont, slotName, new Vector2(xPos + 2, yPos - 100), Color.Blue);
+            if (hasObject == true)
+            {
+
+
+                spriteBatch.DrawString(spriteFont, slotDescription, new Vector2(xPos + 2, yPos - 50), Color.Blue);
+            }
         }
 
         public void activating(int counting)
@@ -126,15 +144,18 @@ namespace Big_Chungus
             {
                 numItems -= 1;
                 GameObject Object=null;
+            //    itemClass.IsVisible = true;
                 if (itemClass is Platform)
                 {
                     if(itemClass is Spring)
                     {
                         Object = new Spring(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height);
+                        Object.IsVisible = true;
                     }
                     else
                     {
                         Object = new Platform(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height);
+                        Object.IsVisible = true;
                     }
                 }
                 else if(itemClass is Carrot)
@@ -166,14 +187,17 @@ namespace Big_Chungus
             }
         }
 
-        public void SlotIntersecting(Rectangle rect) {
+        public bool SlotIntersecting(Rectangle rect) {
             if (this.baseRect.Intersects(rect))
             {
                 hasObject = true;
+                return hasObject;
+
             }
             else
             {
                 hasObject = false;
+                return hasObject;
             }
         }
     }

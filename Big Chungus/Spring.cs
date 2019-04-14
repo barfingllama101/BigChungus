@@ -17,6 +17,15 @@ namespace Big_Chungus
     }*/
     class Spring : Platform, GameObject
     {
+
+        //inventory stuff
+        private bool isVisible = false;
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set { isVisible = value; }
+        }
+
         private Texture2D springTexture;
         private Rectangle springBox;
 
