@@ -277,11 +277,11 @@ namespace Big_Chungus
                 tempHRec2 = new Rectangle(player.XPos + Math.Sign(hspd), player.YPos, player.Width, player.Height);
 
                 //horizontal collision
-                if (tempHRec1.Intersects(platformList[i].Box))
+                if (tempHRec1.Intersects(platformList[i].Box) && platformList[i].IsVisible)
                 {
                     while (tempHRec2.Intersects(platformList[i].Box) == false)
                     {
-                        
+                           
                         player.XPos += Math.Sign(hspd);
                         tempHRec2 = new Rectangle(player.XPos + Math.Sign(hspd), player.YPos, player.Width, player.Height);
                     }
@@ -304,7 +304,7 @@ namespace Big_Chungus
                 tempVRec2 = new Rectangle(player.XPos, player.YPos + Math.Sign(vspd), player.Width, player.Height);
 
                 //vertical collision and prevents falling through the floor
-                if (tempVRec1.Intersects(platformList[i].Box))
+                if (tempVRec1.Intersects(platformList[i].Box) && platformList[i].IsVisible)
                 {
                     while (tempVRec2.Intersects(platformList[i].Box) == false)
                     {        
@@ -619,7 +619,6 @@ namespace Big_Chungus
                     }
                     break;
                 #endregion
-
                 #region Pause Menu
                 case GameState.Pause:
                     MouseState pMouseState = mouseState;
@@ -717,7 +716,7 @@ namespace Big_Chungus
                       
 
                     }
-
+                    spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(100, 775), Color.Blue);
                     spriteBatch.Draw(player.Texture, player.Box, Color.White);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
