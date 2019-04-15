@@ -150,12 +150,10 @@ namespace Big_Chungus
                     if(itemClass is Spring)
                     {
                         Object = new Spring(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height);
-                        Object.IsVisible = true;
                     }
                     else
                     {
                         Object = new Platform(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height);
-                        Object.IsVisible = true;
                     }
                 }
                 else if(itemClass is Carrot)

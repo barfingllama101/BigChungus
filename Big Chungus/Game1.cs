@@ -277,7 +277,7 @@ namespace Big_Chungus
                 tempHRec2 = new Rectangle(player.XPos + Math.Sign(hspd), player.YPos, player.Width, player.Height);
 
                 //horizontal collision
-                if (tempHRec1.Intersects(platformList[i].Box) && platformList[i].IsVisible)
+                if (tempHRec1.Intersects(platformList[i].Box))
                 {
                     while (tempHRec2.Intersects(platformList[i].Box) == false)
                     {
@@ -304,7 +304,7 @@ namespace Big_Chungus
                 tempVRec2 = new Rectangle(player.XPos, player.YPos + Math.Sign(vspd), player.Width, player.Height);
 
                 //vertical collision and prevents falling through the floor
-                if (tempVRec1.Intersects(platformList[i].Box) && platformList[i].IsVisible)
+                if (tempVRec1.Intersects(platformList[i].Box))
                 {
                     while (tempVRec2.Intersects(platformList[i].Box) == false)
                     {        
@@ -708,13 +708,7 @@ namespace Big_Chungus
                     
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
-                        if (level.Platforms[i].IsVisible)
-                        {
-                            spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.AliceBlue);
-
-                        }
-                      
-
+                        spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
                     spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(100, 775), Color.Blue);
                     spriteBatch.Draw(player.Texture, player.Box, Color.White);
@@ -734,12 +728,7 @@ namespace Big_Chungus
                     }
                     for (int i = 0; i < level.Springs.Count; i++)
                     {
-                        if (level.Springs[i].IsVisible)
-                        {
-
-
-                            spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
-                        }
+                        spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
                     }
                     for (int i = 0; i < level.Launchers.Count; i++)
                     {
@@ -768,17 +757,11 @@ namespace Big_Chungus
                     }
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
-                        if (level.Platforms[i].IsVisible == true)
-                        {
-                            spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
-                        }
+                        spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
                     }
                     for(int i = 0; i < level.Springs.Count; i++)
                     {
-                        if (level.Springs[i].IsVisible)
-                        {
-                            spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
-                        }
+                        spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
                     }
                     for (int i = 0; i < level.Spikes.Count; i++)
                     {
