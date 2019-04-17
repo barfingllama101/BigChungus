@@ -114,7 +114,7 @@ namespace Big_Chungus
         {
             spriteBatch.Draw(slotTexture, baseRect, color);
             spriteBatch.DrawString(spriteFont, numItems+"", new Vector2(xPos + 50, yPos + 50), Color.Blue);
-            spriteBatch.DrawString(spriteFont, slotName, new Vector2(xPos + 2, yPos - 100), Color.Blue);
+            spriteBatch.DrawString(spriteFont, slotName, new Vector2(xPos + 20, yPos +30), Color.Blue);
             if (hasObject == true)
             {
 

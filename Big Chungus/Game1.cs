@@ -20,7 +20,7 @@ namespace Big_Chungus
         #region declaring
         //Once you add a level file to the Debug Folder, change this string to its filename
         private List<string> levels = new List<string>();
-        private string LevelFile = "Level1.txt";
+        private string LevelFile = ("Levels/" + "Level1.txt");
         private int levelCount = 0;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -152,7 +152,7 @@ namespace Big_Chungus
                 try
                 {
                     String line;
-                    StreamReader input = new StreamReader(LevelFile);
+                    StreamReader input = new StreamReader("Levels/"+LevelFile);
                     //Adds platforms
                     if (input.ReadLine() != null)
                     {
@@ -609,6 +609,8 @@ namespace Big_Chungus
                     bool res7 = KeyPress(Keys.Enter);
                     if (res7 == true)
                     {
+                        level.Player.XPos = level.PlayerSpawnX;
+                        level.Player.YPos = level.PlayerSpawnY;
                         curr = GameState.Building;
                         NextLevel();
                     }
@@ -663,6 +665,12 @@ namespace Big_Chungus
                     if (res5 == true)
                     {
                         levelCount += 1;
+                        if (levelCount==levels.Count)
+                        {
+                            //level.Player.XPos = level.PlayerSpawnX;
+                            //level.Player.YPos = level.PlayerSpawnY;
+                            //add You Beat the Game! screen here
+                        }
                         NextLevel();
                         curr = GameState.Building;
                     }
