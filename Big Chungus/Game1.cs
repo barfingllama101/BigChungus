@@ -152,7 +152,7 @@ namespace Big_Chungus
                 try
                 {
                     String line;
-                    StreamReader input = new StreamReader("Levels/"+LevelFile);
+                    StreamReader input = new StreamReader(LevelFile);
                     //Adds platforms
                     if (input.ReadLine() != null)
                     {
