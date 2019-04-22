@@ -260,7 +260,6 @@ namespace Big_Chungus
                     throw;
                 }
                 #endregion
-                
             }
         }
 
@@ -358,6 +357,7 @@ namespace Big_Chungus
         /// </summary>
         protected override void LoadContent()
         {
+            levels.Add("q.txt");
             levels.Add("Level1.txt");
             levels.Add("TestLevel.txt");
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -604,7 +604,8 @@ namespace Big_Chungus
                 #endregion
                 #region gameOver
                 case GameState.GameOver:
-
+                    vspd = 0;
+                    hspd = 0;
                     kStatePrevious = kStateCurrent;
                     bool res7 = KeyPress(Keys.Enter);
                     if (res7 == true)
@@ -659,7 +660,8 @@ namespace Big_Chungus
                 #endregion
                 #region final level 
                 case GameState.LevelFinal:
-
+                    vspd = 0;
+                    hspd = 0;
                     kStatePrevious = kStateCurrent;
                     bool res5 = KeyPress(Keys.Enter);
                     if (res5 == true)
