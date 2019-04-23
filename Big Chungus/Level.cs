@@ -12,6 +12,7 @@ namespace Big_Chungus
     class Level
     {
         //Fields
+        #region fields
         private Player player = null;
         private int playerSpawnX;
         private int playerSpawnY;
@@ -41,13 +42,14 @@ namespace Big_Chungus
         public List<List<int>> SpringPositions { get => springPositions; set => springPositions = value; }
         public List<List<int>> LauncherPositions { get => launcherPositions; set => launcherPositions = value; }
         public List<int> InventoryItems { get => inventoryItems; set => inventoryItems = value; }
-
+        #endregion
 
         public Level()
         {
 
         }
 
+        #region constructor 
         public Level(int playerX, int playerY, List<Platform> newPlatforms, List<Carrot> newCarrots, List<Spike> newSpikes, List<Spring> newSprings,List<SpikeballLauncher> newLaunchers,List<int> newInv)
         {
             playerSpawnX = playerX;
@@ -88,7 +90,9 @@ namespace Big_Chungus
                 InventoryItems.Add(newInv[i]);
             }
         }
+        #endregion
 
+        #region methods 
         public void AddObject(GameObject newObject)
         {
             if (newObject is Platform &&!platforms.Contains(newObject))
@@ -179,7 +183,7 @@ namespace Big_Chungus
             }
             
         }
-
+        #endregion
         /*public void Reset(List<Platform> newPlatforms, List<Carrot> newCarrots, List<Spike> newSpikes, List<Spring> newSprings, List<SpikeballLauncher> newLaunchers, List<int> newInv)
         {
             for (int i = 0; i < newPlatforms.Count; i++)
@@ -212,5 +216,6 @@ namespace Big_Chungus
                 inventoryItems[i] = newInv[i];
             }
         }*/
+
     }
 }

@@ -303,6 +303,8 @@ namespace Big_Chungus
                 tempVRec1 = new Rectangle(player.XPos, player.YPos + vspd, player.Width, player.Height);
                 tempVRec2 = new Rectangle(player.XPos, player.YPos + Math.Sign(vspd), player.Width, player.Height);
 
+
+                // fixed collisions -- Kimmy
                 //vertical collision and prevents falling through the floor
                 if (tempVRec1.Intersects(platformList[i].Box) && platformList[i].IsVisible)
                 {
