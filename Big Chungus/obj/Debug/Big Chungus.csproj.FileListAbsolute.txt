@@ -300,3 +300,8 @@ Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\obj\Debug\
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\obj\Debug\Big Chungus.pdb
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\slot.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\slot.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\slot.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.gif

@@ -71,7 +71,7 @@ namespace Big_Chungus
         KeyboardState kStatePrevious;
 
         //enum
-        enum GameState { Menu, Building, Game, Pause, LevelFinal, GameOver };
+        enum GameState { Menu, LevelSelect, Building, Game, Pause, LevelFinal, GameOver };
         GameState curr;
 
         //player movement variables
@@ -90,6 +90,9 @@ namespace Big_Chungus
         //main menu
         private Texture2D UITexture;
         private Rectangle UIRect;
+
+        //levelselect
+        private Rectangle levelrect;
 
         //pause
         private Texture2D pauseTexture;
@@ -141,8 +144,9 @@ namespace Big_Chungus
         }
 
         //sets next level by reading a text file containing level data
-        public void NextLevel()
+        public void NextLevel(int levelnum)
         {
+            levelCount = levelnum;
             if (levelCount < levels.Count)
             {
                 LevelFile = levels[levelCount];
@@ -358,7 +362,6 @@ namespace Big_Chungus
         /// </summary>
         protected override void LoadContent()
         {
-            levels.Add("q.txt");
             levels.Add("Level1.txt");
             levels.Add("TestLevel.txt");
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -383,7 +386,9 @@ namespace Big_Chungus
             UITexture = Content.Load<Texture2D>("chung");
             UIRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             #endregion
-
+            #region Level Select
+            levelrect = new Rectangle(100, 100, 300, 15);
+            #endregion
             #region pause menu
             pauseTexture = Content.Load<Texture2D>("pausescreen");
             pauseTextureRect = new Rectangle(GraphicsDevice.Viewport.Width/2-300,GraphicsDevice.Viewport.Height/2-200, pauseTexture.Width, pauseTexture.Height);
@@ -404,7 +409,7 @@ namespace Big_Chungus
             //columns = 3;
             
             #endregion
-            NextLevel();
+            NextLevel(0);
             
             //player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
             
@@ -443,10 +448,28 @@ namespace Big_Chungus
                     bool res = KeyPress(Keys.Enter);
                     if (res == true)
                     {
-                        curr = GameState.Building;
+                        //curr = GameState.Building;
                         //Level Select screen
-                        NextLevel();
+                        //NextLevel(0);
+                        curr = GameState.LevelSelect;
                     }
+                    break;
+                #endregion
+                #region Level Select
+                case GameState.LevelSelect:
+                    MouseState pMouseState = mouseState;
+                    mouseState = Mouse.GetState();
+                    kStatePrevious = kStateCurrent;
+                    if (mouseRect.Intersects(levelrect))
+                    {
+                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        {
+                            curr = GameState.Building;
+                            NextLevel(0);
+                            // do something here
+                        }
+                    }
+
                     break;
                 #endregion
                 #region building phase 
@@ -615,7 +638,7 @@ namespace Big_Chungus
                         level.Player.XPos = level.PlayerSpawnX;
                         level.Player.YPos = level.PlayerSpawnY;
                         curr = GameState.Building;
-                        NextLevel();
+                        NextLevel(levelCount);
                     }
                     bool res8 = KeyPress(Keys.M);
                     if (res8 == true)
@@ -626,7 +649,7 @@ namespace Big_Chungus
                 #endregion
                 #region Pause Menu
                 case GameState.Pause:
-                    MouseState pMouseState = mouseState;
+                    pMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
                     bool res4 = KeyPress(Keys.Enter);
@@ -675,7 +698,11 @@ namespace Big_Chungus
                             //level.Player.YPos = level.PlayerSpawnY;
                             //add You Beat the Game! screen here
                         }
-                        NextLevel();
+                        else
+                        {
+                            NextLevel(levelCount);
+                        }
+                        
                         curr = GameState.Building;
                     }
                     bool res6 = KeyPress(Keys.Escape);
@@ -709,6 +736,11 @@ namespace Big_Chungus
                     spriteBatch.Draw(UITexture, UIRect, Color.White);
                     spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(603, 600), Color.Blue);
                   
+                    break;
+                #endregion
+                #region Level Select
+                case GameState.LevelSelect:
+                    spriteBatch.DrawString(spriteFont, "Level 1", new Vector2(100, 100), Color.Blue);
                     break;
                 #endregion
                 #region building Phase

@@ -4,20 +4,20 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/BigChungusCropped.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/cannon.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/Carrot.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/CarrotCropped.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/chung.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/GAMEOVER.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/GAMESCREEN.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/pausescreen.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/platform.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/slot.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/SmilingPetDog.jpg</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/spike.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/spikeanim.gif</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/spring.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/BigChungusCropped.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/cannon.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/Carrot.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/CarrotCropped.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/chung.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/GAMEOVER.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/GAMESCREEN.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/pausescreen.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/platform.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/slot.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/SmilingPetDog.jpg</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/spike.png</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/spikeanim.gif</File>
+    <File>D:/Profiles/mdb4220/Source/Repos/BigChungus/Big Chungus/Content/spring.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
