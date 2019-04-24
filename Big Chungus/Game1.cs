@@ -119,8 +119,8 @@ namespace Big_Chungus
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = 1024;
-            graphics.PreferredBackBufferHeight = 1024;
+            graphics.PreferredBackBufferWidth = 1366;
+            graphics.PreferredBackBufferHeight = 768;
             graphics.ApplyChanges();
         }
         
@@ -242,15 +242,16 @@ namespace Big_Chungus
                     //Makes Slots
                     for (int i = 0; i < slots; i++)
                     {
-                        slot.Add(new Slot(sTexture, i * 100 + 100, 924, Color.Wheat, inventoryItems[i], classes[i]));
+                        slot.Add(new Slot(sTexture, i * 100 + 100, 668, Color.Wheat, inventoryItems[i], classes[i]));
                     }
                     slot[0].SlotName = "Platform";
                     slot[0].SlotDescription = "Place this object anywhere on the screen for Chungus to travel.";
                     slot[1].SlotName = "Spring";
                     slot[1].SlotDescription = "place this on the screen for Chungus to jump high!";
 
-
                     player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
+                    player.LevelScore = 0;
+                    level.AddObject(player);
                     input.Close();
                 }
 
@@ -406,7 +407,7 @@ namespace Big_Chungus
             NextLevel();
             
             //player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
-            player.LevelScore = 0;
+            
 
 
         }
@@ -443,6 +444,7 @@ namespace Big_Chungus
                     if (res == true)
                     {
                         curr = GameState.Building;
+                        //Level Select screen
                         NextLevel();
                     }
                     break;
@@ -705,7 +707,7 @@ namespace Big_Chungus
                 case GameState.Menu:
 
                     spriteBatch.Draw(UITexture, UIRect, Color.White);
-                    spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(432, 800), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(603, 600), Color.Blue);
                   
                     break;
                 #endregion
@@ -720,7 +722,7 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
-                    spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(100, 775), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(100, 600), Color.Blue);
                     spriteBatch.Draw(player.Texture, player.Box, Color.White);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
@@ -732,8 +734,6 @@ namespace Big_Chungus
                     }
                     for (int i = 0; i < level.Spikes.Count; i++)
                     {
-                       
-                        
                         spriteBatch.Draw(level.Spikes[i].Texture, level.Spikes[i].Box, Color.White);
                     }
                     for (int i = 0; i < level.Springs.Count; i++)
