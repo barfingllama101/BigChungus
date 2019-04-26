@@ -5,6 +5,7 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/BigChungusCropped.png</File>
+    <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/cannon.png</File>
     <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/Carrot.png</File>
     <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/CarrotCropped.png</File>
     <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/chung.png</File>
@@ -12,8 +13,10 @@
     <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/GAMESCREEN.png</File>
     <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/pausescreen.png</File>
     <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/platform.png</File>
+    <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/slot.png</File>
     <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/SmilingPetDog.jpg</File>
     <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/spike.png</File>
+    <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/spikeanim.gif</File>
     <File>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/spring.png</File>
   </SourceFiles>
 </SourceFileCollection>

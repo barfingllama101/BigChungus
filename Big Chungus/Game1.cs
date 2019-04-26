@@ -92,7 +92,7 @@ namespace Big_Chungus
         private Rectangle UIRect;
 
         //levelselect
-        private Rectangle levelrect;
+        private List<LevelButton> levelButtons;
 
         //pause
         private Texture2D pauseTexture;
@@ -363,7 +363,17 @@ namespace Big_Chungus
         protected override void LoadContent()
         {
             levels.Add("Level1.txt");
-            levels.Add("TestLevel.txt");
+            levels.Add("Level2.txt");
+            levels.Add("Level3.txt");
+            levels.Add("Level4.txt");
+            levels.Add("Level5.txt");
+            levels.Add("Level6.txt");
+            levels.Add("Level7.txt");
+            levels.Add("Level8.txt");
+            levels.Add("Level9.txt");
+            levels.Add("Level10.txt");
+           
+            
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -387,7 +397,11 @@ namespace Big_Chungus
             UIRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             #endregion
             #region Level Select
-            levelrect = new Rectangle(100, 100, 300, 15);
+            levelButtons = new List<LevelButton>();
+            for (int i = 0; i < levels.Count; i++)
+            {
+                levelButtons.Add(new LevelButton(levels[i], 100, 100 + (30 * i)));
+            }
             #endregion
             #region pause menu
             pauseTexture = Content.Load<Texture2D>("pausescreen");
@@ -460,15 +474,19 @@ namespace Big_Chungus
                     MouseState pMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
-                    if (mouseRect.Intersects(levelrect))
+                    foreach(LevelButton button in levelButtons)
                     {
-                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        if (mouseRect.Intersects(button.Box))
                         {
-                            curr = GameState.Building;
-                            NextLevel(0);
-                            // do something here
+                            if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                            {
+                                curr = GameState.Building;
+                                NextLevel(levelButtons.FindIndex(x => x == button));
+                                
+                            }
                         }
                     }
+                    
 
                     break;
                 #endregion
@@ -740,7 +758,12 @@ namespace Big_Chungus
                 #endregion
                 #region Level Select
                 case GameState.LevelSelect:
-                    spriteBatch.DrawString(spriteFont, "Level 1", new Vector2(100, 100), Color.Blue);
+                    for (int i = 0; i < levelButtons.Count; i++)
+                    {
+                        spriteBatch.Draw(platform, levelButtons[i].Box, Color.White);
+                        spriteBatch.DrawString(spriteFont, System.IO.Path.GetFileNameWithoutExtension(levelButtons[i].LevelName), new Vector2(levelButtons[i].XPos, levelButtons[i].YPos), Color.White);
+                    }
+                    
                     break;
                 #endregion
                 #region building Phase
