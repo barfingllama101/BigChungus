@@ -38,6 +38,18 @@ namespace Big_Chungus
         bool alive;
         int[] spawn = new int[2];
 
+        //player animation things
+        enum animation { WalkLeft, WalkRight, Left, Right, Idle, Jump};
+        animation current;
+
+        int frame;
+        double timePerFrame = 100;
+        int numFrames = 6;
+        int framesElapsed;
+        int frameWidth = 101;
+        int frameHeight = 187;
+
+
         //Spike things
         Texture2D spikeTexture;
         List<Spike> spikes = new List<Spike>();
@@ -383,7 +395,7 @@ namespace Big_Chungus
             springTexture = Content.Load<Texture2D>("spring");
             spikeTexture = Content.Load<Texture2D>("spikeanim");
             CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
-            playerSprite = Content.Load<Texture2D>("BigChungusCropped");
+            playerSprite = Content.Load<Texture2D>("Big Chung");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
             platform = Content.Load<Texture2D>("platform");
             gameBG = Content.Load<Texture2D>("GAMESCREEN");
@@ -575,8 +587,25 @@ namespace Big_Chungus
                     {
                         vspd += grav;
                     }
-                    
 
+                    //animation
+                    framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+                    frame = framesElapsed % numFrames + 1;
+
+                    if(kStateCurrent.IsKeyDown(Keys.Right) == true)
+                    {
+                        current = animation.Right;
+                    }
+
+                    if (kStateCurrent.IsKeyDown(Keys.Left) == true)
+                    {
+                        current = animation.Left;
+                    }
+
+                    if (kStateCurrent.IsKeyDown(Keys.Left) == false && kStateCurrent.IsKeyDown(Keys.Right) == false)
+                    {
+                        current = animation.Idle;
+                    }
 
                     //jump
                     if (kStateCurrent.IsKeyDown(Keys.Up) && player.standingCheck(level.Platforms))
@@ -778,7 +807,7 @@ namespace Big_Chungus
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
                     spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(100, 600), Color.Blue);
-                    spriteBatch.Draw(player.Texture, player.Box, Color.White);
+                    spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         level.Carrots[i].Visible = true;
@@ -810,9 +839,21 @@ namespace Big_Chungus
                 case GameState.Game:
                     spriteBatch.Draw(gameBG, gameBGRect, Color.White);
 
-                    spriteBatch.Draw(player.Texture, player.Box, Color.White);
+                    //spriteBatch.Draw(player.Texture, player.Box, Color.White);
+                    if(current == animation.Idle)
+                    {
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                        //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                    }
+                    if (current == animation.Left)
+                    {
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0 + frame * frameWidth, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    }
+                    if (current == animation.Right)
+                    {
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0 + frame * frameWidth, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                    }
 
-                   
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         if (level.Carrots[i].Visible == true)

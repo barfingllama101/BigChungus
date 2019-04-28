@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/CarrotCropped.png</SourceFile>
-  <SourceTime>2019-04-11T12:57:23.4671617-05:00</SourceTime>
-  <DestFile>C:/Users/XsytherX/Source/Repos/BigChungus/Big Chungus/Content/bin/DesktopGL/CarrotCropped.xnb</DestFile>
-  <DestTime>2019-04-11T13:10:59.1639799-05:00</DestTime>
+  <SourceFile>C:/Users/alexs/source/repos/BigChungus2/Big Chungus/Content/CarrotCropped.png</SourceFile>
+  <SourceTime>2019-04-26T18:55:09.3612678-04:00</SourceTime>
+  <DestFile>C:/Users/alexs/source/repos/BigChungus2/Big Chungus/Content/bin/DesktopGL/CarrotCropped.xnb</DestFile>
+  <DestTime>2019-04-26T20:41:18.8056601-04:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T10:05:36-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
