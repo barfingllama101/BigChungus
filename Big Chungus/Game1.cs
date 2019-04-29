@@ -712,9 +712,9 @@ namespace Big_Chungus
                     {
                         player.XPos = 0;
                     }
-                    if (player.XPos > GraphicsDevice.Viewport.Width)
+                    if (player.XPos > GraphicsDevice.Viewport.Width - 130)
                     {
-                        player.XPos = GraphicsDevice.Viewport.Width;
+                        player.XPos = GraphicsDevice.Viewport.Width - 130;
                     }
 
                     //health system
@@ -909,7 +909,7 @@ namespace Big_Chungus
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
                     spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(100, 600), Color.Blue);
-                    spriteBatch.Draw(player.Texture, player.Box, new Rectangle(960, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                    spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         level.Carrots[i].Visible = true;
@@ -944,17 +944,17 @@ namespace Big_Chungus
                    
                     if (current == animation.Idle)
                     {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                         //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                     }
                     if (current == animation.IdleLeft)
                     {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                         //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                     }
                     if (current == animation.IdleRight)
                     {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                         //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                     }
                     if (current == animation.Left)
