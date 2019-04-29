@@ -597,6 +597,15 @@ namespace Big_Chungus
                     {
                         curr = GameState.Pause;
                     }
+                    //Restart
+                    bool res4 = KeyPress(Keys.R);
+                    if (res4 == true)
+                    {
+                        level.Player.XPos = level.PlayerSpawnX;
+                        level.Player.YPos = level.PlayerSpawnY;
+                        level.Player.LevelScore = 0;
+                        curr = GameState.Building;
+                    }
                     kStatePrevious = kStateCurrent;
 
                     //left and right movement/deceleration
@@ -735,7 +744,7 @@ namespace Big_Chungus
                     pMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
-                    bool res4 = KeyPress(Keys.Enter);
+                    //bool res4 = KeyPress(Keys.Enter);
                   /*    if (res4 == true)
                       {
                           curr = GameState.Game;
@@ -933,6 +942,7 @@ namespace Big_Chungus
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow          hspd: " + hspd + "   vspd: " + vspd, new Vector2(50, 250), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Press P to pause and R to restart", new Vector2(50, 300), Color.Blue);
                     spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}/{1}", player.LevelScore, level.Carrots.Count), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
                     break;
                 #endregion
