@@ -228,7 +228,7 @@ namespace Big_Chungus
                         launchers = new List<SpikeballLauncher>();
                         for (int i = 0; i < int.Parse(launcherValues[0]); i++)
                         {
-                            launchers.Add(new SpikeballLauncher(textures[launcherValues[1]], int.Parse(launcherValues[(3 * i) + 2]), int.Parse(launcherValues[(3 * i) + 3]), 80, 80, int.Parse(launcherValues[(3 * i) + 4]), spikes, spikeTexture));
+                            launchers.Add(new SpikeballLauncher(textures[launcherValues[1]], int.Parse(launcherValues[(3 * i) + 2]), int.Parse(launcherValues[(3 * i) + 3]), 80, 57, int.Parse(launcherValues[(3 * i) + 4]), spikes, spikeTexture));
                         }
                     }
                     //Reads inventory

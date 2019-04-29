@@ -257,7 +257,6 @@ C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
-Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.gif
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\free-cartoon-carrot-clip-art-uygzjR-clipart.xnb
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
