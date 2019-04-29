@@ -205,7 +205,7 @@ namespace Big_Chungus
                         spikes = new List<Spike>();
                         for (int i = 0; i < int.Parse(spikeValues[0]); i++)
                         {
-                            spikes.Add(new Spike(textures[spikeValues[1]], int.Parse(spikeValues[(2 * i) + 2]), int.Parse(spikeValues[(2 * i) + 3]), spikeTexture.Width / 2, spikeTexture.Height / 2));
+                            spikes.Add(new Spike(textures[spikeValues[1]], int.Parse(spikeValues[(2 * i) + 2]), int.Parse(spikeValues[(2 * i) + 3]), 80, 80));
                         }
                     }
                     //Adds springs
@@ -822,23 +822,19 @@ namespace Big_Chungus
                     vspd = 0;
                     hspd = 0;
                     kStatePrevious = kStateCurrent;
+                    if (LevelFile == levels[levels.Count - 1])
+                    {
+                        hasWon = true;
+                        //level.Player.XPos = level.PlayerSpawnX;
+                        //level.Player.YPos = level.PlayerSpawnY;
+                        //add You Beat the Game! screen here
+                    }
                     bool res5 = KeyPress(Keys.Enter);
                     if (res5 == true)
                     {
                         levelCount += 1;
-                        if (LevelFile == levels[levels.Count-1])
-                        {
-                            hasWon = true;
-                            //level.Player.XPos = level.PlayerSpawnX;
-                            //level.Player.YPos = level.PlayerSpawnY;
-                            //add You Beat the Game! screen here
-                        }
-                        else
-                        {
-                            NextLevel(levelCount);
-                            level.Player.LevelScore = 0;
-                        }
-                        
+                        NextLevel(levelCount);
+                        level.Player.LevelScore = 0;
                         curr = GameState.Building;
                     }
                     bool res6 = KeyPress(Keys.Escape);
@@ -933,8 +929,7 @@ namespace Big_Chungus
                         spriteBatch.Draw(level.Launchers[i].Texture, level.Launchers[i].Box, Color.White);
                     }
 
-
-                    spriteBatch.DrawString(spriteFont, "In Building Mode, click and drag platforms to move them, then press enter to begin the level", new Vector2(200, 50), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "In Building Mode, use platforms and springs from your inventory to build a path, then press enter to begin the level", new Vector2(200, 50), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
 
                     break;
@@ -1031,7 +1026,7 @@ namespace Big_Chungus
                     spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
                     spriteBatch.DrawString(spriteFont, String.Format("TOTAL SCORE: {0}", player.LevelScore), new Vector2(300, 400), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Congrats!", new Vector2(300, 200), Color.DarkBlue);
-                    if (hasWon)
+                    if (hasWon==true)
                     {
                         spriteBatch.DrawString(spriteFont, "Big Chungus has found all the carrots!", new Vector2(300, 300), Color.DarkBlue);
                     }

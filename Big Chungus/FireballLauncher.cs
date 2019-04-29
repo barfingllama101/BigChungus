@@ -44,7 +44,7 @@ namespace Big_Chungus
             box.Width = width;
             box.Height = height;
             direction = 0;
-            spikeball = new Spike(spikeballTexture, spikeballTexture.Width / 2, spikeballTexture.Height / 2);
+            spikeball = new Spike(spikeballTexture, 80, 80);
         }
         public void Launch(int speed)
         {

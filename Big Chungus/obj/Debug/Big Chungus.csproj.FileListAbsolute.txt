@@ -416,3 +416,6 @@ C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\obj\Debug\Big Chungus.pdb
 C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Active_Sheet.xnb
 C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\1.xnb
 C:\Users\alexs\source\repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\3.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\1.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\3.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Active_Sheet.xnb
