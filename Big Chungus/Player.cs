@@ -43,7 +43,7 @@ namespace Big_Chungus
         public Player(Texture2D texture, int x, int y)
         {
             playerTexture = texture;
-            playerBox = new Rectangle(x, y, 200, 200);
+            playerBox = new Rectangle(x, y, 150, 150);
             levelScore = 0;
         }
 

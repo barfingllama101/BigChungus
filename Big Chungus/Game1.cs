@@ -39,15 +39,20 @@ namespace Big_Chungus
         int[] spawn = new int[2];
 
         //player animation things
-        enum animation { WalkLeft, WalkRight, Left, Right, Idle, Jump};
+        enum animation { WalkLeft, WalkRight, Left, Right, IdleLeft, IdleRight, Idle, JumpLeft, JumpRight};
         animation current;
 
-        int frame;
-        double timePerFrame = 100;
+        int frame;      
+        double timePerFrame = 500;
         int numFrames = 6;
         int framesElapsed;
-        int frameWidth = 101;
-        int frameHeight = 187;
+        int frameWidth = 160;
+        int frameHeight = 205;
+
+        int currentTime = 0;
+        int period = 50;
+        Point currentFrame = new Point(0, 0);
+        Point spriteSize = new Point(8, 3);
 
 
         //Spike things
@@ -396,8 +401,8 @@ namespace Big_Chungus
             springTexture = Content.Load<Texture2D>("spring");
             spikeTexture = Content.Load<Texture2D>("spikeanim");
             carrotTexture = Content.Load<Texture2D>("CarrotCropped");
-            playerSprite = Content.Load<Texture2D>("BigChungusCropped");
-            playerSprite = Content.Load<Texture2D>("Big Chung");
+            //playerSprite = Content.Load<Texture2D>("BigChungusCropped");
+            playerSprite = Content.Load<Texture2D>("3");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
             platform = Content.Load<Texture2D>("platform");
             gameBG = Content.Load<Texture2D>("GAMESCREEN");
@@ -634,22 +639,59 @@ namespace Big_Chungus
                     }
 
                     //animation
-                    framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
-                    frame = framesElapsed % numFrames + 1;
+                    currentTime += gameTime.ElapsedGameTime.Milliseconds;
 
-                    if(kStateCurrent.IsKeyDown(Keys.Right) == true)
+                    if(currentTime > period)
+                    {
+                        currentTime -= period;
+                        ++currentFrame.X;
+                        
+                        if(currentFrame.X >= spriteSize.X)
+                        {
+                            currentFrame.X = 0;
+                        }
+                    }
+
+                    if(kStateCurrent.IsKeyDown(Keys.Right) == true && player.standingCheck(level.Platforms) == true)
                     {
                         current = animation.Right;
                     }
 
-                    if (kStateCurrent.IsKeyDown(Keys.Left) == true)
+                    if (player.standingCheck(level.Platforms) == false && (current == animation.Left || current == animation.IdleLeft))
+                    {
+                        current = animation.JumpLeft;
+                    }
+
+                    if (player.standingCheck(level.Platforms) == false && (current == animation.Right || current == animation.IdleRight || current == animation.Idle))
+                    {
+                        current = animation.JumpRight;
+                    }
+
+                    if (kStateCurrent.IsKeyDown(Keys.Left) == true && player.standingCheck(level.Platforms) == true && player.XPos > 0)
                     {
                         current = animation.Left;
                     }
 
-                    if (kStateCurrent.IsKeyDown(Keys.Left) == false && kStateCurrent.IsKeyDown(Keys.Right) == false)
+                    if (kStateCurrent.IsKeyDown(Keys.Left) == false && player.standingCheck(level.Platforms) == true && kStateCurrent.IsKeyDown(Keys.Right) == false && (current == animation.Left || current == animation.JumpLeft))
+                    {
+                        current = animation.IdleLeft;
+                    }
+
+                    if (kStateCurrent.IsKeyDown(Keys.Left) == false && player.standingCheck(level.Platforms) == true && kStateCurrent.IsKeyDown(Keys.Right) == false && (current == animation.Right|| current == animation.JumpRight))
+                    {
+                        current = animation.IdleRight;
+                    }
+                    if (kStateCurrent.IsKeyDown(Keys.Left) == false && kStateCurrent.IsKeyDown(Keys.Right) == false && player.standingCheck(level.Platforms) == true && current != animation.IdleLeft)
                     {
                         current = animation.Idle;
+                    }
+                    if(current == animation.JumpLeft && kStateCurrent.IsKeyDown(Keys.Right) == true)
+                    {
+                        current = animation.JumpRight;
+                    }
+                    if (current == animation.JumpRight && kStateCurrent.IsKeyDown(Keys.Left) == true)
+                    {
+                        current = animation.JumpLeft;
                     }
 
                     //jump
@@ -867,7 +909,7 @@ namespace Big_Chungus
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
                     spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(100, 600), Color.Blue);
-                    spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                    spriteBatch.Draw(player.Texture, player.Box, new Rectangle(960, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         level.Carrots[i].Visible = true;
@@ -899,19 +941,37 @@ namespace Big_Chungus
                 case GameState.Game:
                     spriteBatch.Draw(gameBG, gameBGRect, Color.White);
 
-                    //spriteBatch.Draw(player.Texture, player.Box, Color.White);
-                    if(current == animation.Idle)
+                   
+                    if (current == animation.Idle)
                     {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                        //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                    }
+                    if (current == animation.IdleLeft)
+                    {
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                        //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                    }
+                    if (current == animation.IdleRight)
+                    {
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                         //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                     }
                     if (current == animation.Left)
                     {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0 + frame * frameWidth, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 370, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                     }
                     if (current == animation.Right)
                     {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0 + frame * frameWidth, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 370, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                    }
+                    if (current == animation.JumpLeft)
+                    {
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 690, frameWidth, frameHeight), Color.White, 50, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    }
+                    if (current == animation.JumpRight)
+                    {
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 690, frameWidth, frameHeight), Color.White, 50, Vector2.Zero, SpriteEffects.None, 0);
                     }
 
                     for (int i = 0; i < level.Carrots.Count; i++)

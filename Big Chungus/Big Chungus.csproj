@@ -122,6 +122,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
+    <Content Include="Content\1.png" />
+    <Content Include="Content\3.png" />
+    <Content Include="Content\Active_Sheet.png" />
     <Content Include="Content\Big Chung.png" />
     <Content Include="Content\BigChungusCropped.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
