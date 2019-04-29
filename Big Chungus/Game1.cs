@@ -54,7 +54,7 @@ namespace Big_Chungus
         
 
         //Carrot things
-        Texture2D CarrotTexture;
+        Texture2D carrotTexture;
         List<Carrot> carrots = new List<Carrot>();
         //int carrotCount = 0;
         //bool hasWon = false;
@@ -92,7 +92,8 @@ namespace Big_Chungus
         private Rectangle UIRect;
 
         //levelselect
-        private Rectangle levelrect;
+        private UIElement levelrect;
+        private List<UIElement> levelButtons = new List<UIElement>();
 
         //pause
         private Texture2D pauseTexture;
@@ -165,7 +166,7 @@ namespace Big_Chungus
                         platforms = new List<Platform>();
                         for (int i = 0; i < int.Parse(platformValues[0]); i++)
                         {
-                            platforms.Add(new Platform(platform, int.Parse(platformValues[(5 * i) + 2]), int.Parse(platformValues[(5 * i) + 3]), int.Parse(platformValues[(5 * i) + 4]), int.Parse(platformValues[(5 * i) + 5])));
+                            platforms.Add(new Platform(textures[platformValues[(5 * i) + 1]], int.Parse(platformValues[(5 * i) + 2]), int.Parse(platformValues[(5 * i) + 3]), int.Parse(platformValues[(5 * i) + 4]), int.Parse(platformValues[(5 * i) + 5])));
                         }
                     }
                     //Adds carrots
@@ -176,7 +177,7 @@ namespace Big_Chungus
                         carrots = new List<Carrot>();
                         for (int i = 0; i < int.Parse(carrotValues[0]); i++)
                         {
-                            carrots.Add(new Carrot(CarrotTexture, int.Parse(carrotValues[(2 * i) + 2]), int.Parse(carrotValues[(2 * i) + 3]), CarrotTexture.Width / 2, CarrotTexture.Height / 2));
+                            carrots.Add(new Carrot(textures[carrotValues[1]], int.Parse(carrotValues[(2 * i) + 2]), int.Parse(carrotValues[(2 * i) + 3]), carrotTexture.Width / 2, carrotTexture.Height / 2));
                         }
                     }
                     //Adds spikes
@@ -187,7 +188,7 @@ namespace Big_Chungus
                         spikes = new List<Spike>();
                         for (int i = 0; i < int.Parse(spikeValues[0]); i++)
                         {
-                            spikes.Add(new Spike(spikeTexture, int.Parse(spikeValues[(2 * i) + 2]), int.Parse(spikeValues[(2 * i) + 3]), spikeTexture.Width / 2, spikeTexture.Height / 2));
+                            spikes.Add(new Spike(textures[spikeValues[1]], int.Parse(spikeValues[(2 * i) + 2]), int.Parse(spikeValues[(2 * i) + 3]), spikeTexture.Width / 2, spikeTexture.Height / 2));
                         }
                     }
                     //Adds springs
@@ -199,7 +200,7 @@ namespace Big_Chungus
                         for (int i = 0; i < int.Parse(springValues[0]); i++)
                         {
                            //springs.Add(new Spring(springTexture, int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
-                            platforms.Add(new Spring(springTexture, int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
+                            platforms.Add(new Spring(textures[springValues[1]], int.Parse(springValues[(2 * i) + 2]), int.Parse(springValues[(2 * i) + 3]), 150, 40));
                         }
                     }
                     //Adds launchers
@@ -210,7 +211,7 @@ namespace Big_Chungus
                         launchers = new List<SpikeballLauncher>();
                         for (int i = 0; i < int.Parse(launcherValues[0]); i++)
                         {
-                            launchers.Add(new SpikeballLauncher(launcherTexture, int.Parse(launcherValues[(3 * i) + 2]), int.Parse(launcherValues[(3 * i) + 3]), 80, 80, int.Parse(launcherValues[(3 * i) + 4]), spikes, spikeTexture));
+                            launchers.Add(new SpikeballLauncher(textures[launcherValues[1]], int.Parse(launcherValues[(3 * i) + 2]), int.Parse(launcherValues[(3 * i) + 3]), 80, 80, int.Parse(launcherValues[(3 * i) + 4]), spikes, spikeTexture));
                         }
                     }
                     //Reads inventory
@@ -238,7 +239,7 @@ namespace Big_Chungus
                     slot = new List<Slot>();
                     classes[0] = new Platform(platform, 200, 40);
                     classes[1] = new Spring(springTexture, 150, 40);
-                    classes[2] = new Carrot(CarrotTexture, CarrotTexture.Width / 2, CarrotTexture.Height / 2);
+                    classes[2] = new Carrot(carrotTexture, carrotTexture.Width / 2, carrotTexture.Height / 2);
                     classes[3] = new Spike(spikeTexture, spikeTexture.Width / 2, spikeTexture.Height / 2);
                     classes[4] = new SpikeballLauncher(launcherTexture, 80, 80, level.Spikes, spikeTexture);
                     classes[5] = new Player(playerSprite);
@@ -262,6 +263,7 @@ namespace Big_Chungus
                 catch (System.Exception e)
                 {
                     Debug.WriteLine(e.Message);
+
                     throw;
                 }
                 #endregion
@@ -372,13 +374,23 @@ namespace Big_Chungus
             launcherTexture = Content.Load<Texture2D>("cannon");
             springTexture = Content.Load<Texture2D>("spring");
             spikeTexture = Content.Load<Texture2D>("spikeanim");
-            CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
+            carrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
             platform = Content.Load<Texture2D>("platform");
             gameBG = Content.Load<Texture2D>("GAMESCREEN");
             gameBGRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             sTexture = Content.Load<Texture2D>("slot");
+
+            textures.Add("launcherTexture", Content.Load<Texture2D>("cannon"));
+            textures.Add("springTexture", Content.Load<Texture2D>("spring"));
+            textures.Add("spikeTexture", Content.Load<Texture2D>("spikeanim"));
+            textures.Add("carrotTexture", Content.Load<Texture2D>("CarrotCropped"));
+            textures.Add("playerSprite", Content.Load<Texture2D>("BigChungusCropped"));
+            textures.Add("platform", Content.Load<Texture2D>("platform"));
+            textures.Add("gameBG", Content.Load<Texture2D>("GAMESCREEN"));
+            textures.Add("sTexture", Content.Load<Texture2D>("slot"));
+            
             #endregion
             //main menu
 
@@ -387,15 +399,28 @@ namespace Big_Chungus
             UIRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             #endregion
             #region Level Select
-            levelrect = new Rectangle(100, 100, 300, 15);
+            for (int i = 0; i < 12; i++)
+            {
+                /*for (int j = 0; j < 6; j++)
+                {
+                    levelButtons.Add(new UIElement(0, 100*j, 100+300*i));
+                }*/
+                int j = 1;
+                if (i>5)
+                {
+                    j += 1;
+                }
+                levelButtons.Add(new UIElement(i, 100*i, 100*j));
+            }
+            //levelrect = new UIElement(0, 100, 100);
             #endregion
             #region pause menu
             pauseTexture = Content.Load<Texture2D>("pausescreen");
             pauseTextureRect = new Rectangle(GraphicsDevice.Viewport.Width/2-300,GraphicsDevice.Viewport.Height/2-200, pauseTexture.Width, pauseTexture.Height);
             mouseRect = new Rectangle(mouseState.X, mouseState.Y, 10, 10);
 
-            button1Rect = new Rectangle(300, 400, pauseTexture.Width, 125);
-            button2Rect = new Rectangle(300, 600, pauseTexture.Width, 100);
+            button1Rect = new Rectangle(300, 300, pauseTexture.Width, 125);
+            button2Rect = new Rectangle(300, 450, pauseTexture.Width, 100);
 
             #endregion
 
@@ -412,9 +437,6 @@ namespace Big_Chungus
             NextLevel(0);
             
             //player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
-            
-
-
         }
         
         /// <summary>
@@ -460,15 +482,26 @@ namespace Big_Chungus
                     MouseState pMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
-                    if (mouseRect.Intersects(levelrect))
+                    foreach (UIElement button in levelButtons)
                     {
-                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        if (mouseRect.Intersects(button.Box))
                         {
-                            curr = GameState.Building;
-                            NextLevel(0);
-                            // do something here
+                            if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                            {
+                                if (button.LevelNum >= levels.Count)
+                                {
+                                    Console.WriteLine("This level is not available yet.");
+                                }
+                                else
+                                {
+                                    curr = GameState.Building;
+                                    NextLevel(button.LevelNum);
+                                    // do something here
+                                }
+                            }
                         }
                     }
+                    
 
                     break;
                 #endregion
@@ -692,7 +725,7 @@ namespace Big_Chungus
                     if (res5 == true)
                     {
                         levelCount += 1;
-                        if (levelCount==levels.Count)
+                        if (levelCount == levels.Count)
                         {
                             //level.Player.XPos = level.PlayerSpawnX;
                             //level.Player.YPos = level.PlayerSpawnY;
@@ -740,7 +773,20 @@ namespace Big_Chungus
                 #endregion
                 #region Level Select
                 case GameState.LevelSelect:
-                    spriteBatch.DrawString(spriteFont, "Level 1", new Vector2(100, 100), Color.Blue);
+                    foreach (UIElement button in levelButtons)
+                    {
+                        Color textColor = Color.Blue;
+                        if (button.LevelNum >= levels.Count)
+                        {
+                            textColor = Color.Red;
+                        }
+                        else
+                        {
+                            textColor = Color.Blue;
+                        }
+                        spriteBatch.DrawString(spriteFont, button.Label, new Vector2(button.XPos, button.YPos), textColor);
+                    }
+                    //spriteBatch.DrawString(spriteFont, "Level 1", new Vector2(100, 100), Color.Blue);
                     break;
                 #endregion
                 #region building Phase
