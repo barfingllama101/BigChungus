@@ -53,6 +53,7 @@
     <Compile Include="Inventory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="LevelButton.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Player.cs" />
@@ -121,6 +122,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
+    <Content Include="Content\Big Chung.png" />
     <Content Include="Content\BigChungusCropped.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

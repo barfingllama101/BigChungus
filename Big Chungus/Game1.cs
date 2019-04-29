@@ -38,6 +38,18 @@ namespace Big_Chungus
         bool alive;
         int[] spawn = new int[2];
 
+        //player animation things
+        enum animation { WalkLeft, WalkRight, Left, Right, Idle, Jump};
+        animation current;
+
+        int frame;
+        double timePerFrame = 100;
+        int numFrames = 6;
+        int framesElapsed;
+        int frameWidth = 101;
+        int frameHeight = 187;
+
+
         //Spike things
         Texture2D spikeTexture;
         List<Spike> spikes = new List<Spike>();
@@ -94,6 +106,7 @@ namespace Big_Chungus
         //levelselect
         private UIElement levelrect;
         private List<UIElement> levelButtons = new List<UIElement>();
+        private List<LevelButton> levelButtons;
 
         //pause
         private Texture2D pauseTexture;
@@ -365,7 +378,17 @@ namespace Big_Chungus
         protected override void LoadContent()
         {
             levels.Add("Level1.txt");
-            levels.Add("TestLevel.txt");
+            levels.Add("Level2.txt");
+            levels.Add("Level3.txt");
+            levels.Add("Level4.txt");
+            levels.Add("Level5.txt");
+            levels.Add("Level6.txt");
+            levels.Add("Level7.txt");
+            levels.Add("Level8.txt");
+            levels.Add("Level9.txt");
+            levels.Add("Level10.txt");
+           
+            
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -376,6 +399,8 @@ namespace Big_Chungus
             spikeTexture = Content.Load<Texture2D>("spikeanim");
             carrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
+            CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
+            playerSprite = Content.Load<Texture2D>("Big Chung");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
             platform = Content.Load<Texture2D>("platform");
             gameBG = Content.Load<Texture2D>("GAMESCREEN");
@@ -413,6 +438,11 @@ namespace Big_Chungus
                 levelButtons.Add(new UIElement(i, 100*i, 100*j));
             }
             //levelrect = new UIElement(0, 100, 100);
+            levelButtons = new List<LevelButton>();
+            for (int i = 0; i < levels.Count; i++)
+            {
+                levelButtons.Add(new LevelButton(levels[i], 100, 100 + (30 * i)));
+            }
             #endregion
             #region pause menu
             pauseTexture = Content.Load<Texture2D>("pausescreen");
@@ -498,6 +528,20 @@ namespace Big_Chungus
                                     NextLevel(button.LevelNum);
                                     // do something here
                                 }
+                            }
+                        }
+                    }
+                    
+
+                    foreach(LevelButton button in levelButtons)
+                    {
+                        if (mouseRect.Intersects(button.Box))
+                        {
+                            if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                            {
+                                curr = GameState.Building;
+                                NextLevel(levelButtons.FindIndex(x => x == button));
+                                
                             }
                         }
                     }
@@ -590,8 +634,25 @@ namespace Big_Chungus
                     {
                         vspd += grav;
                     }
-                    
 
+                    //animation
+                    framesElapsed = (int)(gameTime.TotalGameTime.TotalMilliseconds / timePerFrame);
+                    frame = framesElapsed % numFrames + 1;
+
+                    if(kStateCurrent.IsKeyDown(Keys.Right) == true)
+                    {
+                        current = animation.Right;
+                    }
+
+                    if (kStateCurrent.IsKeyDown(Keys.Left) == true)
+                    {
+                        current = animation.Left;
+                    }
+
+                    if (kStateCurrent.IsKeyDown(Keys.Left) == false && kStateCurrent.IsKeyDown(Keys.Right) == false)
+                    {
+                        current = animation.Idle;
+                    }
 
                     //jump
                     if (kStateCurrent.IsKeyDown(Keys.Up) && player.standingCheck(level.Platforms))
@@ -773,6 +834,12 @@ namespace Big_Chungus
                 #endregion
                 #region Level Select
                 case GameState.LevelSelect:
+                    for (int i = 0; i < levelButtons.Count; i++)
+                    {
+                        spriteBatch.Draw(platform, levelButtons[i].Box, Color.White);
+                        spriteBatch.DrawString(spriteFont, System.IO.Path.GetFileNameWithoutExtension(levelButtons[i].LevelName), new Vector2(levelButtons[i].XPos, levelButtons[i].YPos), Color.White);
+                    }
+                    
                     foreach (UIElement button in levelButtons)
                     {
                         Color textColor = Color.Blue;
@@ -801,7 +868,7 @@ namespace Big_Chungus
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
                     spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(100, 600), Color.Blue);
-                    spriteBatch.Draw(player.Texture, player.Box, Color.White);
+                    spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         level.Carrots[i].Visible = true;
@@ -833,9 +900,21 @@ namespace Big_Chungus
                 case GameState.Game:
                     spriteBatch.Draw(gameBG, gameBGRect, Color.White);
 
-                    spriteBatch.Draw(player.Texture, player.Box, Color.White);
+                    //spriteBatch.Draw(player.Texture, player.Box, Color.White);
+                    if(current == animation.Idle)
+                    {
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                        //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
+                    }
+                    if (current == animation.Left)
+                    {
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0 + frame * frameWidth, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                    }
+                    if (current == animation.Right)
+                    {
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(0 + frame * frameWidth, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                    }
 
-                   
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         if (level.Carrots[i].Visible == true)
