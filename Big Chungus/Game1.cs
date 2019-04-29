@@ -74,7 +74,7 @@ namespace Big_Chungus
         Texture2D carrotTexture;
         List<Carrot> carrots = new List<Carrot>();
         //int carrotCount = 0;
-        //bool hasWon = false;
+        bool hasWon = false;
 
         //Spring Things
         Texture2D springTexture;
@@ -390,7 +390,7 @@ namespace Big_Chungus
             levels.Add("Level8.txt");
             levels.Add("Level9.txt");
             levels.Add("Level10.txt");
-            levels.Add("TestLevel");
+            //levels.Add("TestLevel.txt");
             
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -826,8 +826,9 @@ namespace Big_Chungus
                     if (res5 == true)
                     {
                         levelCount += 1;
-                        if (levelCount == levels.Count)
+                        if (LevelFile == levels[levels.Count-1])
                         {
+                            hasWon = true;
                             //level.Player.XPos = level.PlayerSpawnX;
                             //level.Player.YPos = level.PlayerSpawnY;
                             //add You Beat the Game! screen here
@@ -835,6 +836,7 @@ namespace Big_Chungus
                         else
                         {
                             NextLevel(levelCount);
+                            level.Player.LevelScore = 0;
                         }
                         
                         curr = GameState.Building;
@@ -890,7 +892,7 @@ namespace Big_Chungus
                         }
                         else
                         {
-                            textColor = Color.Blue;
+                            textColor = Color.Orange;
                         }
                         spriteBatch.DrawString(spriteFont, button.Label, new Vector2(button.XPos, button.YPos), textColor);
                     }
@@ -997,12 +999,12 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(level.Launchers[i].Texture, level.Launchers[i].Box, Color.White);
                     }
-
            
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
-                    spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 200), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow          hspd: " + hspd + "   vspd: " + vspd, new Vector2(50, 250), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, "Press P to pause and R to restart", new Vector2(50, 300), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 100), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow          hspd: " + hspd + "   vspd: " + vspd, new Vector2(50, 150), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Press P to pause and R to restart", new Vector2(50, 200), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, string.Format("Level {0}", levelCount+1), new Vector2(GraphicsDevice.Viewport.Width - 200, 50), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}/{1}", player.LevelScore, level.Carrots.Count), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
                     break;
                 #endregion
@@ -1027,10 +1029,16 @@ namespace Big_Chungus
                 #region level final  
                 case GameState.LevelFinal:
                     spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
-                    spriteBatch.DrawString(spriteFont, "Press enter to next level", new Vector2(300, 300), Color.DarkBlue);
-                    spriteBatch.DrawString(spriteFont, "Congrats!", new Vector2(300, 200), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, String.Format("TOTAL SCORE: {0}", player.LevelScore), new Vector2(300, 400), Color.DarkBlue);
-
+                    spriteBatch.DrawString(spriteFont, "Congrats!", new Vector2(300, 200), Color.DarkBlue);
+                    if (hasWon)
+                    {
+                        spriteBatch.DrawString(spriteFont, "Big Chungus has found all the carrots!", new Vector2(300, 300), Color.DarkBlue);
+                    }
+                    else
+                    {
+                        spriteBatch.DrawString(spriteFont, "Press enter to next level", new Vector2(300, 300), Color.DarkBlue);
+                    }
                     break;
                 #endregion
             }
