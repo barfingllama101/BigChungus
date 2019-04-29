@@ -27,7 +27,7 @@ namespace Big_Chungus
             levelNum = num;
             xPos = x;
             yPos = y;
-            box = new Rectangle(xPos, yPos, 300, 15);
+            box = new Rectangle(xPos, yPos, 100, 20);
             label = "Level " + (levelNum + 1);
         }
 

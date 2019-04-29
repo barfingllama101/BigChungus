@@ -104,8 +104,7 @@ namespace Big_Chungus
         private Rectangle UIRect;
 
         //levelselect
-        private UIElement levelrect;
-        private List<UIElement> levelButtons = new List<UIElement>();
+        private List<UIElement> UIButtons = new List<UIElement>();
         private List<LevelButton> levelButtons;
 
         //pause
@@ -283,7 +282,6 @@ namespace Big_Chungus
             }
         }
 
-        //Fixed Collision
         internal void CheckCollision(List<Platform> platformList)
         {
             //New collision uses 4 rectangles to detect platforms before the main player box intersects them, meaning that collision works in every direction and at all times.
@@ -387,7 +385,7 @@ namespace Big_Chungus
             levels.Add("Level8.txt");
             levels.Add("Level9.txt");
             levels.Add("Level10.txt");
-           
+            levels.Add("TestLevel");
             
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -399,7 +397,6 @@ namespace Big_Chungus
             spikeTexture = Content.Load<Texture2D>("spikeanim");
             carrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("BigChungusCropped");
-            CarrotTexture = Content.Load<Texture2D>("CarrotCropped");
             playerSprite = Content.Load<Texture2D>("Big Chung");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
             platform = Content.Load<Texture2D>("platform");
@@ -411,11 +408,11 @@ namespace Big_Chungus
             textures.Add("springTexture", Content.Load<Texture2D>("spring"));
             textures.Add("spikeTexture", Content.Load<Texture2D>("spikeanim"));
             textures.Add("carrotTexture", Content.Load<Texture2D>("CarrotCropped"));
-            textures.Add("playerSprite", Content.Load<Texture2D>("BigChungusCropped"));
+            //textures.Add("playerSprite", Content.Load<Texture2D>("BigChungusCropped"));
             textures.Add("platform", Content.Load<Texture2D>("platform"));
             textures.Add("gameBG", Content.Load<Texture2D>("GAMESCREEN"));
             textures.Add("sTexture", Content.Load<Texture2D>("slot"));
-            
+            textures.Add("playerSprite", Content.Load<Texture2D>("Big Chung"));
             #endregion
             //main menu
 
@@ -430,19 +427,13 @@ namespace Big_Chungus
                 {
                     levelButtons.Add(new UIElement(0, 100*j, 100+300*i));
                 }*/
-                int j = 1;
-                if (i>5)
-                {
-                    j += 1;
-                }
-                levelButtons.Add(new UIElement(i, 100*i, 100*j));
+                UIButtons.Add(new UIElement(i, 100, 100 + (30 * i)));
             }
-            //levelrect = new UIElement(0, 100, 100);
-            levelButtons = new List<LevelButton>();
+            /*levelButtons = new List<LevelButton>();
             for (int i = 0; i < levels.Count; i++)
             {
                 levelButtons.Add(new LevelButton(levels[i], 100, 100 + (30 * i)));
-            }
+            }*/
             #endregion
             #region pause menu
             pauseTexture = Content.Load<Texture2D>("pausescreen");
@@ -512,7 +503,7 @@ namespace Big_Chungus
                     MouseState pMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
-                    foreach (UIElement button in levelButtons)
+                    foreach (UIElement button in UIButtons)
                     {
                         if (mouseRect.Intersects(button.Box))
                         {
@@ -531,9 +522,7 @@ namespace Big_Chungus
                             }
                         }
                     }
-                    
-
-                    foreach(LevelButton button in levelButtons)
+                    /*foreach(LevelButton button in levelButtons)
                     {
                         if (mouseRect.Intersects(button.Box))
                         {
@@ -544,7 +533,7 @@ namespace Big_Chungus
                                 
                             }
                         }
-                    }
+                    }*/
                     
 
                     break;
@@ -834,16 +823,17 @@ namespace Big_Chungus
                 #endregion
                 #region Level Select
                 case GameState.LevelSelect:
-                    for (int i = 0; i < levelButtons.Count; i++)
+                    /*for (int i = 0; i < levelButtons.Count; i++)
                     {
                         spriteBatch.Draw(platform, levelButtons[i].Box, Color.White);
                         spriteBatch.DrawString(spriteFont, System.IO.Path.GetFileNameWithoutExtension(levelButtons[i].LevelName), new Vector2(levelButtons[i].XPos, levelButtons[i].YPos), Color.White);
-                    }
+                    }*/
                     
-                    foreach (UIElement button in levelButtons)
+                    foreach (UIElement button in UIButtons)
                     {
                         Color textColor = Color.Blue;
-                        if (button.LevelNum >= levels.Count)
+                        spriteBatch.Draw(platform, button.Box, Color.White);
+                        if (button.LevelNum >= levels.Count || mouseRect.Intersects(button.Box))
                         {
                             textColor = Color.Red;
                         }

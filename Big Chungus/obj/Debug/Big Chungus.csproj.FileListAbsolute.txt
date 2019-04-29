@@ -366,3 +366,4 @@ C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\obj\Debug\Big Chungus.csproj
 C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\obj\Debug\Big Chungus.exe
 C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\obj\Debug\Big Chungus.pdb
 C:\Users\alexs\source\repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Big Chung.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Big Chung.xnb
