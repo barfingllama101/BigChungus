@@ -114,7 +114,7 @@ namespace Big_Chungus
         {
             spriteBatch.Draw(slotTexture, baseRect, color);
             spriteBatch.DrawString(spriteFont, numItems+"", new Vector2(xPos + 50, yPos + 50), Color.Blue);
-            spriteBatch.DrawString(spriteFont, slotName, new Vector2(xPos + 2, yPos - 100), Color.Blue);
+            spriteBatch.DrawString(spriteFont, slotName, new Vector2(xPos + 20, yPos +30), Color.Blue);
             if (hasObject == true)
             {
 
@@ -150,12 +150,10 @@ namespace Big_Chungus
                     if(itemClass is Spring)
                     {
                         Object = new Spring(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height);
-                        Object.IsVisible = true;
                     }
                     else
                     {
                         Object = new Platform(itemClass.Texture, itemClass.Box.Width, itemClass.Box.Height);
-                        Object.IsVisible = true;
                     }
                 }
                 else if(itemClass is Carrot)

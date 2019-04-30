@@ -20,7 +20,7 @@ namespace Big_Chungus
         #region declaring
         //Once you add a level file to the Debug Folder, change this string to its filename
         private List<string> levels = new List<string>();
-        private string LevelFile = "Level1.txt";
+        private string LevelFile = ("Levels/" + "Level1.txt");
         private int levelCount = 0;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -260,7 +260,6 @@ namespace Big_Chungus
                     throw;
                 }
                 #endregion
-                
             }
         }
 
@@ -277,7 +276,7 @@ namespace Big_Chungus
                 tempHRec2 = new Rectangle(player.XPos + Math.Sign(hspd), player.YPos, player.Width, player.Height);
 
                 //horizontal collision
-                if (tempHRec1.Intersects(platformList[i].Box) && platformList[i].IsVisible)
+                if (tempHRec1.Intersects(platformList[i].Box))
                 {
                     while (tempHRec2.Intersects(platformList[i].Box) == false)
                     {
@@ -306,7 +305,7 @@ namespace Big_Chungus
 
                 // fixed collisions -- Kimmy
                 //vertical collision and prevents falling through the floor
-                if (tempVRec1.Intersects(platformList[i].Box) && platformList[i].IsVisible)
+                if (tempVRec1.Intersects(platformList[i].Box))
                 {
                     while (tempVRec2.Intersects(platformList[i].Box) == false)
                     {        
@@ -360,6 +359,7 @@ namespace Big_Chungus
         /// </summary>
         protected override void LoadContent()
         {
+            levels.Add("q.txt");
             levels.Add("Level1.txt");
             levels.Add("TestLevel.txt");
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -606,11 +606,14 @@ namespace Big_Chungus
                 #endregion
                 #region gameOver
                 case GameState.GameOver:
-
+                    vspd = 0;
+                    hspd = 0;
                     kStatePrevious = kStateCurrent;
                     bool res7 = KeyPress(Keys.Enter);
                     if (res7 == true)
                     {
+                        level.Player.XPos = level.PlayerSpawnX;
+                        level.Player.YPos = level.PlayerSpawnY;
                         curr = GameState.Building;
                         NextLevel();
                     }
@@ -659,12 +662,19 @@ namespace Big_Chungus
                 #endregion
                 #region final level 
                 case GameState.LevelFinal:
-
+                    vspd = 0;
+                    hspd = 0;
                     kStatePrevious = kStateCurrent;
                     bool res5 = KeyPress(Keys.Enter);
                     if (res5 == true)
                     {
                         levelCount += 1;
+                        if (levelCount==levels.Count)
+                        {
+                            //level.Player.XPos = level.PlayerSpawnX;
+                            //level.Player.YPos = level.PlayerSpawnY;
+                            //add You Beat the Game! screen here
+                        }
                         NextLevel();
                         curr = GameState.Building;
                     }
@@ -710,13 +720,7 @@ namespace Big_Chungus
                     
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
-                        if (level.Platforms[i].IsVisible)
-                        {
-                            spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.AliceBlue);
-
-                        }
-                      
-
+                        spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
                     spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(100, 775), Color.Blue);
                     spriteBatch.Draw(player.Texture, player.Box, Color.White);
@@ -736,12 +740,7 @@ namespace Big_Chungus
                     }
                     for (int i = 0; i < level.Springs.Count; i++)
                     {
-                        if (level.Springs[i].IsVisible)
-                        {
-
-
-                            spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
-                        }
+                        spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
                     }
                     for (int i = 0; i < level.Launchers.Count; i++)
                     {
@@ -770,17 +769,11 @@ namespace Big_Chungus
                     }
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
-                        if (level.Platforms[i].IsVisible == true)
-                        {
-                            spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
-                        }
+                        spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.White);
                     }
                     for(int i = 0; i < level.Springs.Count; i++)
                     {
-                        if (level.Springs[i].IsVisible)
-                        {
-                            spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
-                        }
+                        spriteBatch.Draw(level.Springs[i].Texture, level.Springs[i].Box, Color.White);
                     }
                     for (int i = 0; i < level.Spikes.Count; i++)
                     {

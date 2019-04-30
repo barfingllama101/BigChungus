@@ -52,15 +52,31 @@ namespace Big_Chungus
             {
                 case 0:
                     spikeball.XPos -= speed;
+                    if (spikeball.XPos<=0)
+                    {
+                        spikeball.XPos = XPos;
+                    }
                     break;
                 case 1:
                     spikeball.XPos += speed;
+                    if (spikeball.XPos >= 1024)
+                    {
+                        spikeball.XPos = XPos;
+                    }
                     break;
                 case 2:
                     spikeball.YPos -= speed;
+                    if (spikeball.YPos <= 0)
+                    {
+                        spikeball.YPos = YPos;
+                    }
                     break;
                 case 3:
                     spikeball.YPos += speed;
+                    if (spikeball.YPos >= 1024)
+                    {
+                        spikeball.YPos = YPos;
+                    }
                     break;
                 default:
                     break;
