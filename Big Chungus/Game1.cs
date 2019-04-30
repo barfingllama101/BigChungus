@@ -405,7 +405,7 @@ namespace Big_Chungus
             playerSprite = Content.Load<Texture2D>("POLY");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
             platform = Content.Load<Texture2D>("platform");
-            gameBG = Content.Load<Texture2D>("GAMESCREEN");
+            gameBG = Content.Load<Texture2D>("level1");
             gameBGRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             sTexture = Content.Load<Texture2D>("slot");
 

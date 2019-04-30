@@ -125,6 +125,7 @@
     <Content Include="Content\1.png" />
     <Content Include="Content\3.png" />
     <Content Include="Content\Active_Sheet.png" />
+    <Content Include="Content\background.png" />
     <Content Include="Content\Big Chung.png" />
     <Content Include="Content\BigChungusCropped.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -138,6 +139,7 @@
     <Content Include="Content\CarrotCropped.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\level1.png" />
     <Content Include="Content\POLY.png" />
     <Content Include="Content\slot.png" />
     <Content Include="Content\SmilingPetDog.jpg">
