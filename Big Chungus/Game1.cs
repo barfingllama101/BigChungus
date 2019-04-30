@@ -609,6 +609,11 @@ namespace Big_Chungus
                         level.Player.XPos = level.PlayerSpawnX;
                         level.Player.YPos = level.PlayerSpawnY;
                         level.Player.LevelScore = 0;
+                        for (int i = 0; i < spikes.Count; i++)
+                        {
+                            spikes[i].XPos = level.SpikePositions[0][i];
+                            spikes[i].YPos = level.SpikePositions[1][i];
+                        }
                         curr = GameState.Building;
                     }
                     kStatePrevious = kStateCurrent;

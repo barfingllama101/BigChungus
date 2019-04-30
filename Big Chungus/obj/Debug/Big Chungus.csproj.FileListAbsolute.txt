@@ -257,7 +257,6 @@ C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
-Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.gif
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\free-cartoon-carrot-clip-art-uygzjR-clipart.xnb
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
@@ -418,3 +417,9 @@ C:\Users\alexs\source\repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\C
 C:\Users\alexs\source\repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\POLY.xnb
 C:\Users\alexs\source\repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\background.xnb
 C:\Users\alexs\source\repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\level1.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\1.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Active_Sheet.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\3.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\background.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\level1.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\POLY.xnb
