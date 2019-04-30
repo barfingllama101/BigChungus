@@ -140,6 +140,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\level1.png" />
+    <Content Include="Content\MHAZEL Background.png" />
     <Content Include="Content\POLY.png" />
     <Content Include="Content\slot.png" />
     <Content Include="Content\SmilingPetDog.jpg">

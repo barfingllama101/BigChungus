@@ -438,6 +438,8 @@ namespace Big_Chungus
             gameBGS.Add(Content.Load<Texture2D>("GAMESCREEN"));
             gameBGS.Add(Content.Load<Texture2D>("level1"));
             gameBGS.Add(Content.Load<Texture2D>("background"));
+            gameBGS.Add(Content.Load<Texture2D>("MHAZEL Background"));
+
             playerSprites.Add(Content.Load<Texture2D>("POLY"));
             playerSprites.Add(Content.Load<Texture2D>("3"));
             //playerSprites.Add(Content.Load<Texture2D>("BigChungusCropped"));
