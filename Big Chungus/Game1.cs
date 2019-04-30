@@ -402,7 +402,7 @@ namespace Big_Chungus
             spikeTexture = Content.Load<Texture2D>("spikeanim");
             carrotTexture = Content.Load<Texture2D>("CarrotCropped");
             //playerSprite = Content.Load<Texture2D>("BigChungusCropped");
-            playerSprite = Content.Load<Texture2D>("3");
+            playerSprite = Content.Load<Texture2D>("POLY");
             spriteFont = Content.Load<SpriteFont>("SpriteFont1");
             platform = Content.Load<Texture2D>("platform");
             gameBG = Content.Load<Texture2D>("GAMESCREEN");
@@ -946,7 +946,7 @@ namespace Big_Chungus
                    
                     if (current == animation.Idle)
                     {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                         //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                     }
                     if (current == animation.IdleLeft)
@@ -969,11 +969,11 @@ namespace Big_Chungus
                     }
                     if (current == animation.JumpLeft)
                     {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 690, frameWidth, frameHeight), Color.White, 50, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 690, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                     }
                     if (current == animation.JumpRight)
                     {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 690, frameWidth, frameHeight), Color.White, 50, Vector2.Zero, SpriteEffects.None, 0);
+                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 690, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                     }
 
                     for (int i = 0; i < level.Carrots.Count; i++)
