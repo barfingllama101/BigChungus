@@ -31,6 +31,7 @@ namespace Big_Chungus
         //game bg
         Texture2D gameBG;
         Rectangle gameBGRect;
+        List<Texture2D> gameBGS = new List<Texture2D>();
 
         //Player things
         Player player;
@@ -54,7 +55,6 @@ namespace Big_Chungus
         Point currentFrame = new Point(0, 0);
         Point spriteSize = new Point(8, 3);
 
-
         //Spike things
         Texture2D spikeTexture;
         List<Spike> spikes = new List<Spike>();
@@ -69,7 +69,6 @@ namespace Big_Chungus
         Texture2D platform;
         List<Platform> platforms;
         
-
         //Carrot things
         Texture2D carrotTexture;
         List<Carrot> carrots = new List<Carrot>();
@@ -251,6 +250,12 @@ namespace Big_Chungus
                         spawn[0] = int.Parse(playerSpawnCoor[0]);
                         spawn[1] = int.Parse(playerSpawnCoor[1]);
                     }
+                    //Sets background
+                    if (input.ReadLine() != null)
+                    {
+                        line = input.ReadLine();
+                        gameBG = gameBGS[int.Parse(line)];
+                    }
                     level = new Level(spawn[0], spawn[1], platforms, carrots, spikes, springs, launchers, inventoryItems);
 
                     slot = new List<Slot>();
@@ -415,9 +420,12 @@ namespace Big_Chungus
             textures.Add("carrotTexture", Content.Load<Texture2D>("CarrotCropped"));
             //textures.Add("playerSprite", Content.Load<Texture2D>("BigChungusCropped"));
             textures.Add("platform", Content.Load<Texture2D>("platform"));
-            textures.Add("gameBG", Content.Load<Texture2D>("GAMESCREEN"));
+            //textures.Add("gameBG", Content.Load<Texture2D>("GAMESCREEN"));
             textures.Add("sTexture", Content.Load<Texture2D>("slot"));
             textures.Add("playerSprite", Content.Load<Texture2D>("Big Chung"));
+            gameBGS.Add(Content.Load<Texture2D>("GAMESCREEN"));
+            gameBGS.Add(Content.Load<Texture2D>("level1"));
+            gameBGS.Add(Content.Load<Texture2D>("background"));
             #endregion
             //main menu
 
@@ -943,7 +951,6 @@ namespace Big_Chungus
                 case GameState.Game:
                     spriteBatch.Draw(gameBG, gameBGRect, Color.White);
 
-                   
                     if (current == animation.Idle)
                     {
                         spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
@@ -1020,7 +1027,7 @@ namespace Big_Chungus
                 #region Pause Screen 
                 case GameState.Pause:
 
-                    spriteBatch.DrawString(spriteFont, "Click on an option to continue", new Vector2(320, 250), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Click on an option to continue", new Vector2(320, 50), Color.DarkBlue);
                     spriteBatch.Draw(pauseTexture, pauseTextureRect, Color.White);
           
                     break;
