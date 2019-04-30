@@ -31,11 +31,14 @@ namespace Big_Chungus
         //game bg
         Texture2D gameBG;
         Rectangle gameBGRect;
+        //Add backgrounds to this list
         List<Texture2D> gameBGS = new List<Texture2D>();
 
         //Player things
         Player player;
         Texture2D playerSprite;
+        //Add player spritesheets to this list once they are standardized
+        List<Texture2D> playerSprites = new List<Texture2D>();
         bool alive;
         int[] spawn = new int[2];
 
@@ -256,6 +259,12 @@ namespace Big_Chungus
                         line = input.ReadLine();
                         gameBG = gameBGS[int.Parse(line)];
                     }
+                    //Sets player sprite
+                    if (input.ReadLine() != null)
+                    {
+                        line = input.ReadLine();
+                        playerSprite = playerSprites[int.Parse(line)];
+                    }
                     level = new Level(spawn[0], spawn[1], platforms, carrots, spikes, springs, launchers, inventoryItems);
 
                     slot = new List<Slot>();
@@ -423,9 +432,13 @@ namespace Big_Chungus
             //textures.Add("gameBG", Content.Load<Texture2D>("GAMESCREEN"));
             textures.Add("sTexture", Content.Load<Texture2D>("slot"));
             textures.Add("playerSprite", Content.Load<Texture2D>("Big Chung"));
+
             gameBGS.Add(Content.Load<Texture2D>("GAMESCREEN"));
             gameBGS.Add(Content.Load<Texture2D>("level1"));
             gameBGS.Add(Content.Load<Texture2D>("background"));
+            playerSprites.Add(Content.Load<Texture2D>("POLY"));
+            playerSprites.Add(Content.Load<Texture2D>("3"));
+            //playerSprites.Add(Content.Load<Texture2D>("BigChungusCropped"));
             #endregion
             //main menu
 
@@ -436,10 +449,6 @@ namespace Big_Chungus
             #region Level Select
             for (int i = 0; i < 12; i++)
             {
-                /*for (int j = 0; j < 6; j++)
-                {
-                    levelButtons.Add(new UIElement(0, 100*j, 100+300*i));
-                }*/
                 UIButtons.Add(new UIElement(i, 100, 100 + (30 * i)));
             }
             /*levelButtons = new List<LevelButton>();
@@ -835,6 +844,7 @@ namespace Big_Chungus
                     vspd = 0;
                     hspd = 0;
                     kStatePrevious = kStateCurrent;
+                    bool res5 = KeyPress(Keys.Enter);
                     if (LevelFile == levels[levels.Count - 1])
                     {
                         hasWon = true;
@@ -842,15 +852,17 @@ namespace Big_Chungus
                         //level.Player.YPos = level.PlayerSpawnY;
                         //add You Beat the Game! screen here
                     }
-                    bool res5 = KeyPress(Keys.Enter);
-                    if (res5 == true)
+                    else
                     {
-                        levelCount += 1;
-                        NextLevel(levelCount);
-                        level.Player.LevelScore = 0;
-                        curr = GameState.Building;
+                        if (res5 == true)
+                        {
+                            levelCount += 1;
+                            NextLevel(levelCount);
+                            level.Player.LevelScore = 0;
+                            curr = GameState.Building;
+                        }
                     }
-                    bool res6 = KeyPress(Keys.Escape);
+                    bool res6 = KeyPress(Keys.M);
                     if (res6 == true)
                     {
                         curr = GameState.Menu;
@@ -1019,8 +1031,8 @@ namespace Big_Chungus
                 case GameState.GameOver:
                     spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
                     spriteBatch.DrawString(spriteFont, "GAME OVER", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 200), Color.DarkBlue);
-                    spriteBatch.DrawString(spriteFont, "Press enter to restart", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 300), Color.DarkBlue);
-                    spriteBatch.DrawString(spriteFont, "Press M to menu", new Vector2(GraphicsDevice.Viewport.Width / 2 - 40, 400), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Press enter to try again", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 300), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Press M to exit to the main menu", new Vector2(GraphicsDevice.Viewport.Width / 2 - 40, 400), Color.DarkBlue);
                     break;
                 #endregion
 
@@ -1044,8 +1056,9 @@ namespace Big_Chungus
                     }
                     else
                     {
-                        spriteBatch.DrawString(spriteFont, "Press enter to next level", new Vector2(300, 300), Color.DarkBlue);
+                        spriteBatch.DrawString(spriteFont, "Press enter for the next level", new Vector2(300, 300), Color.DarkBlue);
                     }
+                    spriteBatch.DrawString(spriteFont, "Press M to exit to the main menu", new Vector2(300, 300), Color.DarkBlue);
                     break;
                 #endregion
             }
