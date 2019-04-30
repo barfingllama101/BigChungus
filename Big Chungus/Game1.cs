@@ -20,7 +20,7 @@ namespace Big_Chungus
         #region declaring
         //Once you add a level file to the Debug Folder, change this string to its filename
         private List<string> levels = new List<string>();
-        private string LevelFile = ("Levels/" + "Level1.txt");
+        private string LevelFile = ("Level1.txt");
         private int levelCount = 0;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -164,12 +164,15 @@ namespace Big_Chungus
         }
 
         //sets next level by reading a text file containing level data
-        public void NextLevel(int levelnum)
+        public void NextLevel(int levelnum, string levelName)
         {
             levelCount = levelnum;
-            if (levelCount < levels.Count)
+            if (levelCount <= levels.Count)
             {
-                LevelFile = levels[levelCount];
+                if (levelCount<levels.Count)
+                {
+                    LevelFile = levels[levelCount];
+                }
                 alive = true;
 
                 #region reading LevelFile
@@ -244,7 +247,6 @@ namespace Big_Chungus
                             inventoryItems.Add(int.Parse(inventoryValues[i]));
                         }
                     }
-                    
                     //Sets spawn
                     if (input.ReadLine() != null)
                     {
@@ -447,10 +449,18 @@ namespace Big_Chungus
             UIRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             #endregion
             #region Level Select
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < levels.Count+1; i++)
             {
-                UIButtons.Add(new UIElement(i, 100, 100 + (30 * i)));
+                if (i==levels.Count)
+                {
+                    UIButtons.Add(new UIElement(i, 100, 100 + (30 * i), "Load Custom Level"));
+                }
+                else
+                {
+                    UIButtons.Add(new UIElement(i, 100, 100 + (30 * i), "Level " + (i + 1)));
+                }
             }
+            
             /*levelButtons = new List<LevelButton>();
             for (int i = 0; i < levels.Count; i++)
             {
@@ -477,7 +487,7 @@ namespace Big_Chungus
             //columns = 3;
             
             #endregion
-            NextLevel(0);
+            NextLevel(0, LevelFile);
             
             //player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
         }
@@ -533,14 +543,12 @@ namespace Big_Chungus
                             {
                                 if (button.LevelNum >= levels.Count)
                                 {
-                                    Console.WriteLine("This level is not available yet.");
+                                    Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
+                                    LevelFile = Console.ReadLine() + ".txt";
                                 }
-                                else
-                                {
-                                    curr = GameState.Building;
-                                    NextLevel(button.LevelNum);
-                                    // do something here
-                                }
+                                curr = GameState.Building;
+                                NextLevel(button.LevelNum, LevelFile);
+                                // do something here
                             }
                         }
                     }
@@ -557,7 +565,6 @@ namespace Big_Chungus
                         }
                     }*/
                     
-
                     break;
                 #endregion
                 #region building phase 
@@ -794,7 +801,7 @@ namespace Big_Chungus
                         level.Player.XPos = level.PlayerSpawnX;
                         level.Player.YPos = level.PlayerSpawnY;
                         curr = GameState.Building;
-                        NextLevel(levelCount);
+                        NextLevel(levelCount, "TestLevel.txt");
                     }
                     bool res8 = KeyPress(Keys.M);
                     if (res8 == true)
@@ -845,11 +852,9 @@ namespace Big_Chungus
                     hspd = 0;
                     kStatePrevious = kStateCurrent;
                     bool res5 = KeyPress(Keys.Enter);
-                    if (LevelFile == levels[levels.Count - 1])
+                    if (LevelFile == levels[levels.Count - 1]||levelCount>=levels.Count)
                     {
                         hasWon = true;
-                        //level.Player.XPos = level.PlayerSpawnX;
-                        //level.Player.YPos = level.PlayerSpawnY;
                         //add You Beat the Game! screen here
                     }
                     else
@@ -857,7 +862,7 @@ namespace Big_Chungus
                         if (res5 == true)
                         {
                             levelCount += 1;
-                            NextLevel(levelCount);
+                            NextLevel(levelCount, "TestLevel.txt");
                             level.Player.LevelScore = 0;
                             curr = GameState.Building;
                         }
@@ -1048,7 +1053,7 @@ namespace Big_Chungus
                 #region level final  
                 case GameState.LevelFinal:
                     spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
-                    spriteBatch.DrawString(spriteFont, String.Format("TOTAL SCORE: {0}", player.LevelScore), new Vector2(300, 400), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, String.Format("TOTAL SCORE: {0}", player.LevelScore), new Vector2(300, 350), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Congrats!", new Vector2(300, 200), Color.DarkBlue);
                     if (hasWon==true)
                     {
@@ -1058,7 +1063,7 @@ namespace Big_Chungus
                     {
                         spriteBatch.DrawString(spriteFont, "Press enter for the next level", new Vector2(300, 300), Color.DarkBlue);
                     }
-                    spriteBatch.DrawString(spriteFont, "Press M to exit to the main menu", new Vector2(300, 300), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Press M to exit to the main menu", new Vector2(300, 400), Color.DarkBlue);
                     break;
                 #endregion
             }

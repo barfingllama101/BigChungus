@@ -22,13 +22,13 @@ namespace Big_Chungus
         public int YPos { get => box.Y; set => box.Y = value; }
         public string Label { get => label; set => label = value; }
 
-        public UIElement(int num, int x, int y)
+        public UIElement(int num, int x, int y, string levelName)
         {
             levelNum = num;
             xPos = x;
             yPos = y;
             box = new Rectangle(xPos, yPos, 100, 20);
-            label = "Level " + (levelNum + 1);
+            label = levelName;
         }
 
         public void Drag()
