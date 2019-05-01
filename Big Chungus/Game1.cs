@@ -595,8 +595,8 @@ namespace Big_Chungus
                             if (mouseRect.Intersects(UIButts[i, j].Box))
                             {
                                 // "magnifying" the button on intersection 
-                                UIButts[i, j].Wiiidth = 120;
-                                UIButts[i, j].Heiiight = 40;
+                                UIButts[i, j].Width = 120;
+                                UIButts[i, j].Height = 40;
                                
                                 // if the button is clicked. 
                                 if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
