@@ -14,12 +14,21 @@
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/Carrot.png</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/CarrotCropped.png</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/chung.png</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/emptyINV.PNG</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/GAMEOVER.png</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/GAMESCREEN.png</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/GOScreen.PNG</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/IMG_0454.PNG</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/IMG_0455.PNG</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/IMG_0456.PNG</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/InventoryExtra.PNG</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/level1.png</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/MHAZEL Background.png</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/overContd.PNG</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/overGammain.PNG</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/pausescreen.png</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/platform.png</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/platformInv.PNG</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/POLY.png</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/slot.png</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/SmilingPetDog.jpg</File>
@@ -27,8 +36,19 @@
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/spikeanim.gif</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/spikeanim.png</File>
     <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/spring.png</File>
+    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/SpringInv.PNG</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

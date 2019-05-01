@@ -437,3 +437,14 @@ C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platformInv.xnb
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SpringInv.xnb
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\MHAZEL Background.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\MHAZEL Background.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\emptyINV.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GOScreen.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\IMG_0454.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\IMG_0455.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\IMG_0456.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\InventoryExtra.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\overContd.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\overGammain.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platformInv.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SpringInv.xnb
