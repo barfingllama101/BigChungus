@@ -23,6 +23,8 @@ namespace Big_Chungus
             get { return slotName; }
             set { slotName = value; }
         }
+
+        //texture that will hold the image of what type of object is in the inventory slot 
         Texture2D slotTypeTexture;
 
         public Texture2D SlotTypeTexture
@@ -31,6 +33,7 @@ namespace Big_Chungus
             set { slotTypeTexture = value; }
         }
 
+        // rectangle that will hold the slottypetexture 
         Rectangle slottyperect;
 
         public Rectangle SlotTRect
@@ -112,9 +115,10 @@ namespace Big_Chungus
             {
                 items.Add(itemClass);
             }
-         //   slottyperect.X = xPos + 20;
-           // slottyperect.Y = yPos + 30;
+      
+            // this is the rectangle for the image above the slot that tells what type of item it is
             slottyperect = new Rectangle(xPos - 30, yPos - 125, 200, 200);
+            // this rectangle is for the item description
             textRect = new Rectangle(230, 520, 450, 25);
         }
         #endregion
@@ -136,14 +140,18 @@ namespace Big_Chungus
         #endregion
         public void Draw(SpriteBatch spriteBatch, SpriteFont spriteFont, Texture2D textTexture)
         {
+            // drawing slot 
             spriteBatch.Draw(slotTexture, baseRect, color);
          
+            //drawing remaining tools of that type left 
             spriteBatch.DrawString(spriteFont, numItems+" remaining", new Vector2(xPos, yPos + 50), Color.Blue);
             //  spriteBatch.DrawString(spriteFont, slotName, new Vector2(xPos + 20, yPos +30), Color.Blue);
+
+            //drawing type 
             spriteBatch.Draw(slotTypeTexture, slottyperect, Color.White);
             if (hasObject == true)
             {
-
+                //drawing item description if condition met 
                 spriteBatch.Draw(textTexture, textRect, Color.LawnGreen);
                 spriteBatch.DrawString(spriteFont, slotDescription, new Vector2(250, 520), Color.Blue);
             }

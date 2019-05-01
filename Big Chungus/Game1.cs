@@ -488,21 +488,10 @@ namespace Big_Chungus
             UIRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             #endregion
             #region Level Select
-         /*   for (int i = 0; i < 12; i++)
-            {
-                UIButtons.Add(new UIElement(i, 100, 100 + (30 * i), String.Format("Level {0}", i)));
-
-
-            }
-            /*levelButtons = new List<LevelButton>();
-            for (int i = 0; i < levels.Count; i++)
-            {
-                levelButtons.Add(new LevelButton(levels[i], 100, 100 + (30 * i)));
-            }*/
-
-       
+  
+       // this is initializing the array of buttons 
             UIButts = new UIElement[4, 3];
-            int padding = 50;
+          // this is so the level displayed will be one of twelve levels 
             int counter = 1;
             for(int i = 0; i < 4; i++)
             {
@@ -548,9 +537,6 @@ namespace Big_Chungus
             emptySplash = Content.Load<Texture2D>("emptyINV");
       
 
-            // rows = 3;
-            //columns = 3;
-
             #endregion
             NextLevel(0);
             
@@ -588,9 +574,7 @@ namespace Big_Chungus
                     bool res = KeyPress(Keys.Enter);
                     if (res == true)
                     {
-                        //curr = GameState.Building;
-                        //Level Select screen
-                        //NextLevel(0);
+                        
                         curr = GameState.LevelSelect;
                     }
                     break;
@@ -600,36 +584,19 @@ namespace Big_Chungus
                     MouseState pMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
-                  /*  foreach (UIElement button in UIButtons)
-                    {
-                        if (mouseRect.Intersects(button.Box))
-                        {
-                            if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
-                            {
-                                if (button.LevelNum >= levels.Count)
-                                {
-                                    Console.WriteLine("This level is not available yet.");
-                                }
-                                else
-                                {
-                                    curr = GameState.Building;
-                                    NextLevel(button.LevelNum);
-                                    // do something here
-                                }
-                            }
-                        }
-                    }*/
-
+             
+                    //checking to see if the mouse has intersected with one of the level buttons 
                     for(int i = 0; i < 4; i++)
                     {
                         for(int j = 0; j <3; j++)
                         {
                             if (mouseRect.Intersects(UIButts[i, j].Box))
                             {
-
+                                // "magnifying" the button on intersection 
                                 UIButts[i, j].Wiiidth = 120;
                                 UIButts[i, j].Heiiight = 40;
                                
+                                // if the button is clicked. 
                                 if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
                                 {
                                     if(UIButts[i,j].LevelNum >= levels.Count)
@@ -643,7 +610,7 @@ namespace Big_Chungus
                                     }
                                 }
                             }
-                            else
+                            else // so the button will go back to its regular height and width after it's intersected with. 
                             {
                                 UIButts[i, j].Wiiidth =100;
                                 UIButts[i, j].Heiiight = 20;
@@ -651,21 +618,7 @@ namespace Big_Chungus
                         }
                     }
 
-                    
-                   /* foreach(LevelButton button in levelButtons)
-                    {
-                        if (mouseRect.Intersects(button.Box))
-                        {
-                            if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
-                            {
-                                curr = GameState.Building;
-                                NextLevel(levelButtons.FindIndex(x => x == button));
-                                
-                            }
-                        }
-                    }*/
-                    
-
+                  
                     break;
                 #endregion
                 #region building phase 
@@ -901,6 +854,7 @@ namespace Big_Chungus
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
                    
+                    //buttons are intersected with 
                     if (mouseRect.Intersects(mainMenRect))
                     {
                         if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
@@ -1048,6 +1002,7 @@ namespace Big_Chungus
                 #endregion
                 #region building Phase
                 case GameState.Building:
+                    // drawing inventory 
                     for (int i = 0; i < slots; i++)
                     {
                         slot[i].Draw(spriteBatch, spriteFont, sTexture);
@@ -1057,11 +1012,13 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
+
+
+                    #region inventory aesthetics 
                     spriteBatch.Draw(inventorySplash, inventorySplashRect, Color.White);
                     spriteBatch.Draw(sTexture, instructionRect, Color.LawnGreen);
                     spriteBatch.DrawString(spriteFont, "Click on a slot below to get an item for Big Chungus to use!", new Vector2(250, 475), Color.Blue);
-                    
-
+                   #endregion
                     spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
@@ -1093,6 +1050,7 @@ namespace Big_Chungus
                 case GameState.Game:
                     spriteBatch.Draw(gameBG, gameBGRect, Color.White);
 
+                    #region animation 
                     if (current == animation.Idle)
                     {
                         spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
@@ -1108,7 +1066,6 @@ namespace Big_Chungus
                         spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                         //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                     }
-                    if (current == animation.Left)
                     {
                         spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 370, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                     }
@@ -1124,7 +1081,7 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 690, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                     }
-
+                    #endregion
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         if (level.Carrots[i].Visible == true)
@@ -1149,12 +1106,14 @@ namespace Big_Chungus
                         spriteBatch.Draw(level.Launchers[i].Texture, level.Launchers[i].Box, Color.White);
                     }
            
+                    #region UI 
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 100), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow          hspd: " + hspd + "   vspd: " + vspd, new Vector2(50, 150), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Press P to pause and R to restart", new Vector2(50, 200), Color.Blue);
                     spriteBatch.DrawString(spriteFont, string.Format("Level {0}", levelCount+1), new Vector2(GraphicsDevice.Viewport.Width - 200, 50), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}/{1}", player.LevelScore, level.Carrots.Count), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
+                    #endregion
                     break;
                 #endregion
                 #region game over 
@@ -1162,9 +1121,7 @@ namespace Big_Chungus
                     spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
                     spriteBatch.Draw(continueButton, contdRect, Color.White);
                     spriteBatch.Draw(mainMenuButton, mainMenRect, Color.White);
-                 //   spriteBatch.DrawString(spriteFont, "GAME OVER", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 200), Color.DarkBlue);
-              //      spriteBatch.DrawString(spriteFont, "Press enter to try again", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 300), Color.DarkBlue);
-                //    spriteBatch.DrawString(spriteFont, "Press M to exit to the main menu", new Vector2(GraphicsDevice.Viewport.Width / 2 - 40, 700), Color.DarkBlue);
+
                     break;
                 #endregion
 
