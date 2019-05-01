@@ -13,8 +13,8 @@ namespace Big_Chungus
     {
 
         #region setup
-        Rectangle baseRect;
 
+        Rectangle baseRect;
 
         // name of object that slot holds
         string slotName = "";

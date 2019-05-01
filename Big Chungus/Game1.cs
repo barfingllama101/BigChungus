@@ -200,7 +200,7 @@ namespace Big_Chungus
             {
                 if (levelCount==levels.Count)
                 {
-                    //Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
+                    Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
                     LevelFile = Console.ReadLine()+".txt";
                 }
                 else
@@ -503,7 +503,7 @@ namespace Big_Chungus
        // this is initializing the array of buttons 
             UIButts = new UIElement[4, 3];
           // this is so the level displayed will be one of twelve levels 
-            int counter = 0;
+            int counter = 1;
             for(int i = 0; i < 4; i++)
             {
                 for(int j = 0; j < 3; j++)
@@ -514,7 +514,6 @@ namespace Big_Chungus
                     {
                         label = "Load Custom Level";
                     }
-
                     UIButts[i, j] = new UIElement(counter-1, 20 + i *400 , 200 *j + 200,label);
                     /*if (counter > 9)
                     {
@@ -609,7 +608,7 @@ namespace Big_Chungus
                 #endregion
                 #region Level Select
                 case GameState.LevelSelect:
-                    MouseState pMouseState = mouseState;
+                    MouseState prevMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
              
@@ -625,24 +624,21 @@ namespace Big_Chungus
                                 UIButts[i, j].Height = 40;
 
                                 // if the button is clicked. 
-                                if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                                if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                                 {
                                     UIButts[i, j].IsClickedOn = true;
                                
                                     if (UIButts[i, j].LevelNum >= levels.Count)
                                     {
-                                        Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
+                                        //Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
                                     }
-                                    else
-                                    {
-                                        curr = GameState.Building;
-                                        NextLevel(UIButts[i, j].LevelNum);
-                                    }
+                                    curr = GameState.Building;
+                                    NextLevel(UIButts[i, j].LevelNum);
                                 }
                             }
                             else // so the button will go back to its regular height and width after it's intersected with. 
                             {
-                                UIButts[i, j].Width =100;
+                                UIButts[i, j].Width = 100;
                                 UIButts[i, j].Height = 20;
                             }
                         }
@@ -871,7 +867,6 @@ namespace Big_Chungus
                         curr = GameState.LevelFinal;
                     }
 
-                    
                     break;
                 #endregion
                 #region gameOver
@@ -879,15 +874,15 @@ namespace Big_Chungus
                     vspd = 0;
                     hspd = 0;
       
-
-                    pMouseState = mouseState;
+                    
+                    prevMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
                    
                     //buttons are intersected with 
                     if (mouseRect.Intersects(mainMenRect))
                     {
-                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                         {
                             curr = GameState.Menu;
 
@@ -895,27 +890,25 @@ namespace Big_Chungus
                     }
                     if (mouseRect.Intersects(contdRect))
                     {
-                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                         {
                             level.Player.XPos = level.PlayerSpawnX;
                             level.Player.YPos = level.PlayerSpawnY;
                             curr = GameState.Building;
                             NextLevel(levelCount);
-
                         }
                     }
-
                     break;
                 #endregion
                 #region Pause Menu
                 case GameState.Pause:
-                    pMouseState = mouseState;
+                    prevMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
                   
                     if (mouseRect.Intersects(button1Rect))
                     {
-                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                         {
                             curr = GameState.Game;
 
@@ -924,7 +917,7 @@ namespace Big_Chungus
                     }
                     if (mouseRect.Intersects(button2Rect))
                     {
-                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        if (mouseState.LeftButton == ButtonState.Pressed && prevMouseState.LeftButton == ButtonState.Released)
                         {
                             curr = GameState.Menu;
 
@@ -939,7 +932,7 @@ namespace Big_Chungus
                     hspd = 0;
                     kStatePrevious = kStateCurrent;
                     bool res5 = KeyPress(Keys.Enter);
-                    if (LevelFile == levels[levels.Count - 1])
+                    if (LevelFile == levels[levels.Count - 1]||levelCount>=levels.Count)
                     {
                         hasWon = true;
                         //level.Player.XPos = level.PlayerSpawnX;
@@ -986,7 +979,7 @@ namespace Big_Chungus
 
                     spriteBatch.Draw(UITexture, UIRect, Color.White);
                     spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(603, 600), Color.Blue);
-                  
+
                     break;
                 #endregion
                 #region Level Select
@@ -999,17 +992,12 @@ namespace Big_Chungus
                     spriteBatch.Draw(gameBG, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
                     spriteBatch.DrawString(spriteFont, "Select a level to play!", new Vector2(GraphicsDevice.Viewport.Width / 2 - 7, 50), Color.Blue);
 
-                    Color textCo = Color.Blue;
-
                     for (int i = 0; i < 4; i++)
                     {
                         for(int j = 0; j < 3; j++)
                         {
-
-                           
                             spriteBatch.Draw(sTexture, UIButts[i, j].Box, Color.White);
-                            spriteBatch.DrawString(spriteFont, UIButts[i,j].Label, new Vector2(UIButts[i,j].XPos + 10, UIButts[i,j].YPos), textCo);
-
+                            spriteBatch.DrawString(spriteFont, UIButts[i,j].Label, new Vector2(UIButts[i,j].XPos + 15, UIButts[i,j].YPos), Color.Blue);
                         }
                     }
                
