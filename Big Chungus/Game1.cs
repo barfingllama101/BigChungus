@@ -196,9 +196,18 @@ namespace Big_Chungus
         public void NextLevel(int levelnum)
         {
             levelCount = levelnum;
-            if (levelCount < levels.Count)
+            if (levelCount <= levels.Count)
             {
-                LevelFile = levels[levelCount];
+                if (levelCount==levels.Count)
+                {
+                    //Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
+                    LevelFile = Console.ReadLine()+".txt";
+                }
+                else
+                {
+                    LevelFile = levels[levelCount];
+                }
+                
                 alive = true;
 
                 #region reading LevelFile
@@ -494,25 +503,31 @@ namespace Big_Chungus
        // this is initializing the array of buttons 
             UIButts = new UIElement[4, 3];
           // this is so the level displayed will be one of twelve levels 
-            int counter = 1;
+            int counter = 0;
             for(int i = 0; i < 4; i++)
             {
                 for(int j = 0; j < 3; j++)
                 {
-                    //if they do upload a level, then this will change. 
-                    if (counter > 9)
+                    counter++;
+                    string label = String.Format("Level {0}", counter);
+                    if (counter==levels.Count+1)
                     {
-                        UIButts[i, j] = new UIElement(counter, 20 + i * 400, 200 * j + 200, "Load your own!");
-                        UIButts[i, j].IsAvailable = false;
+                        label = "Load Custom Level";
+                    }
+
+                    UIButts[i, j] = new UIElement(counter-1, 20 + i *400 , 200 *j + 200,label);
+                    /*if (counter > 9)
+                    {
+                        UIButts[i, j] = new UIElement(counter, 20 + i * 400, 200 * j + 200, "Load your own level!");
 
                     }
                     else
                     {
                         UIButts[i, j] = new UIElement(counter, 20 + i * 400, 200 * j + 200, String.Format("Level {0}", counter++));
-                        UIButts[i, j].IsAvailable = true;
-                    }
+                    }*/
                 }
             }
+                    
             #endregion
             #region pause menu
             pauseTexture = Content.Load<Texture2D>("pausescreen");
@@ -612,16 +627,12 @@ namespace Big_Chungus
                                 // if the button is clicked. 
                                 if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
                                 {
-                                    UIButts[i, j].IsClickedOn = true;
-                                    if (UIButts[i,j].LevelNum >= levels.Count)
+                                    if(UIButts[i,j].LevelNum >= levels.Count)
                                     {
-                                        Console.WriteLine("This level is not available yet!");
+                                        Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
                                     }
-                                    else
-                                    {
-                                        curr = GameState.Building;
-                                        NextLevel(UIButts[i, j].LevelNum);
-                                    }
+                                    curr = GameState.Building;
+                                    NextLevel(UIButts[i, j].LevelNum);
                                 }
                             }
                             else // so the button will go back to its regular height and width after it's intersected with. 
@@ -981,7 +992,7 @@ namespace Big_Chungus
                         spriteBatch.DrawString(spriteFont, System.IO.Path.GetFileNameWithoutExtension(levelButtons[i].LevelName), new Vector2(levelButtons[i].XPos, levelButtons[i].YPos), Color.White);
                     }*/
                     spriteBatch.Draw(gameBG, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
-                    spriteBatch.DrawString(spriteFont, "Select a level to play!", new Vector2(GraphicsDevice.Viewport.Width / 2 - 40, 50), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Select a level to play!", new Vector2(GraphicsDevice.Viewport.Width / 2 - 7, 50), Color.Blue);
                     for (int i = 0; i < 4; i++)
                     {
                         for(int j = 0; j < 3; j++)
@@ -992,16 +1003,26 @@ namespace Big_Chungus
                             spriteBatch.Draw(sTexture, UIButts[i, j].Box, Color.White);
                             spriteBatch.DrawString(spriteFont, UIButts[i,j].Label, new Vector2(UIButts[i,j].XPos + 15, UIButts[i,j].YPos), textCo);
 
-                            if(UIButts[i,j].IsClickedOn && !UIButts[i, j].IsAvailable)
-                            {
-                                spriteBatch.DrawString(spriteFont,"Oops! This level isn't made yet. Load your own level in to play it here!", new Vector2(GraphicsDevice.Viewport.Width/2 -200, 80), Color.Blue);
-
-                            }
-
                         }
                     }
+                    foreach(UIElement button in UIButts)
+                    {
 
-                
+                    }
+                    /*   foreach (UIElement button in UIButtons)
+                       {
+                           Color textColor = Color.Blue;
+                           spriteBatch.Draw(platform, button.Box, Color.White);
+                           if (button.LevelNum >= levels.Count || mouseRect.Intersects(button.Box))
+                           {
+                               textColor = Color.Red;
+                           }
+                           else
+                           {
+                               textColor = Color.Orange;
+                           }
+                       }*/
+                    //spriteBatch.DrawString(spriteFont, "Level 1", new Vector2(100, 100), Color.Blue);
                     break;
                 #endregion
                 #region building Phase
@@ -1071,9 +1092,7 @@ namespace Big_Chungus
                         spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                         //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                     }
-                    {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 370, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                    }
+                   
                     if (current == animation.Right)
                     {
                         spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 370, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
