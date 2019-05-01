@@ -257,7 +257,6 @@ C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
-Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.gif
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\free-cartoon-carrot-clip-art-uygzjR-clipart.xnb
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
@@ -300,3 +299,127 @@ Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\obj\Debug\
 Z:\IGMProfile\Documents\BigChungusEditor\BigChungusEditor\Big Chungus\obj\Debug\Big Chungus.pdb
 C:\Users\rando\Downloads\Project_2.1\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\slot.xnb
 Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\slot.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\slot.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
+D:\Profiles\mdb4220\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.gif
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\chung.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMEOVER.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMESCREEN.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\pausescreen.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platform.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spike.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\slot.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png
+C:\Users\XsytherX\Source\Repos\BigChungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.gif
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Content\BigChungusCropped.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Content\Carrot.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Content\CarrotCropped.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Content\free-cartoon-carrot-clip-art-uygzjR-clipart.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Content\SmilingPetDog.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\libSDL2-2.0.so.0
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\libSDL2-2.0.so.0
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\libopenal.so.1
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\libopenal.so.1
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\chung.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMEOVER.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMESCREEN.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\pausescreen.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platform.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\slot.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spike.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.jpg
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.gif
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SpriteFont1.xnb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Big Chungus.exe
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Big Chungus.pdb
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\obj\Debug\Big Chungus.csprojAssemblyReference.cache
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\obj\Debug\Big Chungus.csproj.CoreCompileInputs.cache
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\obj\Debug\Big Chungus.csproj.CopyComplete
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\obj\Debug\Big Chungus.exe
+C:\Users\alexs\Source\Repos\BigChungus2\Big Chungus\obj\Debug\Big Chungus.pdb
+C:\Users\alexs\source\repos\BigChungus2\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Big Chung.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Big Chung.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Content\BigChungusCropped.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Content\Carrot.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Content\CarrotCropped.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Content\free-cartoon-carrot-clip-art-uygzjR-clipart.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Content\SmilingPetDog.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\SDL2.dll
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\SDL2.dll
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\soft_oal.dll
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\soft_oal.dll
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\libSDL2-2.0.so.0
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\libSDL2-2.0.so.0
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x86\libopenal.so.1
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\x64\libopenal.so.1
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libSDL2-2.0.0.dylib
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\libopenal.1.dylib
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll.config
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Big Chung.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\chung.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMEOVER.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\GAMESCREEN.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\pausescreen.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\platform.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\slot.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spike.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spikeanim.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\spring.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\BigChungusCropped.png
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\cannon.png
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Carrot.png
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\CarrotCropped.png
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SmilingPetDog.jpg
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\SpriteFont1.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Big Chungus.exe
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Big Chungus.pdb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\MonoGame.Framework.dll
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\obj\Debug\Big Chungus.csprojAssemblyReference.cache
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\obj\Debug\Big Chungus.csproj.CoreCompileInputs.cache
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\obj\Debug\Big Chungus.csproj.CopyComplete
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\obj\Debug\Big Chungus.exe
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\obj\Debug\Big Chungus.pdb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Active_Sheet.xnb
+C:\Users\alexs\Source\Repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\1.xnb
+C:\Users\alexs\source\repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\3.xnb
+C:\Users\alexs\source\repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\POLY.xnb
+C:\Users\alexs\source\repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\background.xnb
+C:\Users\alexs\source\repos\BigChungus4\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\level1.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\1.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\Active_Sheet.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\3.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\background.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\level1.xnb
+Z:\IGMProfile\Documents\Big Chungus\Big Chungus\bin\DesktopGL\AnyCPU\Debug\Content\POLY.xnb

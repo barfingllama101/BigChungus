@@ -53,6 +53,7 @@
     <Compile Include="Inventory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="LevelButton.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Player.cs" />
@@ -121,6 +122,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.manifest" />
+    <Content Include="Content\1.png" />
+    <Content Include="Content\3.png" />
+    <Content Include="Content\Active_Sheet.png" />
+    <Content Include="Content\background.png" />
+    <Content Include="Content\Big Chung.png" />
     <Content Include="Content\BigChungusCropped.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -133,13 +139,14 @@
     <Content Include="Content\CarrotCropped.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\level1.png" />
+    <Content Include="Content\POLY.png" />
+    <Content Include="Content\slot.png" />
     <Content Include="Content\SmilingPetDog.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\spike.png" />
-    <Content Include="Content\spikeanim.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\spikeanim.png" />
     <Content Include="Content\spring.png" />
     <Content Include="Content\SpriteFont1.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
