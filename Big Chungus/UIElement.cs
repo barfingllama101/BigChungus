@@ -31,7 +31,7 @@ namespace Big_Chungus
 
         public string Label { get => label; set => label = value; }
 
-        public UIElement(int num, int x, int y)
+        public UIElement(int num, int x, int y, string levelName)
         {
             levelNum = num;
             xPos = x;
@@ -39,7 +39,7 @@ namespace Big_Chungus
             width = 100;
             height = 20;
             box = new Rectangle(xPos, yPos, 100, 20);
-            label = "Level " + (levelNum + 1);
+            label = levelName;
         }
 
         public void Drag()
