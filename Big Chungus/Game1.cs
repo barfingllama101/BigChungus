@@ -1002,23 +1002,12 @@ namespace Big_Chungus
                 #endregion
                 #region building Phase
                 case GameState.Building:
-                    // drawing inventory 
-                    for (int i = 0; i < slots; i++)
-                    {
-                        slot[i].Draw(spriteBatch, spriteFont, sTexture);
-                    }
-                    
+
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
 
-
-                    #region inventory aesthetics 
-                    spriteBatch.Draw(inventorySplash, inventorySplashRect, Color.White);
-                    spriteBatch.Draw(sTexture, instructionRect, Color.LawnGreen);
-                    spriteBatch.DrawString(spriteFont, "Click on a slot below to get an item for Big Chungus to use!", new Vector2(250, 475), Color.Blue);
-                   #endregion
                     spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
@@ -1043,7 +1032,17 @@ namespace Big_Chungus
 
                     spriteBatch.DrawString(spriteFont, "In Building Mode, use platforms and springs from your inventory to build a path, then press enter to begin the level", new Vector2(200, 50), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Mode: Building", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
-
+                    // drawing inventory 
+                    for (int i = 0; i < slots; i++)
+                    {
+                        slot[i].Draw(spriteBatch, spriteFont, sTexture);
+                    }
+                    #region inventory aesthetics 
+                    spriteBatch.Draw(inventorySplash, inventorySplashRect, Color.White);
+                    spriteBatch.Draw(sTexture, instructionRect, Color.LawnGreen);
+                    spriteBatch.DrawString(spriteFont, "Click on a slot below to get an item for Big Chungus to use!", new Vector2(250, 475), Color.Blue);
+                    #endregion
+              
                     break;
                 #endregion
                 #region Play Game 

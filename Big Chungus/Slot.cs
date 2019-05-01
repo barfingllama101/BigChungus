@@ -119,7 +119,7 @@ namespace Big_Chungus
             // this is the rectangle for the image above the slot that tells what type of item it is
             slottyperect = new Rectangle(xPos - 30, yPos - 125, 200, 200);
             // this rectangle is for the item description
-            textRect = new Rectangle(230, 520, 450, 25);
+            textRect = new Rectangle(230, 520, 475, 25);
         }
         #endregion
         #region interactions
