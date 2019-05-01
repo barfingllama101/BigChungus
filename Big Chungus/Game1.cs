@@ -499,7 +499,15 @@ namespace Big_Chungus
             {
                 for(int j = 0; j < 3; j++)
                 {
-                    UIButts[i, j] = new UIElement(counter, 20 + i *400 , 200 *j + 200,String.Format("Level {0}", counter++));
+                    if (counter > 9)
+                    {
+                        UIButts[i, j] = new UIElement(counter, 20 + i * 400, 200 * j + 200, "Load your own level!");
+
+                    }
+                    else
+                    {
+                        UIButts[i, j] = new UIElement(counter, 20 + i * 400, 200 * j + 200, String.Format("Level {0}", counter++));
+                    }
                 }
             }
             #endregion
@@ -595,8 +603,8 @@ namespace Big_Chungus
                             if (mouseRect.Intersects(UIButts[i, j].Box))
                             {
                                 // "magnifying" the button on intersection 
-                                UIButts[i, j].Wiiidth = 120;
-                                UIButts[i, j].Heiiight = 40;
+                                UIButts[i, j].Width = 120;
+                                UIButts[i, j].Height = 40;
                                
                                 // if the button is clicked. 
                                 if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
@@ -1009,8 +1017,9 @@ namespace Big_Chungus
                     {
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
-
                     spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
+
+
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
                         level.Carrots[i].Visible = true;
@@ -1044,7 +1053,8 @@ namespace Big_Chungus
                     spriteBatch.Draw(sTexture, instructionRect, Color.LawnGreen);
                     spriteBatch.DrawString(spriteFont, "Click on a slot below to get an item for Big Chungus to use!", new Vector2(250, 475), Color.Blue);
                     #endregion
-              
+                  
+
                     break;
                 #endregion
                 #region Play Game 
