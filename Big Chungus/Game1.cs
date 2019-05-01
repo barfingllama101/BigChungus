@@ -514,10 +514,9 @@ namespace Big_Chungus
                     {
                         label = "Load Custom Level";
                     }
+
                     UIButts[i, j] = new UIElement(counter-1, 20 + i *400 , 200 *j + 200,label);
-                }
-            }
-                    if (counter > 9)
+                    /*if (counter > 9)
                     {
                         UIButts[i, j] = new UIElement(counter, 20 + i * 400, 200 * j + 200, "Load your own level!");
 
@@ -525,9 +524,10 @@ namespace Big_Chungus
                     else
                     {
                         UIButts[i, j] = new UIElement(counter, 20 + i * 400, 200 * j + 200, String.Format("Level {0}", counter++));
-                    }
+                    }*/
                 }
             }
+                    
             #endregion
             #region pause menu
             pauseTexture = Content.Load<Texture2D>("pausescreen");
