@@ -18,7 +18,20 @@ namespace Big_Chungus
         private int width;
         private string label;
         public int LevelNum { get => levelNum; set => levelNum = value; }
-        
+
+        bool isAvailable;
+        public bool IsAvailable
+        {
+            get { return isAvailable; }
+            set { isAvailable = value; }
+
+        }
+        bool isClickedOn;
+        public bool IsClickedOn
+        {
+            get { return isClickedOn; }
+            set { isClickedOn = value; }
+        }
         public Rectangle Box { get => box; set => box = value; }
         public int XPos { get => box.X; set => box.X = value; }
         public int YPos { get => box.Y; set => box.Y = value; }
@@ -40,6 +53,7 @@ namespace Big_Chungus
             height = 20;
             box = new Rectangle(xPos, yPos, 100, 20);
             label = levelName;
+            isClickedOn = false;
         }
 
         public void Drag()
