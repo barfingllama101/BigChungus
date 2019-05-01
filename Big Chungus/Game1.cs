@@ -200,7 +200,7 @@ namespace Big_Chungus
             {
                 if (levelCount==levels.Count)
                 {
-                    //Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
+                    Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
                     LevelFile = Console.ReadLine()+".txt";
                 }
                 else
@@ -514,7 +514,10 @@ namespace Big_Chungus
                     {
                         label = "Load Custom Level";
                     }
-
+                    /*if ((i+1)*(j+1)==12)
+                    {
+                        break;
+                    }*/
                     UIButts[i, j] = new UIElement(counter-1, 20 + i *400 , 200 *j + 200,label);
                     /*if (counter > 9)
                     {
@@ -629,7 +632,7 @@ namespace Big_Chungus
                                 {
                                     if(UIButts[i,j].LevelNum >= levels.Count)
                                     {
-                                        Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
+                                        //Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
                                     }
                                     curr = GameState.Building;
                                     NextLevel(UIButts[i, j].LevelNum);
@@ -896,10 +899,8 @@ namespace Big_Chungus
                             level.Player.YPos = level.PlayerSpawnY;
                             curr = GameState.Building;
                             NextLevel(levelCount);
-
                         }
                     }
-
                     break;
                 #endregion
                 #region Pause Menu
@@ -981,7 +982,7 @@ namespace Big_Chungus
 
                     spriteBatch.Draw(UITexture, UIRect, Color.White);
                     spriteBatch.DrawString(spriteFont, "Press enter to begin", new Vector2(603, 600), Color.Blue);
-                  
+
                     break;
                 #endregion
                 #region Level Select
@@ -997,12 +998,8 @@ namespace Big_Chungus
                     {
                         for(int j = 0; j < 3; j++)
                         {
-                            Color textCo = Color.Blue;
-
-                           
                             spriteBatch.Draw(sTexture, UIButts[i, j].Box, Color.White);
-                            spriteBatch.DrawString(spriteFont, UIButts[i,j].Label, new Vector2(UIButts[i,j].XPos + 15, UIButts[i,j].YPos), textCo);
-
+                            spriteBatch.DrawString(spriteFont, UIButts[i,j].Label, new Vector2(UIButts[i,j].XPos + 15, UIButts[i,j].YPos), Color.Blue);
                         }
                     }
                     foreach(UIElement button in UIButts)
