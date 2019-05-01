@@ -139,8 +139,18 @@
     <Content Include="Content\CarrotCropped.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\GAMEOVER.png" />
+    <Content Include="Content\GAMESCREEN.png" />
+    <Content Include="Content\GOScreen.PNG" />
+    <Content Include="Content\IMG_0454.PNG" />
+    <Content Include="Content\IMG_0455.PNG" />
+    <Content Include="Content\IMG_0456.PNG" />
+    <Content Include="Content\InventoryExtra.PNG" />
     <Content Include="Content\level1.png" />
     <Content Include="Content\MHAZEL Background.png" />
+    <Content Include="Content\overContd.PNG" />
+    <Content Include="Content\overGammain.PNG" />
+    <Content Include="Content\platformInv.PNG" />
     <Content Include="Content\POLY.png" />
     <Content Include="Content\slot.png" />
     <Content Include="Content\SmilingPetDog.jpg">
@@ -149,10 +159,12 @@
     <Content Include="Content\spike.png" />
     <Content Include="Content\spikeanim.png" />
     <Content Include="Content\spring.png" />
+    <Content Include="Content\SpringInv.PNG" />
     <Content Include="Content\SpriteFont1.xnb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

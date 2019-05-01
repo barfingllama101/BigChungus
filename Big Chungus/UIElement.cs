@@ -22,8 +22,8 @@ namespace Big_Chungus
         public Rectangle Box { get => box; set => box = value; }
         public int XPos { get => box.X; set => box.X = value; }
         public int YPos { get => box.Y; set => box.Y = value; }
-        public int Heiiight { get => box.Height; set => box.Height = value; }
-        public int Wiiidth
+        public int Height { get => box.Height; set => box.Height = value; }
+        public int Width
         {
             get { return box.Width; }
             set { box.Width = value; }

@@ -141,6 +141,8 @@ namespace Big_Chungus
         private Rectangle contdRect;
         private Rectangle mainMenRect;
 
+        Texture2D gameWinScreen;
+
         //inventory
         List<Slot> slot;
         int slots = 6;
@@ -526,7 +528,7 @@ namespace Big_Chungus
             mainMenRect = new Rectangle(GraphicsDevice.Viewport.Width / 2 - 70, GraphicsDevice.Viewport.Height / 2 - 90, 200, 70);
 
             #endregion
-
+            gameWinScreen = Content.Load<Texture2D>("GAMEOVER");
             #region inventory
 
             inventorySplash = Content.Load<Texture2D>("InventoryExtra");
@@ -612,8 +614,8 @@ namespace Big_Chungus
                             }
                             else // so the button will go back to its regular height and width after it's intersected with. 
                             {
-                                UIButts[i, j].Wiiidth =100;
-                                UIButts[i, j].Heiiight = 20;
+                                UIButts[i, j].Width =100;
+                                UIButts[i, j].Height = 20;
                             }
                         }
                     }
@@ -1136,7 +1138,7 @@ namespace Big_Chungus
 
                 #region level final  
                 case GameState.LevelFinal:
-                    spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
+                    spriteBatch.Draw(gameWinScreen, gameOverRectangle, Color.White);
                     spriteBatch.DrawString(spriteFont, String.Format("TOTAL SCORE: {0}", player.LevelScore), new Vector2(300, 400), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Congrats!", new Vector2(300, 200), Color.DarkBlue);
                     if (hasWon==true)
@@ -1147,7 +1149,7 @@ namespace Big_Chungus
                     {
                         spriteBatch.DrawString(spriteFont, "Press enter for the next level", new Vector2(300, 300), Color.DarkBlue);
                     }
-                    spriteBatch.DrawString(spriteFont, "Press M to exit to the main menu", new Vector2(300, 300), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Press M to exit to the main menu", new Vector2(300, 350), Color.DarkBlue);
                     break;
                 #endregion
             }
