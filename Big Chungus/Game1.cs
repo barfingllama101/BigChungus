@@ -196,9 +196,18 @@ namespace Big_Chungus
         public void NextLevel(int levelnum)
         {
             levelCount = levelnum;
-            if (levelCount < levels.Count)
+            if (levelCount <= levels.Count)
             {
-                LevelFile = levels[levelCount];
+                if (levelCount==levels.Count)
+                {
+                    //Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
+                    LevelFile = Console.ReadLine()+".txt";
+                }
+                else
+                {
+                    LevelFile = levels[levelCount];
+                }
+                
                 alive = true;
 
                 #region reading LevelFile
@@ -494,12 +503,18 @@ namespace Big_Chungus
        // this is initializing the array of buttons 
             UIButts = new UIElement[4, 3];
           // this is so the level displayed will be one of twelve levels 
-            int counter = 1;
+            int counter = 0;
             for(int i = 0; i < 4; i++)
             {
                 for(int j = 0; j < 3; j++)
                 {
-                    UIButts[i, j] = new UIElement(counter, 20 + i *400 , 200 *j + 200,String.Format("Level {0}", counter++));
+                    counter++;
+                    string label = String.Format("Level {0}", counter);
+                    if (counter==levels.Count+1)
+                    {
+                        label = "Load Custom Level";
+                    }
+                    UIButts[i, j] = new UIElement(counter-1, 20 + i *400 , 200 *j + 200,label);
                 }
             }
             #endregion
@@ -603,13 +618,10 @@ namespace Big_Chungus
                                 {
                                     if(UIButts[i,j].LevelNum >= levels.Count)
                                     {
-                                        Console.WriteLine("This level is not available yet!");
+                                        Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
                                     }
-                                    else
-                                    {
-                                        curr = GameState.Building;
-                                        NextLevel(UIButts[i, j].LevelNum);
-                                    }
+                                    curr = GameState.Building;
+                                    NextLevel(UIButts[i, j].LevelNum);
                                 }
                             }
                             else // so the button will go back to its regular height and width after it's intersected with. 
@@ -1068,9 +1080,7 @@ namespace Big_Chungus
                         spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                         //spriteBatch.Draw(playerSprite, loc, new Rectangle(0, 0, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.FlipHorizontally, 0);
                     }
-                    {
-                        spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 370, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                    }
+                   
                     if (current == animation.Right)
                     {
                         spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019 + currentFrame.X * frameWidth, 370, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
