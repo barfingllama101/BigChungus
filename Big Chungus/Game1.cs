@@ -488,9 +488,11 @@ namespace Big_Chungus
             UIRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             #endregion
             #region Level Select
-            for (int i = 0; i < 12; i++)
+         /*   for (int i = 0; i < 12; i++)
             {
-                UIButtons.Add(new UIElement(i, 100, 100 + (30 * i)));
+                UIButtons.Add(new UIElement(i, 100, 100 + (30 * i), String.Format("Level {0}", i)));
+
+
             }
             /*levelButtons = new List<LevelButton>();
             for (int i = 0; i < levels.Count; i++)
@@ -501,12 +503,12 @@ namespace Big_Chungus
        
             UIButts = new UIElement[4, 3];
             int padding = 50;
-            int counter = 0;
+            int counter = 1;
             for(int i = 0; i < 4; i++)
             {
                 for(int j = 0; j < 3; j++)
                 {
-                    UIButts[i, j] = new UIElement(counter++, 20 + i *400 , 200 *j + 200);
+                    UIButts[i, j] = new UIElement(counter, 20 + i *400 , 200 *j + 200,String.Format("Level {0}", counter++));
                 }
             }
             #endregion
