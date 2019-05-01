@@ -623,16 +623,21 @@ namespace Big_Chungus
                                 // "magnifying" the button on intersection 
                                 UIButts[i, j].Width = 120;
                                 UIButts[i, j].Height = 40;
-                               
+
                                 // if the button is clicked. 
                                 if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
                                 {
-                                    if(UIButts[i,j].LevelNum >= levels.Count)
+                                    UIButts[i, j].IsClickedOn = true;
+                               
+                                    if (UIButts[i, j].LevelNum >= levels.Count)
                                     {
                                         Console.WriteLine("Enter the name of your level with no file extension \".txt\"(WARNING:  WILL CRASH IF INCORRECT NAME IS ENTERED):");
                                     }
-                                    curr = GameState.Building;
-                                    NextLevel(UIButts[i, j].LevelNum);
+                                    else
+                                    {
+                                        curr = GameState.Building;
+                                        NextLevel(UIButts[i, j].LevelNum);
+                                    }
                                 }
                             }
                             else // so the button will go back to its regular height and width after it's intersected with. 
@@ -993,36 +998,21 @@ namespace Big_Chungus
                     }*/
                     spriteBatch.Draw(gameBG, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
                     spriteBatch.DrawString(spriteFont, "Select a level to play!", new Vector2(GraphicsDevice.Viewport.Width / 2 - 7, 50), Color.Blue);
+
+                    Color textCo = Color.Blue;
+
                     for (int i = 0; i < 4; i++)
                     {
                         for(int j = 0; j < 3; j++)
                         {
-                            Color textCo = Color.Blue;
 
                            
                             spriteBatch.Draw(sTexture, UIButts[i, j].Box, Color.White);
-                            spriteBatch.DrawString(spriteFont, UIButts[i,j].Label, new Vector2(UIButts[i,j].XPos + 15, UIButts[i,j].YPos), textCo);
+                            spriteBatch.DrawString(spriteFont, UIButts[i,j].Label, new Vector2(UIButts[i,j].XPos + 10, UIButts[i,j].YPos), textCo);
 
                         }
                     }
-                    foreach(UIElement button in UIButts)
-                    {
-
-                    }
-                    /*   foreach (UIElement button in UIButtons)
-                       {
-                           Color textColor = Color.Blue;
-                           spriteBatch.Draw(platform, button.Box, Color.White);
-                           if (button.LevelNum >= levels.Count || mouseRect.Intersects(button.Box))
-                           {
-                               textColor = Color.Red;
-                           }
-                           else
-                           {
-                               textColor = Color.Orange;
-                           }
-                       }*/
-                    //spriteBatch.DrawString(spriteFont, "Level 1", new Vector2(100, 100), Color.Blue);
+               
                     break;
                 #endregion
                 #region building Phase
