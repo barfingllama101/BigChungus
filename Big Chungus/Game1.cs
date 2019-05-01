@@ -1124,7 +1124,7 @@ namespace Big_Chungus
                     spriteBatch.DrawString(spriteFont, "Mode: Game Mode", new Vector2(GraphicsDevice.Viewport.Width - 200,100), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, "Walk:  Left and Right Arrows", new Vector2(50, 100), Color.Blue);
                     spriteBatch.DrawString(spriteFont, "Jump:  Up Arrow          hspd: " + hspd + "   vspd: " + vspd, new Vector2(50, 150), Color.Blue);
-                    spriteBatch.DrawString(spriteFont, "Press P to pause and R to restart", new Vector2(50, 200), Color.Blue);
+                    spriteBatch.DrawString(spriteFont, "Press P to pause and R to go back to building the level", new Vector2(50, 200), Color.Blue);
                     spriteBatch.DrawString(spriteFont, string.Format("Level {0}", levelCount+1), new Vector2(GraphicsDevice.Viewport.Width - 200, 50), Color.DarkBlue);
                     spriteBatch.DrawString(spriteFont, string.Format("carrots collected: {0}/{1}", player.LevelScore, level.Carrots.Count), new Vector2(GraphicsDevice.Viewport.Width - 200, 150), Color.DarkBlue);
                     #endregion
