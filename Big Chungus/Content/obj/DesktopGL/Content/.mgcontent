@@ -4,30 +4,44 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/1.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/3.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/Active_Sheet.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/Big Chung.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/BigChungusCropped.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/cannon.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/Carrot.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/CarrotCropped.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/chung.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/GAMEOVER.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/GAMESCREEN.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/pausescreen.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/platform.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/slot.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/SmilingPetDog.jpg</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/spike.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/spikeanim.gif</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/spikeanim.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/spring.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/POLY.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/background.png</File>
-    <File>Z:/IGMProfile/Documents/Big Chungus/Big Chungus/Content/level1.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/1.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/3.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/Active_Sheet.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/background.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/Big Chung.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/BigChungusCropped.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/cannon.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/Carrot.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/CarrotCropped.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/chung.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/emptyINV.PNG</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/GAMEOVER.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/GAMESCREEN.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/GOScreen.PNG</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/InventoryExtra.PNG</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/level1.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/overContd.PNG</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/overGammain.PNG</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/pausescreen.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/platform.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/platformInv.PNG</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/POLY.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/slot.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/SmilingPetDog.jpg</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/spike.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/spikeanim.gif</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/spikeanim.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/spring.png</File>
+    <File>C:/Users/rando/Downloads/Project_2.1/BigChungus/Big Chungus/Content/SpringInv.PNG</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

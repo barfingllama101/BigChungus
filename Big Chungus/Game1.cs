@@ -114,17 +114,32 @@ namespace Big_Chungus
         private List<UIElement> UIButtons = new List<UIElement>();
         private List<LevelButton> levelButtons;
 
+        //levelselect2electric boogaloo
+        private UIElement[,] UIButts;
+        private LevelButton[,] levelButts;
+
+        //invisible for padding 
+        private UIElement[,] invisible;
+
         //pause
         private Texture2D pauseTexture;
         private Rectangle pauseTextureRect;
         private Rectangle button1Rect;
         private Rectangle button2Rect;
         private Rectangle mouseRect;
+        private Texture2D pauseBG;
+        private Rectangle pauseBGRect;
 
         //Game Over
 
         private Texture2D gameOverTexture;
         private Rectangle gameOverRectangle;
+
+        private Texture2D continueButton;
+        private Texture2D mainMenuButton;
+
+        private Rectangle contdRect;
+        private Rectangle mainMenRect;
 
         //inventory
         List<Slot> slot;
@@ -136,6 +151,18 @@ namespace Big_Chungus
         GameObject heldObject;
         //Class list for slots
         GameObject[] classes = new GameObject[6];
+
+        // INVENTORY AESTHETICS 
+        private Texture2D inventorySplash;
+        private Rectangle inventorySplashRect;
+
+        private Texture2D platformSplash;
+
+        private Texture2D springSplash;
+
+        private Texture2D emptySplash;
+
+        private Rectangle instructionRect;
         #endregion
         
         public Game1()
@@ -278,12 +305,23 @@ namespace Big_Chungus
                     //Makes Slots
                     for (int i = 0; i < slots; i++)
                     {
-                        slot.Add(new Slot(sTexture, i * 100 + 100, 668, Color.Wheat, inventoryItems[i], classes[i]));
+                        slot.Add(new Slot(sTexture, 30+ 3 + i * 200, 668, Color.Wheat, inventoryItems[i], classes[i]));
                     }
                     slot[0].SlotName = "Platform";
                     slot[0].SlotDescription = "Place this object anywhere on the screen for Chungus to travel.";
                     slot[1].SlotName = "Spring";
                     slot[1].SlotDescription = "place this on the screen for Chungus to jump high!";
+
+                    slot[0].SlotTypeTexture = platformSplash;
+
+                    slot[1].SlotTypeTexture = springSplash;
+
+                    for (int i = 2; i < slot.Count; i++)
+                    {
+                        slot[i].SlotTypeTexture = emptySplash;
+                        slot[i].SlotDescription = "There's nothing here! Maybe in another level?...";
+                    }
+
 
                     player = new Player(playerSprite, level.PlayerSpawnX, level.PlayerSpawnY);
                     player.LevelScore = 0;
@@ -386,6 +424,7 @@ namespace Big_Chungus
 
             heldObject = null;
             mouseState = Mouse.GetState();
+            instructionRect = new Rectangle(220, 475, 500, 25);
 
             base.Initialize();
         }
@@ -458,9 +497,25 @@ namespace Big_Chungus
             {
                 levelButtons.Add(new LevelButton(levels[i], 100, 100 + (30 * i)));
             }*/
+
+       
+            UIButts = new UIElement[4, 3];
+            int padding = 50;
+            int counter = 0;
+            for(int i = 0; i < 4; i++)
+            {
+                for(int j = 0; j < 3; j++)
+                {
+                    UIButts[i, j] = new UIElement(counter++, 20 + i *400 , 200 *j + 200);
+                }
+            }
             #endregion
             #region pause menu
             pauseTexture = Content.Load<Texture2D>("pausescreen");
+
+            pauseBG = Content.Load<Texture2D>("level1");
+            pauseBGRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
             pauseTextureRect = new Rectangle(GraphicsDevice.Viewport.Width/2-300,GraphicsDevice.Viewport.Height/2-200, pauseTexture.Width, pauseTexture.Height);
             mouseRect = new Rectangle(mouseState.X, mouseState.Y, 10, 10);
 
@@ -470,14 +525,30 @@ namespace Big_Chungus
             #endregion
 
             #region game Over
-            gameOverTexture = Content.Load<Texture2D>("GAMEOVER");
+            gameOverTexture = Content.Load<Texture2D>("GOScreen");
             gameOverRectangle = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
+            continueButton = Content.Load < Texture2D>("overContd");
+            contdRect = new Rectangle(GraphicsDevice.Viewport.Width / 2 - 70, GraphicsDevice.Viewport.Height / 2-10, 200, 70);
+
+            mainMenuButton = Content.Load<Texture2D>("overGammain");
+            mainMenRect = new Rectangle(GraphicsDevice.Viewport.Width / 2 - 70, GraphicsDevice.Viewport.Height / 2 - 90, 200, 70);
+
             #endregion
 
             #region inventory
+
+            inventorySplash = Content.Load<Texture2D>("InventoryExtra");
+            inventorySplashRect = new Rectangle(0, 400, 250, 250);
+            platformSplash = Content.Load<Texture2D>("platformInv");
+
+            springSplash = Content.Load<Texture2D>("SpringInv");
+            emptySplash = Content.Load<Texture2D>("emptyINV");
+      
+
             // rows = 3;
             //columns = 3;
-            
+
             #endregion
             NextLevel(0);
             
@@ -527,7 +598,7 @@ namespace Big_Chungus
                     MouseState pMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
-                    foreach (UIElement button in UIButtons)
+                  /*  foreach (UIElement button in UIButtons)
                     {
                         if (mouseRect.Intersects(button.Box))
                         {
@@ -545,8 +616,41 @@ namespace Big_Chungus
                                 }
                             }
                         }
+                    }*/
+
+                    for(int i = 0; i < 4; i++)
+                    {
+                        for(int j = 0; j <3; j++)
+                        {
+                            if (mouseRect.Intersects(UIButts[i, j].Box))
+                            {
+
+                                UIButts[i, j].Wiiidth = 120;
+                                UIButts[i, j].Heiiight = 40;
+                               
+                                if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                                {
+                                    if(UIButts[i,j].LevelNum >= levels.Count)
+                                    {
+                                        Console.WriteLine("This level is not available yet!");
+                                    }
+                                    else
+                                    {
+                                        curr = GameState.Building;
+                                        NextLevel(UIButts[i, j].LevelNum);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                UIButts[i, j].Wiiidth =100;
+                                UIButts[i, j].Heiiight = 20;
+                            }
+                        }
                     }
-                    /*foreach(LevelButton button in levelButtons)
+
+                    
+                   /* foreach(LevelButton button in levelButtons)
                     {
                         if (mouseRect.Intersects(button.Box))
                         {
@@ -789,20 +893,32 @@ namespace Big_Chungus
                 case GameState.GameOver:
                     vspd = 0;
                     hspd = 0;
+      
+
+                    pMouseState = mouseState;
+                    mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
-                    bool res7 = KeyPress(Keys.Enter);
-                    if (res7 == true)
+                   
+                    if (mouseRect.Intersects(mainMenRect))
                     {
-                        level.Player.XPos = level.PlayerSpawnX;
-                        level.Player.YPos = level.PlayerSpawnY;
-                        curr = GameState.Building;
-                        NextLevel(levelCount);
+                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        {
+                            curr = GameState.Menu;
+
+                        }
                     }
-                    bool res8 = KeyPress(Keys.M);
-                    if (res8 == true)
+                    if (mouseRect.Intersects(contdRect))
                     {
-                        curr = GameState.Menu;
+                        if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
+                        {
+                            level.Player.XPos = level.PlayerSpawnX;
+                            level.Player.YPos = level.PlayerSpawnY;
+                            curr = GameState.Building;
+                            NextLevel(levelCount);
+
+                        }
                     }
+
                     break;
                 #endregion
                 #region Pause Menu
@@ -810,24 +926,14 @@ namespace Big_Chungus
                     pMouseState = mouseState;
                     mouseState = Mouse.GetState();
                     kStatePrevious = kStateCurrent;
-                    //bool res4 = KeyPress(Keys.Enter);
-                  /*    if (res4 == true)
-                      {
-                          curr = GameState.Game;
-                      }
-                      bool res2 = KeyPress(Keys.M);
-                      if (res2 == true)
-                      {
-                          curr = GameState.Menu;
-                      }*/
-                   // IsMouseVisible = true;
+                  
                     if (mouseRect.Intersects(button1Rect))
                     {
                         if (mouseState.LeftButton == ButtonState.Pressed && pMouseState.LeftButton == ButtonState.Released)
                         {
                             curr = GameState.Game;
 
-                            // do something here
+                     
                         }
                     }
                     if (mouseRect.Intersects(button2Rect))
@@ -836,7 +942,7 @@ namespace Big_Chungus
                         {
                             curr = GameState.Menu;
 
-                            // do something here
+                       
                         }
                     }
                     break;
@@ -904,21 +1010,37 @@ namespace Big_Chungus
                         spriteBatch.Draw(platform, levelButtons[i].Box, Color.White);
                         spriteBatch.DrawString(spriteFont, System.IO.Path.GetFileNameWithoutExtension(levelButtons[i].LevelName), new Vector2(levelButtons[i].XPos, levelButtons[i].YPos), Color.White);
                     }*/
-                    
-                    foreach (UIElement button in UIButtons)
+                    spriteBatch.Draw(gameBG, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
+                    spriteBatch.DrawString(spriteFont, "Select a level to play!", new Vector2(GraphicsDevice.Viewport.Width / 2 - 7, 50), Color.Blue);
+                    for (int i = 0; i < 4; i++)
                     {
-                        Color textColor = Color.Blue;
-                        spriteBatch.Draw(platform, button.Box, Color.White);
-                        if (button.LevelNum >= levels.Count || mouseRect.Intersects(button.Box))
+                        for(int j = 0; j < 3; j++)
                         {
-                            textColor = Color.Red;
+                            Color textCo = Color.Blue;
+
+                           
+                            spriteBatch.Draw(sTexture, UIButts[i, j].Box, Color.White);
+                            spriteBatch.DrawString(spriteFont, UIButts[i,j].Label, new Vector2(UIButts[i,j].XPos + 15, UIButts[i,j].YPos), textCo);
+
                         }
-                        else
-                        {
-                            textColor = Color.Orange;
-                        }
-                        spriteBatch.DrawString(spriteFont, button.Label, new Vector2(button.XPos, button.YPos), textColor);
                     }
+                    foreach(UIElement button in UIButts)
+                    {
+
+                    }
+                    /*   foreach (UIElement button in UIButtons)
+                       {
+                           Color textColor = Color.Blue;
+                           spriteBatch.Draw(platform, button.Box, Color.White);
+                           if (button.LevelNum >= levels.Count || mouseRect.Intersects(button.Box))
+                           {
+                               textColor = Color.Red;
+                           }
+                           else
+                           {
+                               textColor = Color.Orange;
+                           }
+                       }*/
                     //spriteBatch.DrawString(spriteFont, "Level 1", new Vector2(100, 100), Color.Blue);
                     break;
                 #endregion
@@ -926,14 +1048,18 @@ namespace Big_Chungus
                 case GameState.Building:
                     for (int i = 0; i < slots; i++)
                     {
-                        slot[i].Draw(spriteBatch, spriteFont);
+                        slot[i].Draw(spriteBatch, spriteFont, sTexture);
                     }
                     
                     for (int i = 0; i < level.Platforms.Count; i++)
                     {
                         spriteBatch.Draw(level.Platforms[i].Texture, level.Platforms[i].Box, Color.Orange);
                     }
-                    spriteBatch.DrawString(spriteFont, "Inventory", new Vector2(100, 600), Color.Blue);
+                    spriteBatch.Draw(inventorySplash, inventorySplashRect, Color.White);
+                    spriteBatch.Draw(sTexture, instructionRect, Color.LawnGreen);
+                    spriteBatch.DrawString(spriteFont, "Click on a slot below to get an item for Big Chungus to use!", new Vector2(250, 475), Color.Blue);
+                    
+
                     spriteBatch.Draw(player.Texture, player.Box, new Rectangle(1019, 50, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, SpriteEffects.None, 0);
                     for (int i = 0; i < level.Carrots.Count; i++)
                     {
@@ -1032,16 +1158,19 @@ namespace Big_Chungus
                 #region game over 
                 case GameState.GameOver:
                     spriteBatch.Draw(gameOverTexture, gameOverRectangle, Color.White);
-                    spriteBatch.DrawString(spriteFont, "GAME OVER", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 200), Color.DarkBlue);
-                    spriteBatch.DrawString(spriteFont, "Press enter to try again", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 300), Color.DarkBlue);
-                    spriteBatch.DrawString(spriteFont, "Press M to exit to the main menu", new Vector2(GraphicsDevice.Viewport.Width / 2 - 40, 400), Color.DarkBlue);
+                    spriteBatch.Draw(continueButton, contdRect, Color.White);
+                    spriteBatch.Draw(mainMenuButton, mainMenRect, Color.White);
+                 //   spriteBatch.DrawString(spriteFont, "GAME OVER", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 200), Color.DarkBlue);
+              //      spriteBatch.DrawString(spriteFont, "Press enter to try again", new Vector2(GraphicsDevice.Viewport.Width / 2-40, 300), Color.DarkBlue);
+                //    spriteBatch.DrawString(spriteFont, "Press M to exit to the main menu", new Vector2(GraphicsDevice.Viewport.Width / 2 - 40, 700), Color.DarkBlue);
                     break;
                 #endregion
 
                 #region Pause Screen 
                 case GameState.Pause:
+                    spriteBatch.Draw(pauseBG, pauseBGRect, Color.White);
 
-                    spriteBatch.DrawString(spriteFont, "Click on an option to continue", new Vector2(320, 50), Color.DarkBlue);
+                    spriteBatch.DrawString(spriteFont, "Click on an option to continue", new Vector2(480, 50), Color.DarkBlue);
                     spriteBatch.Draw(pauseTexture, pauseTextureRect, Color.White);
           
                     break;

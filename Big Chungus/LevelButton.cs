@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 
 namespace Big_Chungus
 {
@@ -22,11 +23,17 @@ namespace Big_Chungus
         public int XPos { get => box.X; set => box.X = value; }
         public int YPos { get => box.Y; set => box.Y = value; }
 
+
+
         //constructor
         public LevelButton(string level, int x, int y)
         {
             levelName = level;
+            int tryIt;
+            int.TryParse(level, out tryIt);
             Box = new Rectangle(x, y, 100, 20);
+            Debug.WriteLine(tryIt);
         }
+       
     }
 }

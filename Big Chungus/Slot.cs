@@ -23,7 +23,21 @@ namespace Big_Chungus
             get { return slotName; }
             set { slotName = value; }
         }
+        Texture2D slotTypeTexture;
 
+        public Texture2D SlotTypeTexture
+        {
+            get { return slotTypeTexture; }
+            set { slotTypeTexture = value; }
+        }
+
+        Rectangle slottyperect;
+
+        public Rectangle SlotTRect
+        {
+            get { return slottyperect; }
+            set { slottyperect = value; }
+        }
         //description of object
 
         string slotDescription = "";
@@ -58,7 +72,13 @@ namespace Big_Chungus
             get { return baseRect; }
             //   set { baseRect = value; }
         }
+        private Rectangle textRect;
 
+        public Rectangle TextRect
+        {
+            get { return textRect; }
+            set { textRect = value; }
+        }
         private int xPos;
         public int XPos
         {
@@ -92,6 +112,10 @@ namespace Big_Chungus
             {
                 items.Add(itemClass);
             }
+         //   slottyperect.X = xPos + 20;
+           // slottyperect.Y = yPos + 30;
+            slottyperect = new Rectangle(xPos - 30, yPos - 125, 200, 200);
+            textRect = new Rectangle(230, 520, 450, 25);
         }
         #endregion
         #region interactions
@@ -110,17 +134,20 @@ namespace Big_Chungus
         internal GameObject ItemClass { get => itemClass; set => itemClass = value; }
         internal List<GameObject> Items { get => items; set => items = value; }
         #endregion
-        public void Draw(SpriteBatch spriteBatch, SpriteFont spriteFont)
+        public void Draw(SpriteBatch spriteBatch, SpriteFont spriteFont, Texture2D textTexture)
         {
             spriteBatch.Draw(slotTexture, baseRect, color);
-            spriteBatch.DrawString(spriteFont, numItems+"", new Vector2(xPos + 50, yPos + 50), Color.Blue);
-            spriteBatch.DrawString(spriteFont, slotName, new Vector2(xPos + 20, yPos +30), Color.Blue);
+         
+            spriteBatch.DrawString(spriteFont, numItems+" remaining", new Vector2(xPos, yPos + 50), Color.Blue);
+            //  spriteBatch.DrawString(spriteFont, slotName, new Vector2(xPos + 20, yPos +30), Color.Blue);
+            spriteBatch.Draw(slotTypeTexture, slottyperect, Color.White);
             if (hasObject == true)
             {
 
-
-                spriteBatch.DrawString(spriteFont, slotDescription, new Vector2(xPos + 2, yPos - 50), Color.Blue);
+                spriteBatch.Draw(textTexture, textRect, Color.LawnGreen);
+                spriteBatch.DrawString(spriteFont, slotDescription, new Vector2(250, 520), Color.Blue);
             }
+      
         }
 
         public void activating(int counting)

@@ -24,6 +24,13 @@ namespace Big_Chungus
             get { return isVisible; }
             set { isVisible = value; }
         }
+        private Rectangle textRect;
+
+        public Rectangle TextRect
+        {
+            get { return textRect; }
+            set { textRect = value; }
+        }
         /*bool inInventory;
         public bool InInventory
         {
@@ -48,7 +55,10 @@ namespace Big_Chungus
             platformBox = new Rectangle();
             platformBox.Width = width;
             platformBox.Height = height;
+        
+            //(220, 475, 500, 25
         }
+
         /*public Platform(GameObject newObject)
         {
             platformTexture = newObject.Texture;
